@@ -14,13 +14,13 @@
     Custo da ração?
     <input type="text" id="racaotil"> <br>
     Energia:
-    <input type="text" id="energia"> <br>
+    <input type="text" id="energia_input"> <br>
     Custo com funcionários
-    <input type="text" id="funcionarios"> <br>
+    <input type="text" id="funcionarios_input"> <br>
     Água:
-    <input type="text" id="agua"> <br>
+    <input type="text" id="agua_input"> <br>
     Manutenção semanal por tanque?
-    <input type="text" id="manutencao"> <br>
+    <input type="text" id="manutencao_input"> <br>
     Giro do tanque?
     <input type="text" id="giro"> <br>
     Receita da venda em KG de uma tilápia sem limpar
@@ -28,7 +28,7 @@
     Receita da venda em KG de uma tilápia como filé
     <input type="text" id="receitatilfile"> <br>
     Quantidade vendida (em KG)?
-    <input type="text" id="kgvenda"> <br>
+    <input type="text" id="kgvenda_input"> <br>
     <button onclick="calcular()">Calcular valores</button>
     <div id="div_mensagem"></div>
 </body>
@@ -39,17 +39,17 @@
         let qtdtotal= Number(qtdtanque.value) * 45;
         let qtdtanqueL = Number(qtdltanque.value) * qtdtanque;
         let racao = Number(racaotil.value) * qtdtotal;
-        let energia = Number(energia.value) * 6;
-        let agua = Number(agua.value) * 6;
-        let kgvenda = Number(kgvenda.value)
+        let energia = Number(energia_input.value) * 6;
+        let agua = Number(agua_input.value) * 6;
+        let kgvenda = Number(kgvenda_input.value)
         let receitacruuni = Number(receitatilcru.value);
         let receitafileuni = Number(receitatilfile.value);
         let kgvendacru = kgvenda / 2;
         let kgvendafile = kgvenda / 2;
         let kgvendatotal = kgvendacru + kgvendafile;
-        let funcionarios = Number(funcionarios.value) * 6;
-        let manutencao = Number(manutencao.value) * 4 * 6;
-        let despesa = (racao * qtdtotal) +  energia + agua + funcionarios + manutencao;
+        let funcionarios = Number(funcionarios_input.value) * 6;
+        let manutencao = Number(manutencao_input.value) * 4 * 6;
+        let despesa = racao +  energia + agua + funcionarios + manutencao;
         let receitacru = kgvendacru * receitacruuni;
         let receitafile = kgvendafile * receitafileuni;
         let resultadocru = receitacru - despesa;
@@ -63,7 +63,7 @@
         if (resultadofinal > 0){
             div_mensagem.innerHTML = `Legal, houve um lucro de R$${resultadofinal} pela venda de ${kgvendatotal}Kg.<br>`;
             if (resultadofinal > 3000){
-                div_mensagem.innerHTML += `O negócio está indo muito bem.<br>`;
+                div_mensagem.innerHTML += `O negócio está indo muito bem.Parabéns!<br>`;
             }
         } else {
             div_mensagem.innerHTML = `Melhor verificar o que está acontecendo, houve um prejuízo de R$${resultadofinal} pela venda de ${kgvendatotal}.<br>`;
@@ -80,4 +80,5 @@
 
 
     }
+</script>
 </script>
