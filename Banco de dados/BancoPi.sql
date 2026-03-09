@@ -21,13 +21,13 @@ CREATE TABLE Usuario(
 	cargo VARCHAR(11) NOT NULL,
 	CONSTRAINT chkcargo CHECK (cargo IN('Funcionário', 'Gestor', 'Propietário')), 
 	telefone VARCHAR(14) UNIQUE NOT NULL,
-	Stats VARCHAR(12), 
+	stats VARCHAR(7), 
 	CONSTRAINT chkstats CHECK (stats IN('Ativo', 'Inativo'))
 );
 
 CREATE TABLE Registro(
 	idRegistro INT PRIMARY KEY AUTO_INCREMENT,
-	temperatura FLOAT NOT NULL,
+	tempAtual DECIMAL(4,2) NOT NULL,
 	dtHrOcorrencia DATETIME DEFAULT CURRENT_TIMESTAMP() NOT NULL
 );
         
@@ -35,18 +35,19 @@ CREATE TABLE Tanque(
 	idTanque INT PRIMARY KEY AUTO_INCREMENT,
 	capacidadeL INT NOT NULL,
 	ciclo BOOLEAN NOT NULL,
-	tempAtual FLoat NOT NULL
+    tempMax DECIMAL(4,2) NOT NULL,
+    tempMin DECIMAL(4,2) NOT NULL
 );
         
 CREATE TABLE Gastos(
 	idMes INT PRIMARY KEY AUTO_INCREMENT,
 	mesAno VARCHAR(40) NOT NULL,
-	agua FLOAT NOT NULL,
-	luz FLOAT NOT NULL,
-	salario FLOAT NOT NULL,
-	kgTilapia FLOAT NOT NULL,
-	racaoKg FLOAT NOT NULL,
-	totaloutros FLOAT NOT NULL
+	agua DECIMAL(10,2) NOT NULL,
+	luz DECIMAL(10,2) NOT NULL,
+	salario DECIMAL(10,2) NOT NULL,
+	kgTilapia DECIMAL(10,2) NOT NULL,
+	racaoKg DECIMAL(10,2) NOT NULL,
+	totaloutros DECIMAL(10,2) NOT NULL
 );
 
 
