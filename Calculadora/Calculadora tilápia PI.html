@@ -1,63 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculadora financeira Nautilus</title>
-</head>
-<body>
+  </head>
+  <body>
     <div>
-        <h1>
-            Calculadora financeira Nautilus
-        </h1>
+      <h1>Calculadora financeira Nautilus</h1>
     </div>
-    <div class="" style="display: flex; flex-direction: column; gap: 10px;" >
-        <h3>Insira as informações referente as depesas (mensais)</h3>
-        <div>
-            <p>Despesas gerais (luz,água,salarios etc.)</p>
-            <input type="number" id="despesas_input">
-        </div>
-        <div>
-            <p>Kilos de ração por mês</p>
-            <input type="number" id="racao_mes_input">
-        </div>
-        <div>
-            <p>Preço do kilo da ração</p>
-            <input type="number" id="preco_racao_input">
-        </div>
-                <div>
-            <p>Preço unitário do alevino</p>
-            <input type="number" id="preco_racao_input">
-        </div>
-                <div>
-            <p>Valor de venda do peixe cru (kg)</p>
-            <input type="number" id="preco_racao_input">
-        </div>
-                <div>
-            <p>Valor de venda dos miúdos (kg)</p>
-            <input type="number" id="preco_racao_input">
-        </div>
-                <div>
-            <p>Valor de venda do filé (kg)</p>
-            <input type="number" id="preco_racao_input">
-        </div>
+    <div class="" style="display: flex; flex-direction: column; gap: 10px">
+      <h2>Insira as informações financeiras</h2>
+      <div>
+        <p>Despesas mensais gerais (luz,água,salários e manunteções)</p>
+        <input type="number" id="despesas_input" />
+      </div>
+      <div>
+        <p>Kilos de ração por mês</p>
+        <input type="number" id="racao_mes_input" />
+      </div>
+      <div>
+        <p>Preço do kilo da ração</p>
+        <input type="number" id="preco_racao_input" />
+      </div>
+      <div>
+        <p>Preço unitário do alevino</p>
+        <input type="number" id="preco_alevino_input" />
+      </div>
+      <div>
+        <p>Valor de venda do peixe cru (kg)</p>
+        <input type="number" id="venda_cru_input" />
+      </div>
+      <div>
+        <p>Valor de venda do filé (kg)</p>
+        <input type="number" id="venda_file_input" />
+      </div>
+      <div>
+        <p>Valor de venda dos miúdos (kg)</p>
+        <input type="number" id="venda_miudos_input" />
+      </div>
     </div>
-     <div class="" style="display: flex; flex-direction: column; gap: 10px;" >
-        <h3>Insira as informações</h3>
-        <div>
-            <p>Peixes iniciais</p>
-            <input type="number" id="despesas_input">
-        </div>
-        <div>
-            <p>Quantidade de kg no final do ciclo</p>
-            <input type="number" id="racao_mes_input">
-        </div>
+    <div class="" style="display: flex; flex-direction: column; gap: 10px">
+      <h2>Insira as informações sobre o tanque</h2>
+      <div>
+        <p>Peixes iniciais</p>
+        <input type="number" id="peixes_iniciais_input" />
+      </div>
+      <div>
+        <p>Quantidade de kg no final do ciclo</p>
+        <input type="number" id="peixeis_final_input" />
+      </div>
     </div>
+    <button onclick="Calcular()">Calcular</button>
     <div id="div_total"></div>
     <div id="div_tanques"></div>
-</body>
+  </body>
 </html>
-
 <script>
-    
+  let tanques = 0;
+  function Calcular() {
+    //recebendo valores dos inputs e incrementando os tanques
+    tanques++
+    let despesas = Number(despesas_input.value);
+    let racao_mes = Number(racao_mes_input.value);
+    let preco_racao = Number(preco_racao_input.value);
+    let preco_alevino = Number(preco_alevino_input.value);
+    let venda_cru = Number(venda_cru_input.value);
+    let venda_file = Number(venda_file_input.value);
+    let venda_miudos = Number(venda_miudos_input.value);
+    let peixes_iniciais = Number(peixes_iniciais_input.value);
+    let peixeis_final = Number(peixeis_final_input.value);
+    //calculando saidas
+  }
 </script>
