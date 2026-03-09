@@ -1,83 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tilápia</title>
+    <title>Calculadora financeira Nautilus</title>
 </head>
 <body>
-    <h1>Tilápia!!!</h1>
-    Quantos tanques?
-    <input type="text" id="qtdtanque"> <br>
-    Quantos litros tem em cada tanque?
-    <input type="text" id="qtdltanque"> <br>
-    Custo da ração?
-    <input type="text" id="racaotil"> <br>
-    Energia:
-    <input type="text" id="energia_input"> <br>
-    Custo com funcionários
-    <input type="text" id="funcionarios_input"> <br>
-    Água:
-    <input type="text" id="agua_input"> <br>
-    Manutenção semanal por tanque?
-    <input type="text" id="manutencao_input"> <br>
-    Giro do tanque?
-    <input type="text" id="giro"> <br>
-    Receita da venda em KG de uma tilápia sem limpar
-    <input type="text" id="receitatilcru"> <br>
-    Receita da venda em KG de uma tilápia como filé
-    <input type="text" id="receitatilfile"> <br>
-    Quantidade vendida (em KG)?
-    <input type="text" id="kgvenda_input"> <br>
-    <button onclick="calcular()">Calcular valores</button>
-    <div id="div_mensagem"></div>
+    <div>
+        <h1>
+            Calculadora financeira Nautilus
+        </h1>
+    </div>
+    <div class="" style="display: flex; flex-direction: column; gap: 10px;" >
+        <h3>Insira as informações referente as depesas (mensais)</h3>
+        <div>
+            <p>Despesas gerais (luz,água,salarios etc.)</p>
+            <input type="number" id="despesas_input">
+        </div>
+        <div>
+            <p>Kilos de ração por mês</p>
+            <input type="number" id="racao_mes_input">
+        </div>
+        <div>
+            <p>Preço do kilo da ração</p>
+            <input type="number" id="preco_racao_input">
+        </div>
+    </div>
 </body>
 </html>
-
-<script>
-    function calcular(){
-        let qtdtotal= Number(qtdtanque.value) * 45;
-        let qtdtanqueL = Number(qtdltanque.value) * qtdtanque;
-        let racao = Number(racaotil.value) * qtdtotal;
-        let energia = Number(energia_input.value) * 6;
-        let agua = Number(agua_input.value) * 6;
-        let kgvenda = Number(kgvenda_input.value)
-        let receitacruuni = Number(receitatilcru.value);
-        let receitafileuni = Number(receitatilfile.value);
-        let kgvendacru = kgvenda / 2;
-        let kgvendafile = kgvenda / 2;
-        let kgvendatotal = kgvendacru + kgvendafile;
-        let funcionarios = Number(funcionarios_input.value) * 6;
-        let manutencao = Number(manutencao_input.value) * 4 * 6;
-        let despesa = racao +  energia + agua + funcionarios + manutencao;
-        let receitacru = kgvendacru * receitacruuni;
-        let receitafile = kgvendafile * receitafileuni;
-        let resultadocru = receitacru - despesa;
-        let resultadofile = receitafile - despesa;
-        let resultadofinal = resultadocru + resultadofile;
-        let custoalto = resultadofinal * 0.75;
-        //let mesdociclo = ;
-        //let investimento = até o momento;
-        
-
-        if (resultadofinal > 0){
-            div_mensagem.innerHTML = `Legal, houve um lucro de R$${resultadofinal} pela venda de ${kgvendatotal}Kg.<br>`;
-            if (resultadofinal > 3000){
-                div_mensagem.innerHTML += `O negócio está indo muito bem.Parabéns!<br>`;
-            }
-        } else {
-            div_mensagem.innerHTML = `Melhor verificar o que está acontecendo, houve um prejuízo de R$${resultadofinal} pela venda de ${kgvendatotal}.<br>`;
-        }
-
-        if (despesa >= custoalto){
-            div_mensagem.innerHTML += `Cuidado, os seus custos estão muito altos, margem de lucro muito baixa! Atenção!<br>`;
-        } else{
-            div_mensagem.innerHTML += `O custo está controlado, boa!<br>`;
-        }
-
-
-        //if quantidade de tilapia perdida em estagio (1 - 6) então Y de prejuizo
-
-
-    }
-</script>
