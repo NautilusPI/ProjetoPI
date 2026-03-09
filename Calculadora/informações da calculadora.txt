@@ -1,0 +1,30 @@
+peixes mortos e taxa (KG)
+Investimento perdido em alevinos
+Valor perdido em venda
+prejuizo
+Custo com ração desperdiçada:
+bruto(calcular venda de peixe em file e cru) file(30%)resto(70%)
+Custo
+liquido
+
+
+
+
+
+INPUTS
+
+despesas(mensal unica)1x
+kilo da ração por mes
+valor da ração
+
+--tanque
+peixes iniciais;
+quantidade de kg no final do ciclo;
+preço por alevino;
+valor de venda do peixe cru(kg);
+valor de venda do miudos(kg);
+valor de venda do file(kg);
+
+
+
+
