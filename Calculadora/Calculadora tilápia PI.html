@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tilápia</title>
+</head>
+<body>
+    <h1>Tilápia!!!</h1>
+    Quantos tanques?
+    <input type="text" id="qtdtanque"> <br>
+    Quantos litros tem em cada tanque?
+    <input type="text" id="qtdltanque"> <br>
+    Custo da ração?
+    <input type="text" id="racaotil"> <br>
+    Energia:
+    <input type="text" id="energia"> <br>
+    Custo com funcionários
+    <input type="text" id="funcionarios"> <br>
+    Água:
+    <input type="text" id="agua"> <br>
+    Manutenção semanal por tanque?
+    <input type="text" id="manutencao"> <br>
+    Giro do tanque?
+    <input type="text" id="giro"> <br>
+    Receita da venda em KG de uma tilápia sem limpar
+    <input type="text" id="receitatilcru"> <br>
+    Receita da venda em KG de uma tilápia como filé
+    <input type="text" id="receitatilfile"> <br>
+    Quantidade vendida (em KG)?
+    <input type="text" id="kgvenda"> <br>
+    <button onclick="calcular()">Calcular valores</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function calcular(){
+        let qtdtotal= Number(qtdtanque.value) * 45;
+        let qtdtanqueL = Number(qtdltanque.value) * qtdtanque;
+        let racao = Number(racaotil.value) * qtdtotal;
+        let energia = Number(energia.value) * 6;
+        let agua = Number(agua.value) * 6;
+        let kgvenda = Number(kgvenda.value)
+        let receitacruuni = Number(receitatilcru.value);
+        let receitafileuni = Number(receitatilfile.value);
+        let kgvendacru = kgvenda / 2;
+        let kgvendafile = kgvenda / 2;
+        let kgvendatotal = kgvendacru + kgvendafile;
+        let funcionarios = Number(funcionarios.value) * 6;
+        let manutencao = Number(manutencao.value) * 4 * 6;
+        let despesa = (racao * qtdtotal) +  energia + agua + funcionarios + manutencao;
+        let receitacru = kgvendacru * receitacruuni;
+        let receitafile = kgvendafile * receitafileuni;
+        let resultadocru = receitacru - despesa;
+        let resultadofile = receitafile - despesa;
+        let resultadofinal = resultadocru + resultadofile;
+        let custoalto = resultadofinal * 0.75;
+        //let mesdociclo = ;
+        //let investimento = até o momento;
+        
+
+        if (resultadofinal > 0){
+            div_mensagem.innerHTML = `Legal, houve um lucro de R$${resultadofinal} pela venda de ${kgvendatotal}Kg.<br>`;
+            if (resultadofinal > 3000){
+                div_mensagem.innerHTML += `O negócio está indo muito bem.<br>`;
+            }
+        } else {
+            div_mensagem.innerHTML = `Melhor verificar o que está acontecendo, houve um prejuízo de R$${resultadofinal} pela venda de ${kgvendatotal}.<br>`;
+        }
+
+        if (despesa >= custoalto){
+            div_mensagem.innerHTML = `Cuidado, os seus custos estão muito altos, margem de lucro muito baixa! Atenção!<br>`;
+        } else{
+            div_mensagem.innerHTML = `O custo está controlado, boa!<br>`;
+        }
+
+
+        //if quantidade de tilapia perdida em estagio (1 - 6) então Y de prejuizo
+
+
+    }
+</script>
