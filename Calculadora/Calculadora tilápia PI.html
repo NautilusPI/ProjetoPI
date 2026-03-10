@@ -1,15 +1,18 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora financeira Nautilus</title>
-  </head>
-  <body>
-    <div>
-      <h1>Calculadora financeira Nautilus</h1>
-    </div>
-    <div  class="" style="display: flex; flex-direction: column; gap: 10px">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora financeira Nautilus</title>
+</head>
+
+<body>
+  <div>
+    <h1>Calculadora financeira Nautilus</h1>
+  </div>
+  <div>
+    <div id="div_principal" class="" style="display: flex; flex-direction: column; gap: 10px">
       <h2>Insira as informações financeiras</h2>
       <div>
         <p>Despesas mensais gerais (luz,água,salários e manunteções)</p>
@@ -39,112 +42,171 @@
         <p>Valor de venda dos miúdos (kg)</p>
         <input type="number" id="venda_miudos_input" />
       </div>
-    </div>
-    <div class="" style="display: flex; flex-direction: column; gap: 10px">
-      <h2>Insira as informações sobre o tanque</h2>
       <div>
-        <p>Peixes iniciais</p>
-        <input type="number" id="peixes_iniciais_input" />
-      </div>
-      <div>
-        <p>Quantidade de kg no final do ciclo</p>
-        <input type="number" id="peixes_final_input" />
+        <button onclick="Avancar()">Avançar</button>
       </div>
     </div>
-    <button onclick="Calcular()">Calcular</button>
-    <h1>Total (somando todos tanques)</h1>
+
+
     <div id="div_total"></div>
-    
+
     <div id="div_tanques"></div>
-  </body>
+  </div>
+</body>
+
 </html>
 <script>
+  despesas_input.value = 1200;
+  racao_mes_input.value = 300;
+  preco_racao_input.value = 6.5;
+  preco_alevino_input.value = 0.9;
+  venda_cru_input.value = 14;
+  venda_file_input.value = 38;
+  venda_miudos_input.value = 6;
+  // peixes_iniciais_input.value = 2500;
+  // peixes_final_input.value = 2250;
+
+  // variavel que representa a quantidade atual de tanques
   let tanques = 0;
-  let peixes_mortos_total = 0
-  let peixes_inicial_total = 0
-  let peixes_mortos_porcentagem_total = 0
-  let perdas_por_peixes_mortos_total = 0
-  let ganhos_peixes_total = 0
-  let ganhos_totais = 0
-  let perdas_totais = 0
-  let perca_com_alevino_total =0
-  let perca_racao = 0
-  let bruto = 0
-  let custos =0
+  //variaveis globais que representa os resultados totais dos tanques
+  let peixes_mortos_total = 0;
+  let peixes_inicial_total = 0;
+  let peixes_mortos_porcentagem_total = 0;
+  let perdas_por_peixes_mortos_total = 0;
+  let ganhos_peixes_total = 0;
+  let ganhos_totais = 0;
+  let perdas_totais = 0;
+  let perca_com_alevino_total = 0;
+  let perca_racao = 0;
+  let bruto = 0;
+  let custos = 0;
+  // variaveis globais dos valores inseridos pelo usuario pelo input (ela tem que ser global porque os valores delas serão atribuidos em uma função e usado em outra)
+  let despesas = 0;
+  let racao_mes = 0;
+  let preco_racao = 0;
+  let preco_alevino = 0;
+  let venda_cru = 0;
+  let venda_file = 0;
+  let venda_miudos = 0;
+  // essa função recebe os valores dos primeiros inputs e armazena nas variaveis depois apaga os inputs e apresenta os novos inputs
+  function Avancar() {
+    // recebendo valores dos inputs
+    despesas = Number(despesas_input.value);
+    racao_mes = Number(racao_mes_input.value);
+    preco_racao = Number(preco_racao_input.value);
+    preco_alevino = Number(preco_alevino_input.value);
+    venda_cru = Number(venda_cru_input.value);
+    venda_file = Number(venda_file_input.value);
+    venda_miudos = Number(venda_miudos_input.value);
+    // validando valores
+    if (despesas <= 0) {
+      alert('Insira um valor de despesas válido')
+    } else if (racao_mes <= 0) {
+      alert('Insira um valor de kilos de ração por mês válido')
+    }
+    else if (preco_racao <= 0) {
+      alert('Insira um valor de preço do kilo da ração válido')
+
+    }
+    else if (racao_mes <= 0) {
+      alert('Insira um valor de kilos de ração por mês válido')
+
+    }
+    else if (preco_alevino <= 0) {
+      alert('Insira um valor do preço unitário do alevino válido')
+
+    }
+    else if (venda_cru <= 0) {
+      alert('Insira um valor de venda do peixe cru válido')
+
+    }
+
+    else if (venda_file <= 0) {
+      alert('Insira um valor de venda do filé válido')
+
+    }
+
+    else if (venda_miudos <= 0) {
+      alert('Insira um valor de venda dos miúdos válido')
+
+    }
+    else {
+      //caso todos valores sejam validos, mudar os inputs na tela
+      div_principal.innerHTML = `
+       <div>
+   <div  class="" style="display: flex; flex-direction: column; gap: 10px">
+    <h2>Insira as informações sobre o tanque</h2>
+    <div>
+      <p>Peixes iniciais</p>
+      <input type="number" id="peixes_iniciais_input" />
+    </div>
+    <div>
+      <p>Quantidade de kg no final do ciclo</p>
+      <input type="number" id="peixes_final_input" />
+    </div>
+  </div>
+  <button onclick="Calcular()">Calcular</button>
+ </div>
+      `
+    }
+  }
   function Calcular() {
     //recebendo valores dos inputs e incrementando os tanques
-    tanques++
-    let despesas = Number(despesas_input.value);
-    let racao_mes = Number(racao_mes_input.value);
-    let preco_racao = Number(preco_racao_input.value);
-    let preco_alevino = Number(preco_alevino_input.value);
-    let venda_cru = Number(venda_cru_input.value);
-    let venda_file = Number(venda_file_input.value);
-    let venda_miudos = Number(venda_miudos_input.value);
+    tanques++;
     let peixes_inicial = Number(peixes_iniciais_input.value);
     let peixes_final = Number(peixes_final_input.value);
     //calculando saidas
     let peixes_mortos = peixes_inicial - peixes_final;
-    peixes_mortos_total +=  peixes_mortos;
-    peixes_inicial_total +=  peixes_inicial;
     let peixes_mortos_porcentagem = (peixes_mortos * 100) / peixes_inicial;
-    peixes_mortos_porcentagem_total = (peixes_mortos_total * 100) / peixes_inicial_total;
     // calculando valor perdido e ganho em peixes considerando que 50% são vendidos cru e 50% são para filés e dentro desses 50% apenas 30% vira filé de fato, o resto se torna miúdos(restos)
-     let peixes_file_venda = ((peixes_final / 2) * 0.3) * venda_file;
-    let peixes_miudos_venda = ((peixes_final / 2) * 0.7) * venda_miudos;
+    let peixes_cru_venda = (peixes_final / 2) * venda_cru;
+    let peixes_file_venda = (peixes_final / 2) * 0.3 * venda_file;
+    let peixes_miudos_venda = (peixes_final / 2) * 0.7 * venda_miudos;
     let peixes_cru_perdido = (peixes_mortos / 2) * venda_cru;
-    let peixes_file_perdido = ((peixes_mortos / 2) * 0.3) * venda_file;
-    let peixes_miudos_perdido = ((peixes_mortos / 2) * 0.7) * venda_miudos;
+    let peixes_file_perdido = (peixes_mortos / 2) * 0.3 * venda_file;
+    let peixes_miudos_perdido = (peixes_mortos / 2) * 0.7 * venda_miudos;
     let perdas_por_peixes_mortos = peixes_cru_perdido + peixes_file_perdido + peixes_miudos_perdido;
-    perdas_por_peixes_mortos_total += perdas_por_peixes_mortos
     let ganhos_peixes = peixes_cru_venda + peixes_file_venda + peixes_miudos_venda;
-    ganhos_peixes_total += ganhos_peixes
-    let perda_com_alevino = preco_alevino * peixes_mortos
+    let perda_com_alevino = preco_alevino * peixes_mortos;
+    // atualizando valores das variaveis globais
+    peixes_mortos_total += peixes_mortos;
+    peixes_inicial_total += peixes_inicial;
+    peixes_mortos_porcentagem_total = (peixes_mortos_total * 100) / peixes_inicial_total;
+    perdas_por_peixes_mortos_total += perdas_por_peixes_mortos;
+    ganhos_peixes_total += ganhos_peixes;
     perca_com_alevino_total += perda_com_alevino;
-    perca_racao = (racao_mes/peixes_inicial_total) * peixes_mortos_total
-    bruto = ganhos_peixes_total
-    Custo = despesas+racao_mes+ (preco_alevino * peixes_inicial_total)
-    
-    // Exibindo os valores para testes
-    div_total.innerHTML = `
-    tanques : ${tanques}<br>
-    Peixes mortos no total = ${peixes_mortos_total}<br>
-    Peixes iniciais totais = ${peixes_inicial_total}<br>
-    Porcentagem dos peixes mortos = ${peixes_mortos_porcentagem_total}%<br>
-    Prejuízo devido a perda de peixes = R$${perdas_por_peixes_mortos_total}<br>
-    perca com ração = R$${perca_racao}<br>
-    perca com alevinos totais: R${perda_com_alevino}<br>
-    prejuizo total = ${perdas_por_peixes_mortos_total + perca_racao+ perda_com_alevino }
-    Bruto = R$${ganhos_peixes_total}<br>
-    Custo = ${despesas+racao_mes+ (preco_alevino * peixes_inicial_total)}
-    Liquido = ${bruto-custos}
+    perca_racao = (racao_mes / peixes_inicial_total) * peixes_mortos_total;
+    bruto = ganhos_peixes_total;
+    Custo = despesas + racao_mes + preco_alevino * peixes_inicial_total;
 
-    `
-    div_tanques.innerHTML +=`
+    // Exibindo os valores 
+    div_total.innerHTML = `
+    <h1>Resultados totais de todos tanques</h1>
+    <b>Tanques : ${tanques}</b><br>
+    <b>Peixes mortos no total = ${peixes_mortos_total}</b><br>
+    <b>Peixes iniciais totais = ${peixes_inicial_total}</b><br>
+    <b>Porcentagem des peixes mortos = ${peixes_mortos_porcentagem_total}%</b><br>
+    <b>Prejuízo devido a perda de peixes = R$${perdas_por_peixes_mortos_total}</b><br>
+    <b>Perda com ração = R$${perca_racao}</b><br>
+    <b>Perda com alevinos totais: R${perda_com_alevino}</b><br>
+    <b>Prejuizo total = ${perdas_por_peixes_mortos_total + perca_racao + perda_com_alevino}</b><br>
+    <b>Bruto = R$${ganhos_peixes_total}</b><br>
+    <b>Custo = ${despesas + racao_mes + preco_alevino * peixes_inicial_total}</b><br>
+    <b>Liquido = ${bruto - custos}</b><br>
+
+    `;
+    div_tanques.innerHTML += `
     
     <div>
         <H1>
-            tanque: ${tanques}
+            Tanque: ${tanques}
             </h1>
-    peixes mortos nesse tanque :${peixes_mortos}<br>
-    taxa de peixes mortos : ${peixes_mortos_porcentagem}%<br>
-    perda por vendas não feitas por morte :R$${perdas_por_peixes_mortos}<br>
-    ganho com vendas : R$${ganhos_peixes}<br>
-    perca com alevinos: R${perda_com_alevino}<br>
+    <p>Peixes mortos nesse tanque :${peixes_mortos}</p>
+    <p>Taxa de peixes mortos : ${peixes_mortos_porcentagem}%</p>
+    <p>Perda por vendas não feitas por morte :R$${perdas_por_peixes_mortos}</p>
+    <p>Ganho com vendas : R$${ganhos_peixes}</p>
+    <p>Perca com alevinos: R${perda_com_alevino}</p>
         </div>
-    `
+    `;
   }
-
 </script>
-
-
-<!-- <h1>O que vamos mostrar pro cliente</h1>
-
-<p>peixes mortos e taxa (KG)</p> CHECK
-<p>Investimento perdido em alevinos</p>check
-<p>Valor perdido em venda</p>check
-<p>prejuizo contando despesas</p> 
-<p>Custo com ração desperdiçada</p>
-<p>bruto</p>
-<p>Custo</p>
-<p>liquido</p> -->
