@@ -52,7 +52,9 @@
       </div>
     </div>
     <button onclick="Calcular()">Calcular</button>
+    <h1>Total (somando todos tanques)</h1>
     <div id="div_total"></div>
+    
     <div id="div_tanques"></div>
   </body>
 </html>
@@ -61,6 +63,10 @@
   let peixes_mortos_total = 0
   let peixes_inicial_total = 0
   let peixes_mortos_porcentagem_total = 0
+  let perdas_por_peixes_mortos_total = 0
+  let ganhos_peixes_total = 0
+  let ganhos_totais = 0
+  let perdas_totais = 0
   function Calcular() {
     //recebendo valores dos inputs e incrementando os tanques
     tanques++
@@ -71,32 +77,52 @@
     let venda_cru = Number(venda_cru_input.value);
     let venda_file = Number(venda_file_input.value);
     let venda_miudos = Number(venda_miudos_input.value);
-    let peixes_iniciais = Number(peixes_iniciais_input.value);
+    let peixes_inicial = Number(peixes_iniciais_input.value);
     let peixes_final = Number(peixes_final_input.value);
     //calculando saidas
+    let peixes_mortos = peixes_inicial - peixes_final;
+    peixes_mortos_total +=  peixes_mortos;
+    peixes_inicial_total +=  peixes_inicial;
+    let peixes_mortos_porcentagem = (peixes_mortos * 100) / peixes_inicial;
+    peixes_mortos_porcentagem_total = (peixes_mortos_total * 100) / peixes_inicial_total;
+    // calculando valor perdido e ganho em peixes considerando que 50% são vendidos cru e 50% são para filés e dentro desses 50% apenas 30% vira filé de fato, o resto se torna miúdos(restos)
     let peixes_cru_venda = (peixes_final / 2) * venda_cru;
     let peixes_file_venda = ((peixes_final / 2) * 0.3) * venda_file;
     let peixes_miudos_venda = ((peixes_final / 2) * 0.7) * venda_miudos;
     let peixes_cru_perdido = (peixes_mortos / 2) * venda_cru;
     let peixes_file_perdido = ((peixes_mortos / 2) * 0.3) * venda_file;
     let peixes_miudos_perdido = ((peixes_mortos / 2) * 0.7) * venda_miudos;
-    let perdas_totais = peixes_cru_perdido + peixes_file_perdido + peixes_miudos_perdido;
-    let ganho_totais = ganho_cru + ganho_file + ganho_miudos;
-    let peixes_mortos = peixes_inicial - peixes_final;
-    peixes_mortos_total = peixes_morto_total + peixes_morto;
-    peixes_inicial_total = peixes_inicial_total + peixes_inicial;
-    let peixes_mortos_porcentagem = (peixes_morto * 100) / peixes_inicial;
-    peixes_mortos_porcentagem_total = (peixes_morto_total * 100) / peixes_inicial;
+    let perdas_por_peixes_mortos = peixes_cru_perdido + peixes_file_perdido + peixes_miudos_perdido;
+    perdas_por_peixes_mortos_total += perdas_por_peixes_mortos
+    let ganhos_peixes = peixes_cru_venda + peixes_file_venda + peixes_miudos_venda;
+    ganhos_peixes_total += ganhos_peixes
+    // Exibindo os valores para testes
+    div_total.innerHTML = `
+    tanques : ${tanques}<br>
+    peixes_mortos_total = ${peixes_mortos_total}<br>
+    peixes_inicial_total = ${peixes_inicial_total}<br>
+    peixes_mortos_porcentagem_total = ${peixes_mortos_porcentagem_total}%<br>
+    perdas_por_peixes_mortos_total = ${perdas_por_peixes_mortos_total}<br>
+    ganhos_peixes_total = ${ganhos_peixes_total}<br>
+    `
+    div_tanques.innerHTML +=`
     
-    let investimento_perdido = peixes_mortos *
-
+    <div>
+        <H1>
+            tanque: ${tanques}
+            </h1>
+    peixes mortos nesse tanque :${peixes_mortos}<br>
+    taxa de peixes mortos : ${peixes_mortos_porcentagem}%<br>
+    perda por vendas não feitas por morte :${perdas_por_peixes_mortos}<br>
+    ganho com vendas : ${perdas_por_peixes_mortos}<br>
+        </div>
+    `
   }
-    500 - 100
-    50 - x
+
 </script>
 
 
-<h1>O que vamos mostrar pro cliente</h1>
+<!-- <h1>O que vamos mostrar pro cliente</h1>
 
 <p>peixes mortos e taxa (KG)</p> CHECK
 <p>Investimento perdido em alevinos</p>
@@ -105,4 +131,4 @@
 <p>Custo com ração desperdiçada</p>
 <p>bruto</p>
 <p>Custo</p>
-<p>liquido</p>
+<p>liquido</p> -->
