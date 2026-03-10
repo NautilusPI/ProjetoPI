@@ -9,7 +9,7 @@
     <div>
       <h1>Calculadora financeira Nautilus</h1>
     </div>
-    <div class="" style="display: flex; flex-direction: column; gap: 10px">
+    <div  class="" style="display: flex; flex-direction: column; gap: 10px">
       <h2>Insira as informações financeiras</h2>
       <div>
         <p>Despesas mensais gerais (luz,água,salários e manunteções)</p>
@@ -67,6 +67,10 @@
   let ganhos_peixes_total = 0
   let ganhos_totais = 0
   let perdas_totais = 0
+  let perca_com_alevino_total =0
+  let perca_racao = 0
+  let bruto = 0
+  let custos =0
   function Calcular() {
     //recebendo valores dos inputs e incrementando os tanques
     tanques++
@@ -86,8 +90,7 @@
     let peixes_mortos_porcentagem = (peixes_mortos * 100) / peixes_inicial;
     peixes_mortos_porcentagem_total = (peixes_mortos_total * 100) / peixes_inicial_total;
     // calculando valor perdido e ganho em peixes considerando que 50% são vendidos cru e 50% são para filés e dentro desses 50% apenas 30% vira filé de fato, o resto se torna miúdos(restos)
-    let peixes_cru_venda = (peixes_final / 2) * venda_cru;
-    let peixes_file_venda = ((peixes_final / 2) * 0.3) * venda_file;
+     let peixes_file_venda = ((peixes_final / 2) * 0.3) * venda_file;
     let peixes_miudos_venda = ((peixes_final / 2) * 0.7) * venda_miudos;
     let peixes_cru_perdido = (peixes_mortos / 2) * venda_cru;
     let peixes_file_perdido = ((peixes_mortos / 2) * 0.3) * venda_file;
@@ -96,6 +99,12 @@
     perdas_por_peixes_mortos_total += perdas_por_peixes_mortos
     let ganhos_peixes = peixes_cru_venda + peixes_file_venda + peixes_miudos_venda;
     ganhos_peixes_total += ganhos_peixes
+    let perda_com_alevino = preco_alevino * peixes_mortos
+    perca_com_alevino_total += perda_com_alevino;
+    perca_racao = (racao_mes/peixes_inicial_total) * peixes_mortos_total
+    bruto = ganhos_peixes_total
+    Custo = despesas+racao_mes+ (preco_alevino * peixes_inicial_total)
+    
     // Exibindo os valores para testes
     div_total.innerHTML = `
     tanques : ${tanques}<br>
@@ -103,7 +112,13 @@
     Peixes iniciais totais = ${peixes_inicial_total}<br>
     Porcentagem dos peixes mortos = ${peixes_mortos_porcentagem_total}%<br>
     Prejuízo devido a perda de peixes = R$${perdas_por_peixes_mortos_total}<br>
-    Receita total dos peixes = R$${ganhos_peixes_total}<br>
+    perca com ração = R$${perca_racao}<br>
+    perca com alevinos totais: R${perda_com_alevino}<br>
+    prejuizo total = ${perdas_por_peixes_mortos_total + perca_racao+ perda_com_alevino }
+    Bruto = R$${ganhos_peixes_total}<br>
+    Custo = ${despesas+racao_mes+ (preco_alevino * peixes_inicial_total)}
+    Liquido = ${bruto-custos}
+
     `
     div_tanques.innerHTML +=`
     
@@ -114,7 +129,8 @@
     peixes mortos nesse tanque :${peixes_mortos}<br>
     taxa de peixes mortos : ${peixes_mortos_porcentagem}%<br>
     perda por vendas não feitas por morte :R$${perdas_por_peixes_mortos}<br>
-    ganho com vendas : R$${perdas_por_peixes_mortos}<br>
+    ganho com vendas : R$${ganhos_peixes}<br>
+    perca com alevinos: R${perda_com_alevino}<br>
         </div>
     `
   }
@@ -125,9 +141,9 @@
 <!-- <h1>O que vamos mostrar pro cliente</h1>
 
 <p>peixes mortos e taxa (KG)</p> CHECK
-<p>Investimento perdido em alevinos</p>
-<p>Valor perdido em venda</p>
-<p>prejuizo</p> 
+<p>Investimento perdido em alevinos</p>check
+<p>Valor perdido em venda</p>check
+<p>prejuizo contando despesas</p> 
 <p>Custo com ração desperdiçada</p>
 <p>bruto</p>
 <p>Custo</p>
