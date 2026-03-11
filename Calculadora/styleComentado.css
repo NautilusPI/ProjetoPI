@@ -1,0 +1,64 @@
+body{
+    background-color: #f5f5f5; /* Define a cor de fundo de todo o site */
+    font-family: Arial; /* Define a fonte usada nos textos da página */
+    text-align: center; /* Centraliza elementos na tela */
+}
+
+h1{
+    color: #02707d; /* Define a cor do título principal */
+}
+
+h2{
+    color: #02707d; /* Define a cor dos subtítulos */
+}
+
+img{
+    width: 200px; /* Define a largura da imagem */
+    margin-top: 20px; /* Cria uma margem acima da imagem */
+}
+
+#div_principal{
+    width: 400px; /* Define a largura do container principal da calculadora */
+    margin: auto; /* Centraliza o container */
+    margin-top: 20px; /* Cria uma margem acima do container */
+    padding: 20px; /* Cria espaço interno entre o conteúdo e a borda */
+    border-radius: 5px; /* Arredonda os cantos do container */
+    border: 1px solid gray; /* Cria uma borda cinza ao redor do container */
+    background-color: #f5f5f5; /* Define a cor de fundo do container */
+}
+
+input{
+    border-radius: 5px; /* Arredonda os cantos das inputs */
+    padding: 6px; /* Cria espaço interno dentro da input */
+    border: 1px solid gray; /* Cria uma borda cinza na input */
+    width: 90%; /* Faz a input ocupar 90% da largura do container */
+}
+
+button{
+    border-radius: 5px; /* Arredonda os cantos do botão */
+    padding: 8px; /* Cria espaço interno dentro do botão */
+    background-color: #02707d; /* Define a cor de fundo do botão */
+    color: #f5f5f5; /* Define a cor do texto do botão */
+    border: 1px solid gray; /* Cria uma borda cinza no botão */
+    margin-top: 10px; /* Cria uma margem acima do botão */
+}
+
+#div_total{
+    width: 400px; /* Define a largura do container de resultados totais */
+    margin: auto; /* Centraliza o container na tela */
+    margin-top: 20px; /* Cria uma margem acima do container */
+    padding: 15px; /* Cria espaço interno dentro do container */
+    border-radius: 5px; /* Arredonda os cantos do container */
+    border: 1px solid gray; /* Cria uma borda ao redor do container */
+    background-color: #f5f5f5; /* Define a cor de fundo do container */
+}
+
+#div_tanques div{
+    width: 400px; /* Define a largura dos containers de cada tanque */
+    margin: auto; /* Centraliza cada container na tela */
+    margin-top: 15px; /* Cria espaço entre os tanques */
+    padding: 15px; /* Cria espaço interno dentro do container */
+    border-radius: 5px; /* Arredonda os cantos do container */
+    border: 1px solid gray; /* Cria borda ao redor do container */
+    background-color: #f5f5f5; /* Define a cor de fundo da container */
+}
