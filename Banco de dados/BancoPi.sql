@@ -52,10 +52,14 @@ CREATE TABLE Gastos(
 
 
 
-INSERT INTO Usuario (nomeCompleto,email,senha,cargo,telefone,stats) VALUES
-('Gustavo fernando da silva','gusta@gmail.com','84senhagus','Propietário','11 9242-2424','ativo'),
-('Pedro Gonçales','pedro@gmail.com','123senha','Gestor','11 9735-2347','ativo'),
-('vini gabam','vinicius@gmail.com','vinigugu','Funcionário','11 92464-2023','ativo');
+INSERT INTO Usuario (nomeCompleto,email,senha,cargo,stats,telefone) VALUES
+('Gustavo fernando da silva','gusta@gmail.com','84senhagus','Propietário','ativo','11 9242-2424'),
+('Pedro Gonçales','pedro@gmail.com','123senha','Gestor','ativo','11 9735-2347'),
+('vini gabam','vinicius@gmail.com','vinigugu','Funcionário','ativo','11 92464-2023'),
+('Cleber da silva','cleber.dsilva@gmail.com','cleber!23','Gestor','Inativo','11 94293-4243'),
+('Rodrigo de Souza','souza@gmail.com','r@odrigoSoz','Funcionário','ativo','11 98375-8590'),
+('Felipe Eduardo','felipe.edu@gmail.com','FelpsQQ','Gestor','ativo','11 9200-0099'),
+('Rodrigo Silva de Santos','rodrigo.santos@gmail.com','Rfk@123','Funcionário','ativo','11 98412-4323');
 
 INSERT INTO Registro(temperatura) VALUES 
 (26.9),
@@ -73,3 +77,15 @@ SELECT * FROM Usuario;
 SELECT * FROM Registro;
 SELECT * FROM Tanque;
 SELECT * FROM Gastos;
+
+-- seleciona usuarios pelo nome e cargo
+SELECT CONCAT('nome:',nomeCompleto,' Cargo: ',cargo) as 'Usuarios e função'FROM usuario ORDER BY cargo;
+-- mostra o nivel de acesso do usuario
+SELECT nomeCompleto AS Nome, CASE WHEN cargo ='Propietário' THEN 'Acesso total' ELSE 'Acesso restrito' END AS 'Nível de acesso no site' FROM Usuario ORDER BY cargo;
+-- Mudando o status do Usúario
+UPDATE Usuario SET stats = 'Inativo' WHERE	idUser =5;
+SELECT nomeCompleto AS Nome, CASE WHEN stats ='Ativo' THEN 'Tem acesso' ELSE 'Não tem acesso' END AS 'Acesso dos usuarios' FROM Usuario ORDER BY cargo;
+DELETE FROM Usuario WHERE idUser = '5';
+
+-- 
+
