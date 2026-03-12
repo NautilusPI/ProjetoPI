@@ -19,7 +19,7 @@
     <div id="div_principal" class="" style="display: flex; flex-direction: column; gap: 10px">
       <h2>Insira as informações financeiras</h2>
       <div>
-        <p>Despesas mensais gerais (luz,água,salários e manunteções)</p>
+        <p>Despesas mensais gerais (luz, água, salários e manunteções)</p>
         <input type="number" id="despesas_input" />
       </div>
       <div>
@@ -182,14 +182,14 @@
     <b>Tanques : ${tanques}</b><br>
     <b>Peixes mortos no total = ${peixes_mortos_total}</b><br>
     <b>Peixes iniciais totais = ${peixes_inicial_total}</b><br>
-    <b>Porcentagem des peixes mortos = ${peixes_mortos_porcentagem_total}%</b><br>
-    <b>Prejuízo devido a perda de peixes = R$${perdas_por_peixes_mortos_total}</b><br>
-    <b>Perda com ração = R$${perca_racao}</b><br>
-    <b>Perda com alevinos totais: R${perda_com_alevino}</b><br>
-    <b>Prejuizo total = ${perdas_por_peixes_mortos_total + perca_racao + perda_com_alevino}</b><br>
-    <b>Bruto = R$${ganhos_peixes_total}</b><br>
-    <b>Custo = ${despesas + racao_mes + preco_alevino * peixes_inicial_total}</b><br>
-    <b>Liquido = ${bruto - custos}</b><br>
+    <b>Porcentagem des peixes mortos = ${peixes_mortos_porcentagem_total.toFixed(2)}%</b><br>
+    <b>Prejuízo devido a perda de peixes = R$${perdas_por_peixes_mortos_total.toFixed(2)}</b><br>
+    <b>Perda com ração = R$${perca_racao.toFixed(2)}</b><br>
+    <b>Perda com alevinos totais: R$${perda_com_alevino.toFixed(2)}</b><br>
+    <b>Prejuizo total = R$${perdas_por_peixes_mortos_total + perca_racao + perda_com_alevino}</b><br>
+    <b>Bruto = R$${ganhos_peixes_total.toFixed(2)}</b><br>
+    <b>Custo = R$${despesas + racao_mes + preco_alevino * peixes_inicial_total}</b><br>
+    <b>Liquido = R$${bruto - custos}</b><br>
 
     `;
     div_tanques.innerHTML += `
@@ -199,10 +199,10 @@
             Tanque: ${tanques}
             </h1>
     <p>Peixes mortos nesse tanque :${peixes_mortos}</p>
-    <p>Taxa de peixes mortos : ${peixes_mortos_porcentagem}%</p>
-    <p>Perda por vendas não feitas por morte :R$${perdas_por_peixes_mortos}</p>
-    <p>Ganho com vendas : R$${ganhos_peixes}</p>
-    <p>Perca com alevinos: R$${perda_com_alevino}</p>
+    <p>Taxa de peixes mortos : ${peixes_mortos_porcentagem.toFixed(2)}%</p>
+    <p>Perda por vendas não feitas por morte: R$${perdas_por_peixes_mortos.toFixed(2)}</p>
+    <p>Ganho com vendas : R$${ganhos_peixes.toFixed(2)}</p>
+    <p>Perca com alevinos: R$${perda_com_alevino.toFixed(2)}</p>
         </div>
     `;
       peixes_final_input.value = ''
