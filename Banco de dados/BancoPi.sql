@@ -86,6 +86,7 @@ SELECT nomeCompleto AS Nome, CASE WHEN cargo ='Propietário' THEN 'Acesso total'
 UPDATE Usuario SET stats = 'Inativo' WHERE	idUser =5;
 SELECT nomeCompleto AS Nome, CASE WHEN stats ='Ativo' THEN 'Tem acesso' ELSE 'Não tem acesso' END AS 'Acesso dos usuarios' FROM Usuario ORDER BY cargo;
 DELETE FROM Usuario WHERE idUser = '5';
+SElECT concat('os gastos no mês de ', mesAno, ' foram de: R$', agua, ', R$', luz, ', R$ ', salario, ', R$', Kgtilapia, ' R$', racaoKg, ' e R$', totaloutros) as 'Despesas Gerais' from Gastos order by totaloutros desc;
 
 -- 
 
