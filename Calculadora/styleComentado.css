@@ -51,6 +51,10 @@ button{
     border-radius: 5px; /* Arredonda os cantos do container */
     border: 1px solid gray; /* Cria uma borda ao redor do container */
     background-color: #f5f5f5; /* Define a cor de fundo do container */
+    position: fixed; /* Mantém o container do total sempre fixo na tela mesmo ao rolar a página */
+    top: 15px; /* Posiciona o painel a 15px do topo da tela */
+    right: 15px; /* Posiciona o painel a 15px da lateral direita */
+
 }
 
 #div_tanques div{
