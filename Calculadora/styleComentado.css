@@ -53,7 +53,7 @@ button{
     background-color: #f5f5f5; /* Define a cor de fundo do container */
     position: fixed; /* Mantém o container do total sempre fixo na tela mesmo ao rolar a página */
     top: 15px; /* Posiciona o painel a 15px do topo da tela */
-    right: 15px; /* Posiciona o painel a 15px da lateral direita */
+    right: 15px; /* Posiciona o painel a 15px da lateral direita da tela */
 
 }
 
@@ -61,8 +61,8 @@ button{
     width: 400px; /* Define a largura dos containers de cada tanque */
     margin: auto; /* Centraliza cada container na tela */
     margin-top: 15px; /* Cria espaço entre os tanques */
-    padding: 15px; /* Cria espaço interno dentro do container */
+    padding: 15px; /* Cria espaços interno dentro do container */
     border-radius: 5px; /* Arredonda os cantos do container */
-    border: 1px solid gray; /* Cria borda ao redor do container */
-    background-color: #f5f5f5; /* Define a cor de fundo da container */
+    border: 1px solid gray; /* Cria uma borda ao redor do container */
+    background-color: #f5f5f5; /* Define a cor de fundo do container */
 }
