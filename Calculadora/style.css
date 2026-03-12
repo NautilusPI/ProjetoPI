@@ -43,13 +43,16 @@ button{
 }
 
 #div_total{
-    width: 400px;
+    width: 280px;
     margin: auto;
     margin-top: 20px;
     padding: 15px;
     border-radius: 5px;
     border: 1px solid gray;
     background-color: #f5f5f5;
+    position: fixed;
+    top: 20px;
+    right: 20px;
 }
 
 #div_tanques div{
