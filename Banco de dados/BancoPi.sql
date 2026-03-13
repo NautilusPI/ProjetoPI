@@ -89,5 +89,5 @@ DELETE FROM Usuario WHERE idUser = '5';
 SElECT concat('os gastos no mês de ', mesAno, ' foram de: R$', agua, ', R$', luz, ', R$ ', salario, ', R$', Kgtilapia, ' R$', racaoKg, ' e R$', totaloutros) as 'Despesas Gerais' from Gastos order by totaloutros desc;
 
 
--- Teste
+-- 
 
