@@ -88,5 +88,6 @@ SELECT nomeCompleto AS Nome, CASE WHEN stats ='Ativo' THEN 'Tem acesso' ELSE 'NÃ
 DELETE FROM Usuario WHERE idUser = '5';
 SElECT concat('os gastos no mÃªs de ', mesAno, ' foram de: R$', agua, ', R$', luz, ', R$ ', salario, ', R$', Kgtilapia, ' R$', racaoKg, ' e R$', totaloutros) as 'Despesas Gerais' from Gastos order by totaloutros desc;
 
--- 
+
+-- Teste
 
