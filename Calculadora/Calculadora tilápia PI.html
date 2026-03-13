@@ -14,6 +14,7 @@
     </div>
   <div>
     <h1>Calculadora financeira Nautilus</h1>
+    <h1 id="teste">teste</h1>
   </div>
   <div>
     <div id="div_principal" class="" style="display: flex; flex-direction: column; gap: 10px">
@@ -52,8 +53,8 @@
     </div>
 
 
-    <div id="div_total"></div>
-
+    <span id="span_total">    
+</span>
     <div id="div_tanques"></div>
   </div>
 </body>
@@ -177,7 +178,8 @@
     Custo = despesas + racao_mes + preco_alevino * peixes_inicial_total;
 
     // Exibindo os valores 
-    div_total.innerHTML = `
+    span_total.innerHTML = `
+    <div id="div_total">
     <h1>Resultados totais de todos tanques</h1>
     <b>Tanques : ${tanques}</b><br>
     <b>Peixes mortos no total = ${peixes_mortos_total}</b><br>
@@ -190,7 +192,7 @@
     <b>Bruto = R$${ganhos_peixes_total.toFixed(2)}</b><br>
     <b>Custo = R$${despesas + racao_mes + preco_alevino * peixes_inicial_total}</b><br>
     <b>Liquido = R$${bruto - custos}</b><br>
-
+</div>
     `;
     div_tanques.innerHTML += `
     
