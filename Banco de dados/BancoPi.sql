@@ -61,15 +61,15 @@ INSERT INTO Usuario (nomeCompleto,email,senha,cargo,stats,telefone) VALUES
 ('Felipe Eduardo','felipe.edu@gmail.com','FelpsQQ','Gestor','ativo','11 9200-0099'),
 ('Rodrigo Silva de Santos','rodrigo.santos@gmail.com','Rfk@123','Funcionário','ativo','11 98412-4323');
 
-INSERT INTO Registro(temperatura) VALUES 
+INSERT INTO Registro(tempAtual) VALUES 
 (26.9),
 (22.6);
 
-INSERT INTO Tanque (capacidadeL,ciclo,tempAtual) VALUES
-(5,1,25.9),
-(20,1,30.1);
+INSERT INTO Tanque (capacidadeL,ciclo,tempMax,tempMin) VALUES
+(5,1,28.9, 22.3),
+(20,1,30.1, 24.1);
 
-INSERT INTO Gastos (mesAno,agua,luz,salario,tilapia,racaoKg,totaloutros) VALUES
+INSERT INTO Gastos (mesAno,agua,luz,salario,kgTilapia,racaoKg,totaloutros) VALUES
 ('Outubro 2025',9000.00,20000.00,10000,90000.00,98240.00,999402.00),
 ('Setembro 2025',9300.00,20300.00,10300,90300.00,98230.00,129402.00);
 
@@ -79,7 +79,7 @@ SELECT * FROM Tanque;
 SELECT * FROM Gastos;
 
 -- seleciona usuarios pelo nome e cargo
-SELECT CONCAT('nome:',nomeCompleto,' Cargo: ',cargo) as 'Usuarios e função'FROM usuario ORDER BY cargo;
+SELECT CONCAT('Nome: ',nomeCompleto,',  Cargo: ',cargo) as 'Usuarios e função'FROM usuario ORDER BY cargo;
 -- mostra o nivel de acesso do usuario
 SELECT nomeCompleto AS Nome, CASE WHEN cargo ='Propietário' THEN 'Acesso total' ELSE 'Acesso restrito' END AS 'Nível de acesso no site' FROM Usuario ORDER BY cargo;
 -- Mudando o status do Usúario
