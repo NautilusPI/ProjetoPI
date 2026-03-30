@@ -1,67 +1,364 @@
-body{
-    background-color: #f5f5f5; 
-    font-family: Arial;
-    text-align: center;
+/* TAGS DE CORES DA PÁGINA */
+:root {
+    --primaria: #2B8997;
+    --background: #F4F9F8;
+    --brancoAcizentado: #FAFAFA;
+    --subtexto: #323D4C;
+    --titulo: #212327;
 }
 
-h1{
-    color: #02707d;
+/* NAVBAR */
+
+*{
+    margin: 0px; 
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px
 }
 
-h2{
-    color: #02707d;
+body {
+    background-color: var(--background);
 }
 
-img{
-    width: 200px;
-    margin-top: 20px;
+.navbar {
+    width: 100%;
+    height: 60px;
+    margin: 0px;
+    display: flex;
+    justify-content: space-around;
+    gap: 50%;
+    align-items: center;
+
+    .navlink {
+        width: 60px;
+        gap: 20%;
+        display: flex;
+        align-items: center;
+    }
+
+     .logo {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        img {
+            height: 42px;
+            margin-right: 25px;
+            width: auto;
+        }
+     }
+
+    a{
+        margin-top: 11%;
+        text-decoration: none;
+        color:var(--primaria);
+        text-align: end;
+        font-weight:  bold;
+        margin-right: 20%;
+    }
+
+    .forms {
+        display: flex;
+        gap: 12%;
+        
+        .vazado {
+            color: var(--primaria); 
+            font-weight: 700;
+            border-radius: 10px;
+            border: 1px solid var(--primaria);
+            background-color: var(--background);
+            padding: 5px 50px;
+            
+        }
+        .preenchido {
+            color: white;
+            font-weight: 700;  
+            background-color: var(--primaria);
+            border: 1px solid var(--primaria);
+            border-radius: 10px;
+            padding: 10px 30px;
+            white-space: nowrap;
+         }
+    }
+    } 
+
+    /* FIM NAVBAR - INICIO BLOCO I DA PÁGINA */ 
+
+    .container_conteudo {
+        display: flex;
+        justify-content: start;
+        flex-direction: column;
+        padding: 20px 87px;
+
+        .titulo {
+            color: var(--primaria);
+            font-weight: bold;
+            display:flex;
+            font-size: large;
+        }
+
+        /* CONTEÚDO DE ENTRADA DA CALCULADORA */
+
+        .div_container_input_calcular {
+            background-color: var(--brancoAcizentado);
+            display: flex;
+            flex-direction: row;
+            box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.295);
+            width: 60%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+
+        .container_entrada {
+            display:flex;
+            border: none;
+            width: 100%;
+            height: 500px;
+            
+            .subtitulo {
+                color:var(--titulo);
+                font-weight: bold;
+                display: flex;
+                margin-top: 25px;
+                margin-left: 30px;
+                margin-bottom: 5px;
+            }
+
+        .container_input {
+            background-color: white;
+            display:flex;
+            flex-direction: column;
+            margin-top: 1px;
+            margin-left: 2px;
+            border: none;
+            border-radius: 5px 0px 0px 5px;
+            box-shadow: 10px 2px 10px 0px rgba(0, 0, 0, 0.219);
+            width: 47%;
+            height: 498px;
+        }
+
+        .subtexto {
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        input {
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0px 0px 2px black;
+            height: 23px;
+            width: 270px;
+            padding-left: 8px;
+            outline:none; 
+            margin-left: 20px;
+            margin-bottom: 3px;
+        }
+        .input_div {
+            color: var(--subtexto);
+            margin-left: 10px;
+            margin-top: 8px;
+            font-size: 15px;            
+        }
+
+        .botao_vazado {
+            display:flex;
+            margin-top: 15px;
+            margin-left: 130px;
+            border: none;
+            border-radius: 3px;
+            align-items: center;
+            width: 70px;
+            height: 20px;
+            padding-left: 15px;
+            box-shadow: 0px 0px 2px black;
+
+            color:var(--subtexto);
+            font-weight: bold;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+
+        .container_input_calcular {
+            display:flex;
+            flex-direction: column;
+            border-radius: 5px;
+            margin-left: 17px;
+            width: 50%;
+            
+            .subtitulo_calcular {
+                color:var(--titulo);
+                font-weight: bold;
+                margin-top: 170px;
+                margin-left: 31px;
+                white-space: nowrap;
+                
+            }
+            
+            .input_div {
+                margin-left: 12px;
+            }
+            
+            .botao_preeenchido {
+                background-color: var(--primaria);
+                color: white;
+                display: flex;
+                width: 200px;
+                height: 25px;
+                margin-top: 10px;
+                margin-left: 70px;
+                align-items: center;
+                border: none;
+                border-radius: 5px;
+                padding-left: 70px;
+            }
+        }
+
+        .container_resultado {
+            border-radius: 10px;
+            display: flex;
+            flex-direction: row;
+            margin-left: 3%;
+            width: 430px;
+            display: flex;
+            flex-direction: column;
+
+            .container_prejuizo {
+                background-color: #E9F4F5;
+                border-radius: 10px 10px 0px 0px;
+                width: 100%;
+                padding-bottom: 20px;
+
+
+                .titulo_prejuizo {
+                    color:var(--titulo);
+                    font-weight: bold;
+                    font-size: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 120px;
+                    margin-left: 30px;
+                    margin-bottom: 10px;
+                }
+                
+                .subtitulo_prejuizo {
+                    color:var(--titulo);
+                    font-weight: bold;
+                    font-size: 13px;
+                    margin-left: 30px;
+                }
+
+                .valor_titulo {
+                    color: var(--titulo);
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    font-size: 30px;
+                }   
+            }
+
+            .container_prejuizo_info {
+                background-color: var(--primaria);
+                border-radius: 0px 0px 10px 10px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-column: span 3;
+                gap: 15px;
+                padding: 20px;
+                padding-top: 30px;
+                padding-left: 30px;
+                padding-bottom: 38px;
+                
+            }
+
+            .resultado {
+                color:white;
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                justify-content: center; 
+                
+            }
+
+            .subtexto {
+                color: white;
+                width: 100%;
+                font-size: 12px;
+                margin-left: 0px;
+            }
+
+            .subvalor {
+                font-size: 23px;
+            }
+        }
+    }
 }
 
-#div_principal{
-    width: 400px;
-    margin: auto;
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 5px;
-    border: 1px solid gray;
-    background-color: #f5f5f5;
-}
+/* FIM DO BLOCO I - INICIO BLOCO II */
+    
+    .container_relatorios {
+        display:flex;
+        justify-content: center;
+        padding: 20px 87px;
+        height: 500px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
 
-input{
-    border-radius: 5px;
-    padding: 6px;
-    border: 1px solid gray;
-    width: 90%;
-}
-button{
-    border-radius: 5px;
-    padding: 8px;
-    background-color: #02707d;
-    color: #f5f5f5;
-    border: 1px solid gray;
-    margin-top: 10px;
-}
 
-#div_total{
-    width: 280px;
-    margin: auto;
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid gray;
-    background-color: #f5f5f5;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-}
+        .relatorios {
+            display: flex;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.219);
+            display: flex;
+            width: 225px;
+            height: 250px;
+            flex-direction: column;
+            
 
-#div_tanques div{
-    width: 400px;
-    margin: auto;
-    margin-top: 15px;
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid gray;
-    background-color: #f5f5f5;
-}
+            
+            .titulo1 {
+                color:var(--primaria);
+                font-weight: bold;
+                padding-top: 12px;
+                text-align: center;
+            }
 
+            .titulo2 {
+                color: var(--titulo);
+                display: flex;
+                font-weight: bold;
+                font-size: 16px;
+                padding-top: 12px;
+                text-align: center;
+            }
+
+            .valor_relatorio {
+                color: var(--primaria);
+                font-size: 25px;
+                font-weight: bold;
+                padding-top: 8px;
+                padding-bottom: 30px;
+                text-align: center;
+            }
+
+            .painel {
+                box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.445);
+                border-radius: 10px;
+                margin-left: 10px;
+                margin-right: 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                padding-left: 10px;
+                font-size: 12px;
+                color:#323D4C;
+                font-weight: bold;
+                justify-content: start;
+                line-height: 20px;
+                
+            }
+
+        }
+    }
+    
+  /* CONTEÚDO DE SAÍDA DA CALCULADORA */
+    
