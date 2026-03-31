@@ -1,0 +1,140 @@
+:root {
+    --primaria: #2B8997;
+    --background: #F4F9F8;
+    --brancoAcizentado: #FAFAFA;
+    --subtexto: #323D4C;
+    --titulo: #212327;
+}
+
+/*INICIO NAVBAR */
+
+.navbar {
+    width: 100%;
+    height: 60px;
+    margin: 0px;
+    display: flex;
+    justify-content: space-around;
+    gap: 50%;
+    align-items: center;
+
+    .navlink {
+        width: 60px;
+        gap: 20%;
+        display: flex;
+        align-items: center;
+    }
+
+     .logo {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        img {
+            height: 42px;
+            margin-right: 25px;
+            width: auto;
+        }
+     }
+
+    a{
+        margin-top: 11%;
+        text-decoration: none;
+        color:var(--primaria);
+        text-align: end;
+        font-weight:  bold;
+        margin-right: 20%;
+    }
+
+    .forms {
+        display: flex;
+        gap: 12%;
+        
+        .vazado {
+            color: var(--primaria); 
+            font-weight: 700;
+            border-radius: 10px;
+            border: 1px solid var(--primaria);
+            background-color: var(--background);
+            padding: 5px 50px;
+            
+        }
+        .preenchido {
+            color: white;
+            font-weight: 700;  
+            background-color: var(--primaria);
+            border: 1px solid var(--primaria);
+            border-radius: 10px;
+            padding: 10px 30px;
+            white-space: nowrap;
+         }
+    }
+    } 
+
+/* INICIO BANNER */
+
+.banner{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 25px;
+    padding-left: 5px;
+    padding-bottom: 8px;
+}
+.container-banner{
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.container-banner span{
+    color: var(--primaria);
+}
+.container-banner p{
+    color: var(--subtexto);
+}
+
+.banner img{
+    width: 450px;
+    height: 250px;
+}
+
+/* INICIO BENEFICIOS */ 
+
+.beneficios{
+    background-color: rgb(250, 253, 255);
+}
+
+.beneficios h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--primaria);
+
+}
+
+.container-beneficios{
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+
+.boxes{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--subtexto);
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #fff;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0;
+    font-size: 15px;
+}
+
+/* INICIO SERVICO */
