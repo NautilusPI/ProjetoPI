@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5fcf1c6510.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="dash.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navlink">
+            <div class="logo">
+                <img src="./assets/logo.png" alt="">
+            </div>
+            <a class="link" href="inicio">Inicio</a>
+            <a class="link" href="simulador">Simulador</a>
+        </div>
+        <div class="forms">
+            <button class="vazado">Entre</button>
+            <button class="preenchido">Cadastre-se</button>
+        </div>
+    </div>
+    <div class="container-externo">
+        <div class="container">
+            <div class="topo">
+                <div class="topoEsquerda">
+                    <span>Dashboard</span>
+                    <select name="" id="">
+                        <option value="">Visão geral</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                    </select>
+                </div>
+                <div class="alerta">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <div class="alertaBox">
+                        <span>Tanques em riscos:</span>
+                        <span>1,5,7,8</span>
+                    </div>
+                </div>
+            </div>
+            <div class="kpis">
+                <div class="card">
+                    <div class="topoCard">
+                        <span>Tanques em sua criação</span>
+                        <img src="assets/tanque-de-agua.png" alt="">
+                    </div>
+                    <div class="numeroCard">
+                        <span>18</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="topoCard">
+                        <span>Temperatura média dos tanques</span>
+                        <img src="assets/tanque-de-agua.png" alt="">
+                    </div>
+                    <div class="numeroCard">
+                        <span>29.0 ºC</span>
+                    </div>
+                    <div class="statusCard">
+                        <span>Atenção</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="topoCard">
+                        <span>Tanques com riscos</span>
+                        <img src="assets/tanque-de-agua.png" alt="">
+                    </div>
+                    <div class="numeroCard">
+                        <span>10</span>
+                    </div>
+                    <div class="statusCard">
+                        <span>Risco</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="topoCard">
+                        <span>Status da sua criação</span>
+                        <img src="assets/tanque-de-agua.png" alt="">
+                    </div>
+                    <div class="numeroCard">
+                        <span>Critico</span>
+                    </div>
+                </div>
+            </div>
+            <div class="graficos">
+                <div class="graficoBarra">
+                    <p>Temperatura por tanque</p>
+                    <div class="grafico">
+                        <canvas id="graficoBarra"></canvas>
+                    </div>
+                </div>
+                <div class="graficosEtanques">
+                    <div class="graficoLinha">
+                        <p>Histórico da temperatura média dos tanques</p>
+                        <div class="grafico"><canvas id="graficoLinha"></canvas></div>
+                    </div>
+                    <div class="tanques">
+                        <p>Tanques</p>
+                        <span>Temperatura ideal: 26.0 ºC - 30.0 ºC</span>
+                        <div class="tanquesLista">
+                            <div class="tanqueCard">
+                                <div class="borda">
+                                </div>
+                                <div class="conteudo">
+                                    <p>Tanque 1</p>
+                                    <span>23.0 ºC</span>
+                                    <span class="statusTanque">Seguro</span>
+                                </div>
+                            </div>
+                            <div class="tanqueCard TanqueAtencao">
+                                <div class="borda">
+                                </div>
+                                <div class="conteudo">
+                                    <p>Tanque 1</p>
+                                    <span>23.0 ºC</span>
+                                    <span class="statusTanque">Seguro</span>
+                                </div>
+                            </div>
+                            <div class="tanqueCard TanqueRisco">
+                                <div class="borda">
+                                </div>
+                                <div class="conteudo">
+                                    <p>Tanque 1</p>
+                                    <span>23.0 ºC</span>
+                                    <span class="statusTanque">Seguro</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('graficoBarra');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '16', '17', '18'],
+            datasets: [{
+                label: 'Temperatura',
+                data: [20.5, 21.3, 22.7, 23.1, 24.6, 25.2,
+                    26.8, 27.4, 28.9, 29.5, 30.1, 31.7,
+                    32.0, 21.9, 23.8, 26.3, 28.2, 30.6, 20],
+                borderWidth: 0,
+                backgroundColor: '#2B8997',
+                borderRadius: 2
+            }],
+            line: [{
+                borderWidth: 0
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        display: true
+                    }
+                }
+            }
+        }
+    });
+
+    const ctx2 = document.getElementById('graficoLinha');
+
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '16', '17', '18'],
+            datasets: [{
+                label: 'Temperatura',
+                data: [20.5, 21.3, 22.7, 15.1, 24.6, 15.2,
+                    36.8, 27.4, 18, 19.5, 30.1, 25.7,
+                    32.0, 21.9, 23.8, 26.3, 22.2, 25.6, 30],
+                borderWidth: 1,
+                borderColor: '#2B8997',
+                backgroundColor: '#2B8997',
+
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>
+
+</html>
