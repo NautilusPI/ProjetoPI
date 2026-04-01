@@ -12,6 +12,18 @@
 </head>
 
 <body>
+    
+        <div class="alert-container" id="alertas" >
+           <div class="alerta">
+             <i class="fa-solid fa-circle-exclamation" onclick="abrirAlerta()"></i>
+            <div>
+                <span class="titulo">Risco na criação</span>
+                <span>O tanque 1 está fora da temperatura ideal</span>
+            </div>
+            <i class="fa-solid fa-xmark" onclick="fecharAlerta()"></i>
+           </div>
+           
+        </div>
     <div class="navbar">
         <div class="navlink">
             <div class="logo">
@@ -41,13 +53,7 @@
                         <option value="">1</option>
                     </select>
                 </div>
-                <div class="alerta">
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                    <div class="alertaBox">
-                        <span>Tanques em riscos:</span>
-                        <span>1,5,7,8</span>
-                    </div>
-                </div>
+
             </div>
             <div class="kpis">
                 <div class="card">
@@ -62,7 +68,7 @@
                 <div class="card">
                     <div class="topoCard">
                         <span>Temperatura média dos tanques</span>
-                        <img src="assets/tanque-de-agua.png" alt="">
+                        <img src="assets/sensor-de-temperatura.png" alt="">
                     </div>
                     <div class="numeroCard">
                         <span>29.0 ºC</span>
@@ -74,7 +80,7 @@
                 <div class="card">
                     <div class="topoCard">
                         <span>Tanques com riscos</span>
-                        <img src="assets/tanque-de-agua.png" alt="">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
                     </div>
                     <div class="numeroCard">
                         <span>10</span>
@@ -85,11 +91,11 @@
                 </div>
                 <div class="card">
                     <div class="topoCard">
-                        <span>Status da sua criação</span>
-                        <img src="assets/tanque-de-agua.png" alt="">
+                        <span style="color: #F00000;">Status da sua criação</span>
+                        <i style="color:#F00000" class="fa-solid fa-fish-fins"></i>
                     </div>
                     <div class="numeroCard">
-                        <span>Critico</span>
+                        <span style="color: #F00000;">Critico</span>
                     </div>
                 </div>
             </div>
@@ -109,30 +115,95 @@
                         <p>Tanques</p>
                         <span>Temperatura ideal: 26.0 ºC - 30.0 ºC</span>
                         <div class="tanquesLista">
-                            <div class="tanqueCard">
+
+                            <div class="tanqueCard TanqueRisco">
                                 <div class="borda">
                                 </div>
                                 <div class="conteudo">
-                                    <p>Tanque 1</p>
-                                    <span>23.0 ºC</span>
-                                    <span class="statusTanque">Seguro</span>
-                                </div>
-                            </div>
-                            <div class="tanqueCard TanqueAtencao">
-                                <div class="borda">
-                                </div>
-                                <div class="conteudo">
-                                    <p>Tanque 1</p>
-                                    <span>23.0 ºC</span>
-                                    <span class="statusTanque">Seguro</span>
+                                    <p>Tanque 16</p>
+                                    <span>20.4 ºC</span>
+                                    <span class="statusTanque">Risco</span>
                                 </div>
                             </div>
                             <div class="tanqueCard TanqueRisco">
                                 <div class="borda">
                                 </div>
                                 <div class="conteudo">
+                                    <p>Tanque 4</p>
+                                    <span>32.1 ºC</span>
+                                    <span class="statusTanque">Risco</span>
+                                </div>
+                            </div>
+                            <div class="tanqueCard TanqueAtencao">
+                                <div class="borda">
+                                </div>
+                                <div class="conteudo">
+                                    <p>Tanque 8</p>
+                                    <span>30.2 ºC</span>
+                                    <span class="statusTanque">Atenção</span>
+                                </div>
+                            </div>
+
+                            <div class="tanqueCard TanqueAtencao">
+                                <div class="borda">
+                                </div>
+                                <div class="conteudo">
+                                    <p>Tanque 13</p>
+                                    <span>24.1 ºC</span>
+                                    <span class="statusTanque">Atenção</span>
+                                </div>
+                            </div>
+                            <div class="tanqueCard">
+                                <div class="borda">
+                                </div>
+                                <div class="conteudo">
                                     <p>Tanque 1</p>
-                                    <span>23.0 ºC</span>
+                                    <span>26.5 ºC</span>
+                                    <span class="statusTanque">Seguro</span>
+                                </div>
+                            </div>
+                            <div class="tanqueCard">
+                                <div class="borda">
+                                </div>
+                                <div class="conteudo">
+                                    <p>Tanque 2</p>
+                                    <span>27.4 ºC</span>
+                                    <span class="statusTanque">Seguro</span>
+                                </div>
+                            </div>
+                            <div class="tanqueCard">
+                                <div class="borda">
+                                </div>
+                                <div class="conteudo">
+                                    <p>Tanque 3</p>
+                                    <span>27.0 ºC</span>
+                                    <span class="statusTanque">Seguro</span>
+                                </div>
+                            </div>
+                            <div class="tanqueCard">
+                                <div class="borda">
+                                </div>
+                                <div class="conteudo">
+                                    <p>Tanque 5</p>
+                                    <span>28.3 ºC</span>
+                                    <span class="statusTanque">Seguro</span>
+                                </div>
+                            </div>
+                            <div class="tanqueCard">
+                                <div class="borda">
+                                </div>
+                                <div class="conteudo">
+                                    <p>Tanque 6</p>
+                                    <span>26.1 ºC</span>
+                                    <span class="statusTanque">Seguro</span>
+                                </div>
+                            </div>
+                            <div class="tanqueCard">
+                                <div class="borda">
+                                </div>
+                                <div class="conteudo">
+                                    <p>Tanque 7</p>
+                                    <span>29.2 ºC</span>
                                     <span class="statusTanque">Seguro</span>
                                 </div>
                             </div>
@@ -172,7 +243,7 @@
                 }
             },
             scales: {
-                
+
                 x: {
                     grid: {
                         display: false
@@ -193,13 +264,16 @@
     new Chart(ctx2, {
         type: 'line',
         data: {
-            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '16', '17', '18'],
+            labels: ["05hr",
+                "06hr", "07hr", "08hr", "09hr", "10hr", "11hr",
+                "12hr", "13hr", "14hr", "15hr", "16hr", "17hr",
+                "18hr", "19hr", "20hr", "21hr", "22hr", "23hr"],
             datasets: [{
                 label: 'Temperatura',
                 data: [20.5, 21.3, 22.7, 15.1, 24.6, 15.2,
                     36.8, 27.4, 18, 19.5, 30.1, 25.7,
                     32.0, 21.9, 23.8, 26.3, 22.2, 25.6, 30],
-                borderWidth: 1,
+                borderWidth: 3,
                 borderColor: '#2B8997',
                 backgroundColor: '#2B8997',
 
@@ -220,6 +294,23 @@
         }
     });
 
+</script>
+<script>
+    function fecharAlerta() {
+        alertas.innerHTML = ``
+    }
+    function abrirAlerta() {
+        alertas.innerHTML += `
+        <div class="alerta">
+             <i class="fa-solid fa-circle-exclamation" ></i>
+            <div>
+                <span class="titulo">Risco na criação</span>
+                <span>O tanque 1 está fora da temperatura ideal</span>
+            </div>
+            <i class="fa-solid fa-xmark" onclick="fecharAlerta()"></i>
+           </div>
+        `
+    }
 </script>
 
 </html>

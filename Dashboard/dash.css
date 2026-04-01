@@ -75,7 +75,50 @@ body {
         }
     }
 }
-
+.alert-container{
+        position: absolute;
+    right: 15px;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .alerta{
+    background-color: #F7D0D0;
+    width: 420px;
+    height: 70px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 10px;
+    div{
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        height: 50px;
+        .titulo{
+            font-size: 17px;
+            color: #750000;
+        }
+        span{
+            color: #000c0ec9;
+            font-size: 16px;
+            
+        }
+        
+    }
+    i{
+        color: #F00000;
+        font-size: 30px;
+    }
+    .fa-xmark{
+        font-size: 23px;
+        color: #000c0e69;
+        cursor: pointer;
+    }
+    }
+}
 .container-externo {
     width: 100%;
     display: flex;
@@ -119,32 +162,6 @@ body {
         outline: none;
     }
 
-    .alerta {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-
-        i {
-            color: red;
-            font-size: 30px;
-        }
-
-        .alertaBox {
-            background-color: rgba(255, 0, 0, 0.34);
-            width: 300px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            padding: 5px 10px;
-            gap: 10px;
-
-            span {
-                font-size: 15px;
-                font-weight: 500;
-                color: red;
-            }
-        }
-    }
 }
 
 .kpis {
@@ -174,6 +191,11 @@ body {
             img {
                 width: 30px;
             }
+            i{
+                font-size: 30px;
+                color: var(--primaria);
+                
+            }
         }
 
         .numeroCard {
@@ -190,14 +212,14 @@ body {
             justify-content: end;
 
             span {
-                background-color: rgba(255, 0, 0, 0.33);
+                background-color: #F7D0D0;
                 padding: 2px 0px;
                 width: 80px;
                 text-align: center;
                 margin-right: 10px;
                 font-size: 13px;
                 font-weight: 500;
-                color: red;
+                color: #F00000;
                 border-radius: 10px;
             }
         }
@@ -250,7 +272,7 @@ body {
         flex-direction: column;
         justify-content: center;
         padding-bottom: 10px;
-        
+
         p {
             margin: 0px;
             margin-left: 10px;
@@ -262,15 +284,13 @@ body {
         }
 
         .grafico {
-            
+
             width: 95%;
             height: 200px;
             display: flex;
             justify-content: center;
-            canvas{
-                
-                
-            }
+
+            canvas {}
         }
     }
 
@@ -304,103 +324,258 @@ body {
     gap: 9px;
     margin-top: 12px;
     flex-wrap: wrap;
+    height: 160px;
+    overflow-y: scroll;
+
+
 }
-    .tanqueCard {
-        background-color: white;
-        display: flex;
-        border-radius: 10px;
-        overflow: hidden;
-        width: 150px;
-    }
-
-    .borda {
-        background: linear-gradient(180deg, #226b76 0%, #2acee6 90%);
+    /* largura do scroll */
+    .tanquesLista::-webkit-scrollbar {
         width: 8px;
-        height: 100%;
     }
 
-    .conteudo {
-        width: 100%;
-        padding-bottom: 5px;
-        display: flex;
-        flex-direction: column;
-        color: var(--primaria);
-        p {
-            background-color: #DBEBEE;
-            font-size: 15px;
-            font-weight: 600;
-            padding-block: 10px;
-            padding-left: 5px;
-            text-align: start;
-        }
-
-        span {
-            font-size: 30px;
-            font-weight: 600;
-            margin-left: 10px;
-            margin-top: 10%;
-            opacity: 1;
-        }
-
-        .statusTanque {
-            padding: 2px 0px;
-            width: 80px;
-            text-align: center;
-
-            font-size: 13px;
-            font-weight: 600;
-            border-radius: 10px;
-            color: #5bb500;
-            background-color: #c0f5b7;
-
-        }
+    /* fundo do scroll */
+    .tanquesLista::-webkit-scrollbar-track {
+        background: #d6d6d6;
+        border-radius: 10px;
     }
 
-    .risco {
-        color: #F00000;
-        background-color: #F7D0D0;
+    /* parte que você arrasta */
+    .tanquesLista::-webkit-scrollbar-thumb {
+        background: var(--primaria);
+        border-radius: 10px;
     }
 
-    .atencao {
-        color: #F0C000;
-        background-color: #F9F5C2;
+    /* quando passa o mouse */
+    .tanquesLista::-webkit-scrollbar-thumb:hover {
+        background: #61aeba;
     }
+.tanqueCard {
+    background-color: white;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 150px;
+    height: 130px;
+}
+
+.borda {
+    background: linear-gradient(180deg, #226b76 0%, #2acee6 90%);
+    width: 8px;
+    height: 100%;
+}
+
+.conteudo {
+    width: 100%;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    color: var(--primaria);
+
+    p {
+        background-color: #DBEBEE;
+        font-size: 15px;
+        font-weight: 600;
+        padding-block: 10px;
+        padding-left: 5px;
+        text-align: start;
+    }
+
+    span {
+        font-size: 30px;
+        font-weight: 600;
+        margin-left: 10px;
+        margin-top: 10%;
+        opacity: 1;
+    }
+
+    .statusTanque {
+        padding: 2px 0px;
+        width: 80px;
+        text-align: center;
+
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 10px;
+        color: #5bb500;
+        background-color: #c0f5b7;
+
+    }
+}
+
+.risco {
+    color: #F00000;
+    background-color: #F7D0D0;
+}
+
+.atencao {
+    color: #F0C000;
+    background-color: #F9F5C2;
+}
 
 
 
 .TanqueAtencao {
-    .borda{
+    .borda {
         background: linear-gradient(180deg, #8A6E00 0%, #F0C000 100%);
     }
-    .conteudo{
-        color:#F0C000;
-        p{
-            background-color:#F9F5C2 ;
+
+    .conteudo {
+        color: #F0C000;
+
+        p {
+            background-color: #F9F5C2;
             color: #F0C000;
         }
     }
-     .statusTanque {
-           
-            color: #F0C000;
-            background-color: #F9F5C2;
 
-        }
+    .statusTanque {
+
+        color: #F0C000;
+        background-color: #F9F5C2;
+
+    }
 }
+
 .TanqueRisco {
-    .borda{
+    .borda {
         background: linear-gradient(180deg, #900b0b 0%, #ee2f2f 70%);
     }
-    .conteudo{
-        color:#F00000;
-        p{
-            background-color:#F7D0D0 ;
+
+    .conteudo {
+        color: #F00000;
+
+        p {
+            background-color: #F7D0D0;
             color: #F00000;
         }
     }
-     .statusTanque {
-           
-            color: #F00000;
-            background-color: #F7D0D0;
+
+    .statusTanque {
+
+        color: #F00000;
+        background-color: #F7D0D0;
+
+    }
+}
+
+@media screen and (min-width :1800px) {
+    .navbar {
+        height: 80px;
+        gap: 60%;
+
+        .navlink {
+            width: 100px;
+            font-size: 22px;
+        }
+
+        .logo {
+            img {
+                height: 55px;
+            }
+        }
+
+        .forms {
+            display: flex;
+            gap: 12%;
+
+            .vazado {
+                font-weight: 700;
+                border: 2px solid var(--primaria);
+                background-color: var(--background);
+                padding: 5px 50px;
+                font-size: 17px;
+            }
+
+            .preenchido {
+                border: 2px solid var(--primaria);
+                font-size: 17px;
+
+            }
+        }
+    }
+
+    .topo {
+
+
+        span {
+            font-size: 40px;
+        }
+
+        select {
+            width: 140px;
+            font-weight: 600;
+            height: 40px;
+            font-size: 16px;
+        }
+    }
+
+    .kpis {
+        .card {
+
+            padding: 5px 10px;
+            width: 350px;
+
+            .topoCard {
+                span {
+
+                    font-weight: 600;
+                    font-size: 18px;
+                }
+
+                img {
+                    width: 40px;
+                }
+            }
+
+            .numeroCard {
+                font-size: 40px;
+            }
+
+            .statusCard {
+                span {
+                    padding: 2px 10px;
+                    font-size: 17px;
+                }
+            }
 
         }
+
+    }
+
+    .graficos {
+        margin-top: 20px;
+    }
+
+    .graficoBarra {
+        p {
+            font-size: 29px;
+        }
+
+        .grafico {
+            display: flex;
+            justify-content: center;
+            width: 90%;
+            height: 500px;
+        }
+    }
+
+    .graficosEtanques {
+        .graficoLinha {
+            .grafico {
+
+                width: 100%;
+                height: 300px;
+                display: flex;
+                justify-content: center;
+
+            }
+        }
+
+
+    }
+
+    .tanquesLista {
+        height: 170px;
+    }
 }
