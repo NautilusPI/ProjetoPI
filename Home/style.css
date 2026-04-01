@@ -98,10 +98,6 @@
 
 /* INICIO BENEFICIOS */ 
 
-.beneficios{
-    background-color: rgb(250, 253, 255);
-}
-
 .beneficios h1{
     display: flex;
     align-items: center;
@@ -113,15 +109,13 @@
 
 .container-beneficios{
     padding-top: 3%;
-    padding-bottom: 2%;
+    padding-bottom: 5%;
 }
 
 .boxes{
     display: flex;
     justify-content: space-evenly;
     gap: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: var(--subtexto);
 }
 
 .box{
@@ -135,13 +129,15 @@
     border-radius: 10px;
     box-shadow: 0;
     font-size: 15px;
+    box-shadow: 0 2px 1px var(--primaria);
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--subtexto);
+}
+.box img{
+    margin-bottom: 15px;
 }
 
 /* INICIO SERVICO */
-
-.servico{
-  background-color: #F4F9F8;
-}
 
 .boxes-servico{
     margin-left: 145px;
@@ -183,4 +179,71 @@
     white-space: nowrap;
     align-items: center;
 }
+
+/* INICIO COMO ACONTECE? */
+
+.acontece h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--primaria);
+    margin: 50px;
+}
+
+.container-acontece{
+    padding-bottom: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+#seta{
+    padding: 20px;
+    box-shadow: 2px -2px 0 1px #2B8997 inset;
+    border: solid transparent;
+    border-width: 0 0 2px 2px;
+    transform: rotate(225deg);
+    
+}
+
+.boxes-acontece{
+    margin-left: 105px;
+    margin-right: 145px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--subtexto);
+    
+}
+.box-acontece{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #fff;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 1px var(--primaria);
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--subtexto);
+    width: 150px; /* ou 30% */
+    height: 150px;
+}
+
+.box-acontece img{
+    margin-bottom: 15px;
+}
+
+.box-acontece h5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+
 
