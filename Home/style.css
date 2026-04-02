@@ -244,6 +244,19 @@
     align-items: center;
     margin: 0;
 }
+.contato h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-contato{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-
+.contato-form form{
+    display: flex;
+    flex-direction: column;
+}
 
