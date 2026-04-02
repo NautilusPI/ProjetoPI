@@ -73,7 +73,7 @@
                     </p>
                 </div>
                 <div class="box-button">
-                    <button>Entre em contato</button>
+                    <button onclick="document.getElementById('h1_contato').scrollIntoView({behavior: 'smooth'});">Entre em contato</button>
                 </div>
 
             </div>
@@ -115,10 +115,39 @@
                         <img src="./assets/vida-de-trabalho.png" alt="">
                         <h5>Você toma açoes rápidas com base nos dados e reduz perdas, aumentando a produtividade.</h5>
                 </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="contato">
+        <h1 id="h1_contato">Entre em contato</h1>
+
+        <div class="container-contato">
+            <div>
+                <form action="">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="form-nome">
+    
+                    <label for="email">Email</label>
+                    <input type="text" id="form-email">
+    
+                    <label for="assunto">Assunto</label>
+                    <input type="text" id="form-assunto">
+    
+                    <label for="mensagem">Mensagem</label>
+                    <input type="text" id="form-mensagem">
+                </form>
+            </div>
+
+            <div class="logo">
+                <img src="" alt="">
             </div>
         </div>
     </div>
 
 </body>
 </html>
+
+<script>
+
+</script>
