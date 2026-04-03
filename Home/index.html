@@ -73,7 +73,7 @@
                     </p>
                 </div>
                 <div class="box-button">
-                    <button onclick="document.getElementById('h1_contato').scrollIntoView({behavior: 'smooth'});">Entre em contato</button>
+                    <button onclick="document.getElementById('h1_contato').scrollIntoView({behavior: 'smooth'});">Entre em contato</button> <!-- // ao clicar no botão, a tela desce para o form de contato. -->  
                 </div>
 
             </div>
@@ -126,7 +126,7 @@
             <div class="contato-form">
                 <form action="">
                     <label for="nome">Nome</label>
-                    <input type="text" id="form-nome" placeholder="Insira seu nome">
+                    <input type="text" id="form_nome" placeholder="Insira seu nome">
     
                     <label for="email">Email</label>
                     <input type="text" id="form-email" placeholder="Insira seu email">
@@ -136,6 +136,10 @@
     
                     <label for="mensagem">Mensagem</label>
                     <textarea rows="10" cols="50" id="mensagem" placeholder="Deixe sua mensagem"></textarea>
+                    
+                    <div class="btn-contato">
+                        <button type="button" onclick="">Enviar mensagem</button>  
+                    </div>
                 </form>
             </div>
 
@@ -172,5 +176,5 @@
 </html>
 
 <script>
-
+    
 </script>
