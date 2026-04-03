@@ -6,6 +6,10 @@
     --titulo: #212327;
 }
 
+body{
+    background-color: var(--brancoAcizentado);
+}
+
 /*INICIO NAVBAR */
 
 .navbar {
@@ -108,14 +112,14 @@
 }
 
 .container-beneficios{
-    padding-top: 3%;
-    padding-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 4%;
 }
 
 .boxes{
     display: flex;
-    justify-content: space-evenly;
-    gap: 30px;
+    justify-content: center;
+    gap: 120px;
 }
 
 .box{
@@ -132,6 +136,8 @@
     box-shadow: 0 2px 1px var(--primaria);
     font-family: Arial, Helvetica, sans-serif;
     color: var(--subtexto);
+    width: 150px;
+    height: 150px;
 }
 .box img{
     margin-bottom: 15px;
@@ -140,15 +146,15 @@
 /* INICIO SERVICO */
 
 .boxes-servico{
-    margin-left: 145px;
-    margin-right: 145px;
-    background-color: rgb(196, 232, 250);
+    margin-left: 240px;
+    margin-right: 240px;
+    background-color: #A4E2EB;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .box-servico{
-    background-color: #9bbcc0; /* cor de fundo */
+    background-color: rgba(43, 137, 151, 0.15);
     padding-left: 15px;
     width: 600px;
     border-radius: 0 100px 100px 0;
@@ -158,7 +164,7 @@
     color: var(--primaria);
 }
 .box-servico p{
-    color: var(--subtexto);
+    color: #0C464E;
     font-size: 13px;
     font-weight: bold;
 }
@@ -171,7 +177,7 @@
 .box-button button{
     color: white;
     font-weight: 700;
-    font-size: 17px;
+    font-size: 30px;
     background-color: var(--primaria);
     border: 1px solid var(--primaria);
     border-radius: 10px;
@@ -244,19 +250,106 @@
     align-items: center;
     margin: 0;
 }
+
+/* INICIO CONTATO */
+
+.contato{
+    margin-bottom: 2%;
+}
 .contato h1{
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--primaria);
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 50px;
 }
 .container-contato{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
+.logo img{
+    width: 450px;
+    height: auto;
+}
+
+.contato-form{
+    background-color: white;
+    padding: 30px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
 .contato-form form{
     display: flex;
     flex-direction: column;
+    color: var(--primaria);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
+
+form input{
+    width: 500px;
+    height: auto;
+    padding: 5px;
+    margin-top: 2px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(151, 153, 155, 0.336);
+    transition: 0.3s;
+}
+form textarea{
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(151, 153, 155, 0.336);
+    transition: 0.3s;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+::placeholder {
+    font-size: 13px;
+}
+
+/* INICIO FOOTER */ 
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -1px 1px var(--primaria);
+    width: 100%;
+    
+}
+
+.img-footer img{
+    width: 150px;
+    height: auto;
+}
+
+.redes-footer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.redes-footer img{
+    width: 40px;
+    height: auto;
+}
+
+.direitos-footer p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.contatos-footer{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.contatos-footer h3{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
 
