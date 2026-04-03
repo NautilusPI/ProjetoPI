@@ -8,6 +8,7 @@
 
 body{
     background-color: var(--brancoAcizentado);
+    margin: 0;
 }
 
 /*INICIO NAVBAR */
@@ -152,6 +153,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 5px;
 }
 .box-servico{
     background-color: rgba(43, 137, 151, 0.15);
@@ -319,8 +321,7 @@ form textarea{
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 -1px 1px var(--primaria);
-    width: 100%;
-    
+    width: 100%;   
 }
 
 .img-footer img{
