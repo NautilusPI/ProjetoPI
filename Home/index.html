@@ -173,9 +173,6 @@
             </div>
     </div>
 
-    
-    
-
 </body>
 </html>
 
@@ -187,7 +184,12 @@
         let assunto = form_assunto.value;
         let msg = mensagem.value;
 
-        if (nome == ``){texto1.innerHTML = `<span class="msg-erro"> \n *Este campo não pode estar vazio</span>`}
+        let input_nome = document.getElementById('form_nome');
+
+        if (nome == ``){
+            texto1.innerHTML = `<span class="msg-erro"> \n *Este campo não pode estar vazio</span>`
+            input_nome.style.border = "1px solid red";
+        }
         else {texto1.innerHTML = ``}
 
         if (email == ``|| !email.includes("@") || !email.includes(".com"))
