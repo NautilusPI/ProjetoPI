@@ -58,8 +58,10 @@ body {
     .forms {
         display: flex;
         gap: 12%;
+    
         
         .vazado {
+            cursor: pointer;
             color: var(--primaria); 
             font-weight: 700;
             border-radius: 10px;
@@ -67,6 +69,10 @@ body {
             background-color: var(--background);
             padding: 5px 50px;
             
+        }
+
+        .vazado button:active{
+            transform: scale(1.01);
         }
         .preenchido {
             color: white;
@@ -76,6 +82,7 @@ body {
             border-radius: 10px;
             padding: 10px 30px;
             white-space: nowrap;
+            transform: scale(1.01);
          }
     }
     } 

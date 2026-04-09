@@ -125,20 +125,21 @@
         <div class="container-contato">
             <div class="contato-form">
                 <form action="">
-                    <label for="nome">Nome</label>
+                    <label for="form_nome">Nome<span id="texto1"></span></label> 
                     <input type="text" id="form_nome" placeholder="Insira seu nome">
     
-                    <label for="email">Email</label>
-                    <input type="text" id="form-email" placeholder="Insira seu email">
+                    <label for="form_email">Email<span id="texto2"></span></label> 
+                    <input type="text" id="form_email" placeholder="Insira seu email"> 
     
-                    <label for="assunto">Assunto</label>
-                    <input type="text" id="form-assunto" placeholder="Assunto">
+                    <label for="form_assunto">Assunto<span id="texto3"></span></label>
+                    <input type="text" id="form_assunto" placeholder="Assunto">
     
-                    <label for="mensagem">Mensagem</label>
+                    <label for="mensagem">Mensagem<span id="texto4"></span></label>
                     <textarea rows="10" cols="50" id="mensagem" placeholder="Deixe sua mensagem"></textarea>
                     
                     <div class="btn-contato">
-                        <button type="button" onclick="">Enviar mensagem</button>  
+                        <button onclick="enviar()">Enviar mensagem</button>  
+                        
                     </div>
                 </form>
             </div>
@@ -172,9 +173,27 @@
             </div>
     </div>
 
+    
+    
+
 </body>
 </html>
 
 <script>
+    function enviar(){
+        event.preventDefault()
+        let nome = form_nome.value;
+        let email = form_email.value;
+        let assunto = form_assunto.value;
+        let msg = mensagem.value;
+
+        if (nome == ``){texto1.innerHTML = `<span class="msg-erro"> \n *Este campo não pode estar vazio</span>`}
+        else {texto1.innerHTML = ``}
+
+        if (email == ``|| !email.includes("@") || !email.includes(".com"))
+        {texto2.innerHTML = `<span class="msg-erro"> *Email inválido</span>`}
+
+    }
+
     
 </script>
