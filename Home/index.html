@@ -125,20 +125,22 @@
         <div class="container-contato">
             <div class="contato-form">
                 <form action="">
-                    <label for="form_nome">Nome<span id="texto1"></span></label> 
+                    <label for="form_nome">Nome<span id="erroNome"></span></label> 
                     <input type="text" id="form_nome" placeholder="Insira seu nome">
     
-                    <label for="form_email">Email<span id="texto2"></span></label> 
+                    <label for="form_email">Email<span id="erroEmail"></span></label> 
                     <input type="text" id="form_email" placeholder="Insira seu email"> 
     
-                    <label for="form_assunto">Assunto<span id="texto3"></span></label>
+                    <label for="form_assunto">Assunto<span id="erroAssunto"></span></label>
                     <input type="text" id="form_assunto" placeholder="Assunto">
     
-                    <label for="mensagem">Mensagem<span id="texto4"></span></label>
-                    <textarea rows="10" cols="50" id="mensagem" placeholder="Deixe sua mensagem"></textarea>
+                    <label for="mensagem">Mensagem<span id="erroMensagem"></span></label>
+                    <textarea rows="10" cols="50" id="mensagem" placeholder="Deixe sua mensagem"></textarea> <span id="contagem"></span>
+                    
                     
                     <div class="btn-contato">
                         <button onclick="enviar()">Enviar mensagem</button>  
+                        <span id="texto4"></span>
                         
                     </div>
                 </form>
@@ -183,18 +185,35 @@
         let email = form_email.value;
         let assunto = form_assunto.value;
         let msg = mensagem.value;
-
         let input_nome = document.getElementById('form_nome');
+        let input_email = document.getElementById('form_email');
+        let input_assunto = document.getElementById('form_assunto');
+        let input_mensagem = document.getElementById('mensagem');
 
-        if (nome == ``){
-            texto1.innerHTML = `<span class="msg-erro"> \n *Este campo não pode estar vazio</span>`
-            input_nome.style.border = "1px solid red";
+
+        if(nome != `` && email.includes("@") && assunto != `` && msg != ``){
+            texto4.innerHTML = `Mensagem Enviada!`
         }
-        else {texto1.innerHTML = ``}
+        
+        if (nome == ``)
+        {erroNome.innerHTML = `<span class="msg-erro"> ⓘ Por favor, informe seu nome</span>`
+        input_nome.style.border = "1px solid red"} 
+        else {erroNome.innerHTML = ``; input_nome.style.border = "1px solid green" }
 
-        if (email == ``|| !email.includes("@") || !email.includes(".com"))
-        {texto2.innerHTML = `<span class="msg-erro"> *Email inválido</span>`}
+        if (email == ``|| !email.includes("@"))
+        {erroEmail.innerHTML = ` <span class="msg-erro"> ⓘ Digite um e-mail válido</span>`
+        input_email.style.border = "1px solid red"}
+        else {erroEmail.innerHTML = ``; input_email.style.border = "1px solid green"}
 
+        if (assunto == ``)
+        {erroAssunto.innerHTML = `<span class="msg-erro"> ⓘ Informe o assunto da mensagem</span>`
+        input_assunto.style.border = "1px solid red"}
+        else {erroAssunto.innerHTML = ``; input_assunto.style.border = "1px solid green"}
+
+        if (msg == ``){erroMensagem.innerHTML = `<span class="msg-erro"> ⓘ Escreva sua mensagem</span>`
+        input_mensagem.style.border = "1px solid red"}
+        else {erroMensagem.innerHTML = ``; input_mensagem.style.border = "1px solid green"}
+        
     }
 
     
