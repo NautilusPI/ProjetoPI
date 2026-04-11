@@ -2,70 +2,97 @@
     --primaria: #2B8997;
     --background: #F4F9F8;
     --brancoAcizentado: #918f8f;
+    --backgroundLogin: #D5D5D5;
     --subtexto: #323D4C;
     --titulo: #212327;
 }
 
-body {
+body{
     font-family: 'Roboto', sans-serif;
-    background-color: var(--brancoAcizentado);
+    background-color: var(--backgroundLogin);
     margin: 0px;
     padding: 0px;
     color: var(--primaria);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .tela{
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 15px;
+    width: 49%;
+    height: 80%;
     display: flex;
-    width: 1600px;
-    height: 900px;
-    background-color: var(--background);
-    margin-left:  250px;
-    margin-right:  100px;
-    margin-top:  50px;
-    margin-bottom:  50px;
-    border-radius: 25px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
 }
 
 .form{
     display: flex;
-    justify-self: center;
-    align-items: center;
     flex-direction: column;
-    flex-shrink: 0;
-    flex-grow: 0;
-    
+    align-items: center;
+    padding-left: 35px;
 }
 
-.logo{
-    width: 300px;
-    
+.form img{
+    margin-bottom: 15px;
 }
 
-.entrar{
+.campo{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.cadastre{
         margin-top: 11%;
         text-decoration: none;
         color: var(--primaria);
         text-align: center;
-        font-size: 25px;
+        font-size: 15px;
         font-weight: bold;
         background-color: var(--primaria);
+        border: 1px solid var(--primaria);
         border-radius: 10px;
         width: 200px;
         height: 50px;
         color: white;
 }
 
-h2{
+.logo{
+    width: 150px;
+}
+
+span{
     font-weight: bold;
     color: var(--primaria);
-    font-size: 30px;
+    font-size: 15px;
+}
+
+p{
+    font-size: 13px;
 }
 
 input{
-    margin-top: -20px;
+    border: 1px solid var(--brancoAcizentado);
     border-radius: 5px;
-    height: 60px;
-    width: 450px;
+    width: 300px;
+    height: 25px;
 }
 
+input::placeholder{
+    padding-left: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: var(--brancoAcizentado);
+}
 
+.banner img{
+    border-radius: 10px;
+}
