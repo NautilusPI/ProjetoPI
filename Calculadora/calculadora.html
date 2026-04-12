@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador Financeiro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+  
+<body> 
+  <div class="navbar">
+    <div class="navlink">
+      <div class="logo">
+        <img src="./assets/logo.png" alt=""> 
+      </div>
+        <a class="link" href="inicio">Inicio</a> 
+        <a class="link" href="simulador">Simulador</a>
+      </div>
+      <div class="forms">
+        <button class="vazado">Entre</button>
+        <button class="preenchido">Cadastre-se</button>
+      </div>
+    </div>
+
+  <div class="container_conteudo" >
+    <div class="titulo">
+      Simulador Financeiro de Criação de Tilápias
+    </div>
+    <div class="container_entrada">
+      <div class="container_input_calcular_shadow">
+      <div class="container_input">
+          <p class="subtitulo">Informações Financeiras</p>
+
+            <div class="input_div">
+              <p class="subtexto">Despesas Mensais</p>
+              <input type="text" id="despesas_input">
+            </div>
+
+            <div class="input_div">
+              <p class="subtexto">Ração mensal (kg)</p>
+              <input type="text" id="racao_mes_input">
+            </div>
+
+            <div class="input_div">
+              <p class="subtexto">Preço da Ração por Quilo</p>
+              <input type="text" id="preco_racao_input">
+            </div>
+
+            <div class="input_div">
+              <p class="subtexto">Preço unitário do Alevino</p>
+              <input type="text" id="preco_alevino_input">
+            </div>
+
+            <div class="input_div">
+              <p class="subtexto">Valor de venda do peixe cru (kg)</p>
+              <input type="text" id="venda_cru_input">
+            </div>
+
+            <div class="input_div">
+              <p class="subtexto">Valor de venda do filé (kg)</p>
+              <input type="text" id="venda_file_input">
+            </div>
+
+            <div class="input_div">
+              <p class="subtexto">Valor de venda dos miúdos (kg)</p>
+              <input type="text" id="venda_miudos_input">
+            </div>
+
+            <div class="input_div">
+              <p class="subtexto">Valor de venda dos miúdos (kg)</p>
+              <input type="text" id="venda_miudos_input">
+            </div>
+
+            <div>
+              <button class="botao_vazado" onclick="validar()">Validar</button>
+            </div>
+        </div>
+        <div class="container_input_calcular">
+          <p class="subtitulo_calcular">Informações Sobre o Tanque</p>
+
+          <div class="input_div">
+              <p class="subtexto">Peixes Iniciais</p>
+              <input type="text" id="peixes_iniciais_input">
+            </div>
+
+            <div class="input_div">
+              <p class="subtexto">Quantidade de kg no final do ciclo</p>
+              <input type="text" id="peixes_final_input">
+            </div>
+
+            <div class="botao">
+              <button onclick="calcular()" class="botao_preeenchido">Calcular</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="container_resultado">
+          <div class="container_prejuizo">
+            <div class="prejuizo">
+              <p class="titulo_prejuizo">Prejuízo</p>
+            </div>
+            <div class="prejuizo">
+              <p class="subtitulo_prejuizo">Prejuízo Total</p>
+              <p class="valor_titulo">R$28.764,50</p>
+            </div>
+          </div>
+          
+          <div class="container_prejuizo_info">
+            
+            <div class="resultado">
+              <span class="subtexto">Bruto</span>
+              <p class="subvalor">R$65.700</p>
+            </div>
+            
+            <div class="resultado">
+              <span class="subtexto">Peixes Iniciais</span>
+              <p class="subvalor">R$65.700</p>
+            </div>
+            
+            <div class="resultado">
+              <span class="subtexto">Perda com Ração</span>
+              <p class="subvalor">R$65.700</p>
+            </div>
+            
+            <div class="resultado">
+              <span class="subtexto">Custos</span>
+              <p class="subvalor">R$65.700</p>
+            </div>
+            
+            <div class="resultado">
+              <span class="subtexto">Peixes Mortos</span>
+              <p class="subvalor">R$65.700</p>
+            </div>
+            
+            <div class="resultado">
+              <span class="subtexto">Perda Alevinos</span>
+              <p class="subvalor">R$65.700</p>
+            </div>
+            
+            <div class="resultado">
+              <span class="subtexto">Líquido</span>
+              <p class="subvalor">R$65.700</p>
+            </div>
+            
+            <div class="resultado">
+              <span class="subtexto">Taxa de Perda</span>
+              <p class="subvalor">R$65.700</p>
+            </div>
+            
+            <div class="resultado">
+              <span class="subtexto">Perda de Peixes</span>
+              <p class="subvalor">R$65.700</p>
+            </div>
+            
+            <div class="resultado">
+              <span class="subtexto">Tanques</span>
+              <p class="subvalor">R$65.700</p>
+            </div> 
+      </div>
+      </div>
+    </div>
+    
+    <div class="container_relatorios">
+      <div class="relatorios">
+        <div class="titulo1">
+          Tanque 1
+        </div>
+        <div class="titulo2">
+          Perda por vendas não realizadas
+        </div>
+        <div class="valor_relatorio">
+          R$82.059,00
+        </div>
+        <div class="painel">
+          Peixes mortos: 
+          <br>Taxa de peixes mortos:
+          <br>Ganho com vendas:
+          <br>Perda com alevinos:
+        </div>
+      </div>
+      
+      <div class="relatorios">
+        <div class="titulo1">
+          Tanque 2
+        </div>
+        <div class="titulo2">
+        Perda por vendas não realizadas
+      </div>
+      <div class="valor_relatorio">
+        R$82.059,00
+      </div>
+      <div class="painel">
+        Peixes mortos: 
+        <br>Taxa de peixes mortos:
+        <br>Ganho com vendas:
+        <br>Perda com alevinos:
+      </div>
+    </div>
+    
+    <div class="relatorios">
+      <div class="titulo1">
+        Tanque 3
+      </div>
+      <div class="titulo2">
+        Perda por vendas não realizadas
+      </div>
+      <div class="valor_relatorio">
+        R$82.059,00
+      </div>
+      <div class="painel">
+        Peixes mortos: 
+        <br>Taxa de peixes mortos:
+        <br>Ganho com vendas:
+        <br>Perda com alevinos:
+      </div>
+    </div>
+    
+    <div class="relatorios">
+      <div class="titulo1">
+        Tanque 4
+      </div>
+      <div class="titulo2">
+        Perda por vendas não realizadas
+      </div>
+      <div class="valor_relatorio">
+        R$82.059,00
+      </div>
+      <div class="painel">
+        Peixes mortos: 
+        <br>Taxa de peixes mortos:
+        <br>Ganho com vendas:
+        <br>Perda com alevinos:
+      </div>
+    </div>
+    
+    <div class="relatorios">
+      <div class="titulo1">
+        Tanque 5
+      </div>
+      <div class="titulo2">
+        Perda por vendas não realizadas
+      </div>
+      <div class="valor_relatorio">
+        R$82.059,00
+      </div>
+      <div class="painel">
+        Peixes mortos: 
+        <br>Taxa de peixes mortos:
+        <br>Ganho com vendas:
+        <br>Perda com alevinos:
+      </div>
+    </div>
+  </div>
+</div>
+  
+</body>
+</html>
+
+
+
