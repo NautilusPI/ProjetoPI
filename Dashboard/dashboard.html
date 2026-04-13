@@ -12,18 +12,18 @@
 </head>
 
 <body>
-    
-        <div class="alert-container" id="alertas" >
-           <div class="alerta">
-             <i class="fa-solid fa-circle-exclamation" onclick="abrirAlerta()"></i>
+
+    <div class="alert-container" id="alertas">
+        <div class="alerta">
+            <i class="fa-solid fa-circle-exclamation" onclick="abrirAlerta()"></i>
             <div>
                 <span class="titulo">Risco na criação</span>
                 <span>O tanque 1 está fora da temperatura ideal</span>
             </div>
             <i class="fa-solid fa-xmark" onclick="fecharAlerta()"></i>
-           </div>
-           
         </div>
+
+    </div>
     <div class="navbar">
         <div class="navlink">
             <div class="logo">
@@ -101,14 +101,14 @@
             </div>
             <div class="graficos">
                 <div class="graficoBarra">
-                    <p>Temperatura por tanque</p>
+                    <p>Tempo em temperaturas criticas por tanque</p>
                     <div class="grafico">
                         <canvas id="graficoBarra"></canvas>
                     </div>
                 </div>
                 <div class="graficosEtanques">
                     <div class="graficoLinha">
-                        <p>Histórico da temperatura média dos tanques</p>
+                        <p>Histórico de alertas por dias</p>
                         <div class="grafico"><canvas id="graficoLinha"></canvas></div>
                     </div>
                     <div class="tanques">
@@ -220,66 +220,107 @@
     const ctx = document.getElementById('graficoBarra');
 
     new Chart(ctx, {
-        type: 'bar',
+        type: 'scatter',
         data: {
-            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '16', '17', '18'],
-            datasets: [{
-                label: 'Temperatura',
-                data: [20.5, 21.3, 22.7, 23.1, 24.6, 25.2,
-                    26.8, 27.4, 28.9, 29.5, 30.1, 31.7,
-                    32.0, 21.9, 23.8, 26.3, 28.2, 30.6, 20],
-                borderWidth: 0,
-                backgroundColor: '#2B8997',
-                borderRadius: 2
-            }],
-            line: [{
-                borderWidth: 0
-            }]
+           labels: [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    
+  ],
+  datasets: [{
+    type: 'bar',
+    label: 'Bar Dataset',
+    data: [26,24,30,27,26,28,29,28,29,26,29,25,28,26,28,31,23,26],
+    borderColor: '#2B8997',
+    backgroundColor: '#2B8997'
+    }, {
+        type: 'line',
+        label: 'Atenção',
+        pointRadius: 0, 
+        borderDash: [5, 5], 
+        opacity:0,
+        data: [30, 30, 30, 30,30, 30, 30, 30,30, 30, 30, 30,30, 30, 30, 30,30,30],
+        fill: false,
+        borderColor: 'hwb(48 0% 6% / 0.533)'
+    },
+     {
+    type: 'line',
+    label: 'Risco',
+    pointRadius: 0, 
+    borderDash: [5, 5], 
+    opacity:0.7,
+    data: [23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,],
+    fill: false,
+    borderColor: 'red'
+  },
+   {
+    type: 'line',
+    label: 'Risco',
+    pointRadius: 0, 
+    borderDash: [5, 5], 
+    opacity:0.7,
+    data: [32, 32, 32, 32,32, 32, 32, 32,32, 32, 32, 32,32, 32, 32, 32,32,32],
+    fill: false,
+    borderColor: 'red'
+  },
+ {
+    type: 'line',
+    pointRadius: 0, 
+    borderDash: [5, 5], 
+    opacity:0.7,
+    label: 'Atenção',
+    data: [25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,],
+    fill: false,
+    borderColor: 'hwb(48 0% 6% / 0.533)'
+  }]
         },
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-
-                x: {
-                    grid: {
-                        display: false
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        display: true
-                    }
-                }
-            }
-        }
+         options: {
+            
+             scales: {
+                 y: {
+                     beginAtZero: false,
+                     min:20,
+                     grid: {
+                         display: false
+                     }
+                 }
+             }
+         }
     });
 
     const ctx2 = document.getElementById('graficoLinha');
 
     new Chart(ctx2, {
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: ["05hr",
-                "06hr", "07hr", "08hr", "09hr", "10hr", "11hr",
-                "12hr", "13hr", "14hr", "15hr", "16hr", "17hr",
-                "18hr", "19hr", "20hr", "21hr", "22hr", "23hr"],
+            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             datasets: [{
-                label: 'Temperatura',
-                data: [20.5, 21.3, 22.7, 15.1, 24.6, 15.2,
-                    36.8, 27.4, 18, 19.5, 30.1, 25.7,
-                    32.0, 21.9, 23.8, 26.3, 22.2, 25.6, 30],
-                borderWidth: 3,
+                label: 'Quantidade de alertas',
+                data: [0, 2, 6, 3, 7, 3, 6, 2, 1, 2],
+                borderWidth: 0,
                 borderColor: '#2B8997',
                 backgroundColor: '#2B8997',
 
             }]
         },
         options: {
+            indexAxis: 'y',
             plugins: {
                 legend: {
                     display: false
