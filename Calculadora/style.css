@@ -164,10 +164,10 @@ body {
                     border-radius: 3px;
                     align-items: center;
                     width: 70px;
-                    height: 20px;
+                    height: 15px;
                     padding-left: 15px; 
                     margin-left: 155px;
-                    margin-top: 3px;
+                    margin-top: 2.5px;
 
                     color:var(--subtexto);
                     font-weight: bold;
