@@ -116,14 +116,14 @@ body {
     }
 
     }
-    .container_entrada {
+    .container_entrada { /* Página Inteira */
         display: flex;
         flex-direction: row;
         margin: 0;
         width: 87rem;
         height: 70vh;
         
-        .container_input_calcular_shadow {
+        .container_input_calcular_shadow { /* Sombra da Calculadora: Parte 1 */
             background-color: white;
             box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.3);
             border-radius: 10px;
@@ -156,7 +156,7 @@ body {
                     
                 }
 
-                .botao_vazado { /* Validar */
+                .botao_vazado { /* Botão Validar */
                     box-shadow: 0px 0px 2px black;
                     display:flex;
                     border: none;
@@ -217,14 +217,14 @@ body {
     }
 
 }
-        .container_conteudoResultado {
+        .container_conteudoResultado {  /* CALCULAR -> RESULTADO - PREJUIZOS */
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.079);
             border-radius: 10px;
             margin-left: 60px;
             width: 35%;
             flex: none;
             
-            .container_prejuizo {
+            .container_prejuizo { /* Prejuízo - PARTE SUPERIOR*/
                 background-color: var(--secundaria);
                 border-radius: 10px 10px 0px 0px;
                 height: 30vh;
@@ -258,7 +258,7 @@ body {
                 }
               }  
               
-              .container_prejuizo_info {
+              .container_prejuizo_info { /* TIPOS DE PREJUIZOS - PARTE INFERIOR */
                 background-color: var(--primaria);
                 border-radius: 0px 0px 10px 10px;
                 width: 100%;
@@ -288,4 +288,71 @@ body {
 
 }
 /* CONTAINER - CONTEUDO: FIM -------------------------------------------------------------------- */
+
+/* CONTAINER - RELATÓRIOS: INICIO -------------------------------------------------------------------- */
     
+.container_relatorios {
+    width: 95%;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .relatorios {
+        background-color: white;
+            display: flex;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.219);
+            display: flex;
+            width: 225px;
+            height: 250px;
+            flex-direction: column;
+            
+
+            .titulo1 {
+                color:var(--primaria);
+                font-weight: bold;
+                padding-top: 10px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .titulo2 {
+                color: var(--titulo);
+                display: flex;
+                font-weight: bold;
+                font-size: 16px;
+                padding-top: 12px;
+                text-align: center;
+            }
+
+             .valor_relatorio {
+                color: var(--primaria);
+                font-size: 25px;
+                font-weight: bold;
+                padding-top: 8px;
+                padding-bottom: 30px;
+                text-align: center;
+             }
+
+              .painel {
+                box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.334);
+                border-radius: 10px;
+                margin-left: 10px;
+                margin-right: 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                padding-left: 10px;
+                font-size: 12px;
+                color:var(--subtexto);
+                font-weight: bold;
+                justify-content: start;
+                line-height: 20px;
+              }
+       
+    }
+}
