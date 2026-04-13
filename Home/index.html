@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Página Inicial</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,6 +14,7 @@
       </div>
         <a class="link" href="inicio">Inicio</a> 
         <a class="link" href="simulador">Simulador</a>
+        <a class="link" href="simulador">Dashboard</a>
       </div>
       <div class="forms">
         <button class="vazado">Entre</button>
@@ -125,20 +126,22 @@
         <div class="container-contato">
             <div class="contato-form">
                 <form action="">
-                    <label for="nome">Nome</label>
+                    <label for="form_nome">Nome<span style= "color:red">*</span><span id="erroNome"></span></label> 
                     <input type="text" id="form_nome" placeholder="Insira seu nome">
     
-                    <label for="email">Email</label>
-                    <input type="text" id="form-email" placeholder="Insira seu email">
+                    <label for="form_email">Email<span style= "color:red">*</span><span id="erroEmail"></span></label> 
+                    <input type="text" id="form_email" placeholder="Insira seu email"> 
     
-                    <label for="assunto">Assunto</label>
-                    <input type="text" id="form-assunto" placeholder="Assunto">
+                    <label for="form_assunto">Assunto<span id="erroAssunto"></span></label>
+                    <input type="text" id="form_assunto" placeholder="Assunto">
     
-                    <label for="mensagem">Mensagem</label>
-                    <textarea rows="10" cols="50" id="mensagem" placeholder="Deixe sua mensagem"></textarea>
+                    <label for="mensagem">Mensagem<span style= "color:red">*</span><span id="erroMensagem"></span></label>
+                    <textarea rows="10" cols="50" id="mensagem" placeholder="Deixe sua mensagem"></textarea> <span id="contagem"></span>
+                    
                     
                     <div class="btn-contato">
-                        <button type="button" onclick="">Enviar mensagem</button>  
+                        <span id="MensagemEnviada"></span> <br>
+                        <button onclick="enviar()">Enviar mensagem</button>
                     </div>
                 </form>
             </div>
@@ -176,5 +179,40 @@
 </html>
 
 <script>
+    function enviar(){
+        event.preventDefault()
+        let nome = form_nome.value;
+        let email = form_email.value;
+        let assunto = form_assunto.value;
+        let msg = mensagem.value;
+        let input_nome = document.getElementById('form_nome');
+        let input_email = document.getElementById('form_email');
+        let input_assunto = document.getElementById('form_assunto');
+        let input_mensagem = document.getElementById('mensagem');
+
+
+        if(nome != `` && email.includes("@") && msg != ``){
+            MensagemEnviada.innerHTML = `<span class="msg-enviada"> Mensagem Enviada!</span>`
+        }
+        
+        if (nome == ``)
+        {erroNome.innerHTML = `<span class="msg-erro"> ⓘ Por favor, informe seu nome</span>`
+        input_nome.style.border = "1px solid red"} 
+        else {erroNome.innerHTML = ``; input_nome.style.border = "1px solid green" }
+
+        if (email == ``|| !email.includes("@"))
+        {erroEmail.innerHTML = ` <span class="msg-erro"> ⓘ Digite um e-mail válido</span>`
+        input_email.style.border = "1px solid red"}
+        else {erroEmail.innerHTML = ``; input_email.style.border = "1px solid green"}
+
+         if (assunto != ``)
+         {input_assunto.style.border = "1px solid green" }
+
+        if (msg == ``){erroMensagem.innerHTML = `<span class="msg-erro"> ⓘ Escreva sua mensagem</span>`
+        input_mensagem.style.border = "1px solid red"}
+        else {erroMensagem.innerHTML = ``; input_mensagem.style.border = "1px solid green"}
+        
+    }
+
     
 </script>

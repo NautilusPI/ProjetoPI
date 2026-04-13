@@ -43,6 +43,7 @@ body{
     a{
         margin-top: 11%;
         text-decoration: none;
+        font-family: Arial, Helvetica, sans-serif;
         color:var(--primaria);
         text-align: end;
         font-weight:  bold;
@@ -177,6 +178,7 @@ body{
 
 }
 .box-button button{
+    cursor: pointer;
     color: white;
     font-weight: 700;
     font-size: 30px;
@@ -186,6 +188,10 @@ body{
     padding: 10px 30px;
     white-space: nowrap;
     align-items: center;
+}
+
+.box-button:active {
+    transform: scale(1.01);
 }
 
 /* INICIO COMO ACONTECE? */
@@ -266,6 +272,8 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 50px;
 }
+
+
 .container-contato{
     display: flex;
     align-items: center;
@@ -324,6 +332,7 @@ form textarea{
 }
 
 .btn-contato button{
+    cursor: pointer;
     color: white;
     font-weight: 700;
     font-size: 15px;
@@ -333,6 +342,23 @@ form textarea{
     padding: 10px 30px;
     white-space: nowrap;
     align-items: center;
+}
+
+.btn-contato button:active {
+    transform: scale(1.01);
+}
+
+.msg-erro {
+    color: rgba(255, 0, 0, 0.462);
+    font-size: 12px;
+}
+
+.msg-enviada {
+    color: green;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+
 }
 
 /* INICIO FOOTER */ 
@@ -373,5 +399,6 @@ form textarea{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
+
 
 
