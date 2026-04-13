@@ -368,7 +368,11 @@ form textarea{
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 -1px 1px var(--primaria);
-    width: 100%;   
+    width: 100%;
+}
+
+.icons-footer{
+    padding-left: 10px;
 }
 
 .img-footer img{
@@ -394,6 +398,7 @@ form textarea{
 }
 .contatos-footer{
     font-family: Arial, Helvetica, sans-serif;
+    padding-right: 10px;
 }
 .contatos-footer h3{
     font-family: Arial, Helvetica, sans-serif;
