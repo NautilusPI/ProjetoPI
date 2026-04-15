@@ -168,14 +168,14 @@ body {
             justify-content: end;
 
             span {
-                background-color: #F7D0D0;
+                background-color: #c0f5b7;
                 padding: 2px 0px;
                 width: 80px;
                 text-align: center;
                 margin-right: 10px;
                 font-size: 13px;
                 font-weight: 500;
-                color: #F00000;
+                color: #5bb500;
                 border-radius: 10px;
             }
         }
