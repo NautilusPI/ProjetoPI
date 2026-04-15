@@ -101,14 +101,27 @@
             </div>
             <div class="graficos">
                 <div class="graficoBarra">
-                    <p>Tempo em temperaturas criticas por tanque</p>
+                   <div class="topoGraficoBarra">
+                     <p>Temperatura por tanque</p>
+                     <select name="" id="">
+                        <option value="">19:34 (Agora)</option>
+                        <option value="">18:34</option>
+                        <option value="">17:34</option>
+                        <option value="">16:34</option>
+                        <option value="">15:34</option>
+                        <option value="">14:34</option>
+                        <option value="">13:34</option>
+                        <option value="">12:34</option>
+                    </select>
+                   </div>
+
                     <div class="grafico">
                         <canvas id="graficoBarra"></canvas>
                     </div>
                 </div>
                 <div class="graficosEtanques">
                     <div class="graficoLinha">
-                        <p>Histórico de alertas por dias</p>
+                        <p>Temperatura máxima e minima por hora</p>
                         <div class="grafico"><canvas id="graficoLinha"></canvas></div>
                     </div>
                     <div class="tanques">
@@ -220,121 +233,152 @@
     const ctx = document.getElementById('graficoBarra');
 
     new Chart(ctx, {
-        type: 'scatter',
-        data: {
-           labels: [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16',
-    '17',
-    '18',
-    
-  ],
-  datasets: [{
-    type: 'bar',
-    label: 'Bar Dataset',
-    data: [26,24,30,27,26,28,29,28,29,26,29,25,28,26,28,31,23,26],
-    borderColor: '#2B8997',
-    backgroundColor: '#2B8997'
-    }, {
+  type: 'bar',
+  data: {
+    labels: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'],
+    datasets: [
+      {
+        label: 'Temperatura',
+        data: [24.3, 26.1, 25.4, 27.8, 29.0, 28.2, 30.5, 31.2, 29.7, 32.4, 30.8, 28.9, 27.3, 26.5, 25.9],
+        backgroundColor: '#4DA3B8',
+        borderRadius: 4,
+        barThickness: 30
+      },
+
+      {
         type: 'line',
-        label: 'Atenção',
-        pointRadius: 0, 
-        borderDash: [5, 5], 
-        opacity:0,
-        data: [30, 30, 30, 30,30, 30, 30, 30,30, 30, 30, 30,30, 30, 30, 30,30,30],
-        fill: false,
-        borderColor: 'hwb(48 0% 6% / 0.533)'
+        data: [33,33,33,33,33,33,33,33,33,33,33,33,33,33,33],
+        borderColor: '#E74C3C',
+        borderWidth: 2,
+        borderDash: [6, 6],
+        pointRadius: 0
+      },
+
+      {
+        type: 'line',
+        data: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
+        borderColor: '#F39C12',
+        borderWidth: 2,
+        borderDash: [6, 6],
+        pointRadius: 0
+      },
+
+      {
+        type: 'line',
+        data: [26,26,26,26,26,26,26,26,26,26,26,26,26,26,26],
+        borderColor: '#F39C12',
+        borderWidth: 2,
+        borderDash: [6, 6],
+        pointRadius: 0
+      },
+
+      {
+        type: 'line',
+        data:[23,23,23,23,23,23,23,23,23,23,23,23,23,23,23],
+        borderColor: '#E74C3C',
+        borderWidth: 2,
+        borderDash: [6, 6],
+        pointRadius: 0
+      }
+    ]
+  },
+
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+      legend: {
+        display: false
+      }
     },
-     {
-    type: 'line',
-    label: 'Risco',
-    pointRadius: 0, 
-    borderDash: [5, 5], 
-    opacity:0.7,
-    data: [23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,],
-    fill: false,
-    borderColor: 'red'
-  },
-   {
-    type: 'line',
-    label: 'Risco',
-    pointRadius: 0, 
-    borderDash: [5, 5], 
-    opacity:0.7,
-    data: [32, 32, 32, 32,32, 32, 32, 32,32, 32, 32, 32,32, 32, 32, 32,32,32],
-    fill: false,
-    borderColor: 'red'
-  },
- {
-    type: 'line',
-    pointRadius: 0, 
-    borderDash: [5, 5], 
-    opacity:0.7,
-    label: 'Atenção',
-    data: [25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,],
-    fill: false,
-    borderColor: 'hwb(48 0% 6% / 0.533)'
-  }]
-        },
-         options: {
-            
-             scales: {
-                 y: {
-                     beginAtZero: false,
-                     min:20,
-                     grid: {
-                         display: false
-                     }
-                 }
-             }
-         }
-    });
 
-    const ctx2 = document.getElementById('graficoLinha');
-
-    new Chart(ctx2, {
-        type: 'bar',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                label: 'Quantidade de alertas',
-                data: [0, 2, 6, 3, 7, 3, 6, 2, 1, 2],
-                borderWidth: 0,
-                borderColor: '#2B8997',
-                backgroundColor: '#2B8997',
-
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-
-                y: {
-                    beginAtZero: true
-                }
-            }
+    scales: {
+      x: {
+        grid: {
+          display: false
         }
-    });
+      },
+      y: {
+        beginAtZero: true,
+        min:20,
+        grid: {
+          color: '#eee'
+        }
+      }
+    }
+  }
+});
 
+const ctx2 = document.getElementById('graficoLinha');
+
+   new Chart(ctx2, {
+  type: 'line',
+  data: {
+    labels: ['13:00', '14:00', '15:00', '16:00', '17:00'],
+    datasets: [
+      {
+        label: 'Temperatura máxima',
+        data: [29,30,27,32,35],
+        borderWidth: 2,
+        borderColor: '#4DA3B8',
+        tension: 0.4
+      },
+      {
+        label: 'Temperatura mínima',
+        data: [26,27,25,30,25],
+        borderWidth: 2,
+        borderColor: 'red',
+        tension: 0.4
+      },
+
+      
+      {
+        type: 'line',
+        data :[33,33,33,33,33],
+        borderColor: '#E74C3C',
+        borderWidth: 2,
+        borderDash: [6, 6],
+        pointRadius: 0
+      },
+
+      
+   
+
+     
+      {
+        type: 'line',
+        data: [23,23,23,23,23],
+        borderColor: '#E74C3C',
+        borderWidth: 2,
+        borderDash: [6, 6],
+        pointRadius: 0
+      }
+    ]
+  },
+
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+
+    scales: {
+      y: {
+        min: 20,
+        
+        beginAtZero: true,
+        grid: {
+          color: '#eee'
+        }
+      }
+    }
+  }
+});
 </script>
 <script>
     function fecharAlerta() {
