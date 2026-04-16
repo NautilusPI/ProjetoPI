@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="conteudo">
                                     <p>Tanque 16</p>
-                                    <span>20.4 ºC</span>
+                                    <span id="tanque9"></span>
                                     <span class="statusTanque">Risco</span>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
                                 </div>
                                 <div class="conteudo">
                                     <p>Tanque 4</p>
-                                    <span>32.1 ºC</span>
+                                    <span id="tanque3"></span>
                                     <span class="statusTanque">Risco</span>
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="conteudo">
                                     <p>Tanque 8</p>
-                                    <span>30.2 ºC</span>
+                                    <span id="tanque7"></span>
                                     <span class="statusTanque">Atenção</span>
                                 </div>
                             </div>
@@ -160,7 +160,7 @@
                                 </div>
                                 <div class="conteudo">
                                     <p>Tanque 13</p>
-                                    <span>24.1 ºC</span>
+                                    <span id="tanque8"></span>
                                     <span class="statusTanque">Atenção</span>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="conteudo">
                                     <p>Tanque 1</p>
-                                    <span>26.5 ºC</span>
+                                    <span id="tanque0"></span>
                                     <span class="statusTanque">Seguro</span>
                                 </div>
                             </div>
@@ -178,7 +178,7 @@
                                 </div>
                                 <div class="conteudo">
                                     <p>Tanque 2</p>
-                                    <span>27.4 ºC</span>
+                                    <span id="tanque1"></span>
                                     <span class="statusTanque">Seguro</span>
                                 </div>
                             </div>
@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="conteudo">
                                     <p>Tanque 3</p>
-                                    <span>27.0 ºC</span>
+                                    <span id="tanque2"></span>
                                     <span class="statusTanque">Seguro</span>
                                 </div>
                             </div>
@@ -196,7 +196,7 @@
                                 </div>
                                 <div class="conteudo">
                                     <p>Tanque 5</p>
-                                    <span>28.3 ºC</span>
+                                    <span id="tanque4"></span>
                                     <span class="statusTanque">Seguro</span>
                                 </div>
                             </div>
@@ -205,7 +205,7 @@
                                 </div>
                                 <div class="conteudo">
                                     <p>Tanque 6</p>
-                                    <span>26.1 ºC</span>
+                                    <span id="tanque5"></span>
                                     <span class="statusTanque">Seguro</span>
                                 </div>
                             </div>
@@ -214,7 +214,7 @@
                                 </div>
                                 <div class="conteudo">
                                     <p>Tanque 7</p>
-                                    <span>29.2 ºC</span>
+                                    <span id="tanque6"></span>
                                     <span class="statusTanque">Seguro</span>
                                 </div>
                             </div>
@@ -395,6 +395,12 @@ const ctx2 = document.getElementById('graficoLinha');
         `
     }
     
+    let lista = [26.5,27.4,27.0,32.1,28.3,26.1,29.2,30.2,24.1,20.4]
+
+    for(cont = 0; cont < lista.length; cont++){
+        document.getElementById(`tanque${cont}`).innerHTML = lista[cont];
+    }
+
 </script>
 
 </html>
