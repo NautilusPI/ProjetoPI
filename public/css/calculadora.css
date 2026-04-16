@@ -85,6 +85,9 @@ body {
         } .preenchido button:active{
             transform: scale(1.01);
         }
+        .preenchido a{
+            color: white;
+         }
     }
 } 
 /* NAVBAR - FIM -------------------------------------------------------------------- */
