@@ -1,62 +1,68 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
+CREATE DATABASE nautilus;
+USE nautilus;
 
-/*
-comandos para mysql server
-*/
-
-CREATE DATABASE aquatech;
-
-USE aquatech;
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
-);
-
+-- Tabela Usuario
 CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) not null,
+    email VARCHAR(80) not null,
+    senha VARCHAR(15) not null,
+    telefone CHAR(11)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+-- Tabela Empresa
+CREATE TABLE empresa (
+    idEmpresa INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) not null,
+    endereco VARCHAR(80),
+    codigoDeAtivacao VARCHAR(45) not null,
+    cnpj CHAR(14) not null,
+    fkUsuarioDono INT ,
+    FOREIGN KEY (fkUsuarioDono) REFERENCES usuario(idUsuario)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+-- Tabela Tanque
+CREATE TABLE tanque (
+    idTanque INT AUTO_INCREMENT PRIMARY KEY,
+    nomeTanque VARCHAR(45),
+    capacidadeLitros INT,
+    fkEmpresa INT,
+    FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa)
+    
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+-- Tabela Sensor
+CREATE TABLE sensor (
+    idSensor INT AUTO_INCREMENT PRIMARY KEY,
+    modelo VARCHAR(100),
+    dataInstalacao DATE,
+    statusSensor VARCHAR(20),
+    fkTanque INT,
+    FOREIGN KEY (fkTanque) REFERENCES tanque(idTanque)
+    
 );
 
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+-- Tabela RegistroTemperatura
+CREATE TABLE registroTemperatura (
+    idRegistroTemperatura INT AUTO_INCREMENT,
+    registroTemperatura DECIMAL(5,2),
+    dataHora DATETIME,
+    fkSensor INT,
+    FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor),
+    primary key(idRegistroTemperatura,fkSensor)
+    
+);
+
+-- Tabela Alerta
+CREATE TABLE alerta (
+    idAlerta INT AUTO_INCREMENT ,
+    descricao VARCHAR(200),
+    fkRegistroTemperatura INT,
+    fkSensor INT,
+    FOREIGN KEY (fkRegistroTemperatura) REFERENCES registroTemperatura(idRegistroTemperatura),
+    primary key(idAlerta,fkSensor)
+);
+
+CREATE USER'grupo11API'@'%' IDENTIFIED BY 'Grupo11@';
+GRANT INSERT, SELECT, DELETE,UPDATE ON *.* TO 'grupo11API'@'%';
+FLUSH PRIVILEGES;
