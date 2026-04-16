@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="navbar">
+    <div class="navlink">
+      <div class="logo">
+        <img src="./assets/Home/logo.png" alt=""> 
+      </div>
+        <a class="link" href="index.html">Inicio</a> 
+        <a class="link" href="calculadora.html">Simulador</a>
+        <a class="link" href="dashboard/dashboardGeral.html">Dashboard</a>
+      </div>
+      <div class="forms">
+        <button class="vazado"><a href="login.html">Entre</a></button>
+        <button class="preenchido"><a href="cadastro.html">Cadastre-se</a> </button>
+      </div>
+    </div>
+
+    <div class="banner">
+        <div class="container-banner">
+            <h1>Mais <span>controle</span> sobre a água, mais <br>
+                saúde para os peixes, mais <span>lucro</span> <br>
+                para o <span>Produtor</span>.
+            </h1>
+            <p>Monitore a temperatura da água e transforme dados em decisões mais <br>
+                 lucrativas na criação de tilápias.
+            </p>
+        </div>
+        <div>
+            <img src="./assets/Home/Homi da tilapia.png" alt="">
+        </div>
+    </div>
+
+    <div class="beneficios">
+        <br><h1>BENEFÍCIOS</h1>
+
+        <div class="container-beneficios">
+            <div class="boxes">
+                <div class="box">
+                    <img src="./assets/Home/agua-quente.png" alt="">
+                    <h5>Monitore a temperatura <br> dos seus tanques</h5>
+                </div>
+                <div class="box">
+                    <img src="./assets/Home/monitoramento.png" alt="">
+                    <h5>Visualize os dados com a <br> dashboard</h5>
+                </div>
+                <div class="box">
+                    <img src="./assets/Home/peixe.png" alt="">
+                    <h5>Diminua suas perdas</h5>
+                </div>
+                <div class="box">
+                    <img src="./assets/Home/lucro.png" alt="">
+                    <h5>Aumente seus lucros</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="servico">
+        <div class="container-servico">
+            <div class="boxes-servico">
+                <div class="box-servico">
+                    <h1>NOSSO SERVIÇO</h1>
+                    <p>
+                        Instalamos sensores de temperatura em seus tanques e transformamos os dados <br>
+                        em uma dashboard inteligente com gráficos e alertas, ajudando você a monitorar <br>
+                        as condições da água e reduzir riscos na produção.
+                    </p>
+                </div>
+                <div class="box-button">
+                    <button onclick="document.getElementById('h1_contato').scrollIntoView({behavior: 'smooth'});">Entre em contato</button> <!-- // ao clicar no botão, a tela desce para o form de contato. -->  
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="acontece">
+        <div>
+            <h1>COMO ACONTECE?</h1>
+        </div>
+        
+        <div class="container-acontece container-img">
+            <div class="boxes-acontece">
+                <div class="box-acontece">
+                    <img src="./assets/Home/tanque-de-agua.png" alt="">
+                    <h5>O sensor de temperatura é instalado diretamente no tanque.
+                    </h5>
+                </div>
+                <div id="seta"></div>
+                <div class="box-acontece">
+                    <img src="./assets/Home/sensor-de-umidade.png" alt="">
+                    <h5>Os dados são enviados ao nosso servidor via rede.
+                    </h5>
+                </div>
+                <div id="seta"></div>
+                <div class="box-acontece">
+                    <img src="./assets/Home/painel.png" alt="">
+                    <h5>É gerado uma dashboard com gráficos intuitivos sobre a temperatura do tanque.
+                    </h5>
+                </div>
+                <div id="seta"></div>
+                <div class="box-acontece">
+                    <img src="./assets/Home/alerta.png" alt="">
+                    <h5>Enviamos alertas automáticos quando a temperatura atingir níveis perigosos.
+                    </h5>
+                </div>
+                <div id="seta"></div>
+                <div class="box-acontece">
+                        <img src="./assets/Home/vida-de-trabalho.png" alt="">
+                        <h5>Você toma açoes rápidas com base nos dados e reduz perdas, aumentando a produtividade.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contato">
+        <h1 id="h1_contato">ENTRE EM CONTATO</h1>
+
+        <div class="container-contato">
+            <div class="contato-form">
+                <form action="">
+                    <label for="form_nome">Nome<span style= "color:red">*</span><span id="erroNome"></span></label> 
+                    <input type="text" id="form_nome" placeholder="Insira seu nome">
+    
+                    <label for="form_email">Email<span style= "color:red">*</span><span id="erroEmail"></span></label> 
+                    <input type="text" id="form_email" placeholder="Insira seu email"> 
+    
+                    <label for="form_assunto">Assunto<span id="erroAssunto"></span></label>
+                    <input type="text" id="form_assunto" placeholder="Assunto">
+    
+                    <label for="mensagem">Mensagem<span style= "color:red">*</span><span id="erroMensagem"></span></label>
+                    <textarea rows="10" cols="50" id="mensagem" placeholder="Deixe sua mensagem"></textarea> <span id="contagem"></span>
+                    
+                    
+                    <div class="btn-contato">
+                        <span id="MensagemEnviada"></span> <br>
+                        <button onclick="enviar()">Enviar mensagem</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="logo">
+                <img src="./assets/Home/logo.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+            <div class="icons-footer">
+                <div class="img-footer">
+                    <img src="./assets/Home/logo.png" alt="">
+                </div>
+                <div class="redes-footer">
+                    <img src="./assets/Home/instagram.png" alt="">
+                    <img src="./assets/Home/github.png" alt="">
+                    <img src="./assets/Home/youtube.png" alt="">
+                </div>
+            </div>
+
+            <div class="direitos-footer">
+                <p>Copyright &copy; 2026 NAUTILUS</p>
+            </div>
+
+            <div class="contatos-footer">
+                <h3>Contatos</h3>
+                <span>+55 (11)92459-3242</span>
+                <p>nautilus@gmail.com</p>
+            </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    function enviar(){
+        event.preventDefault()
+        let nome = form_nome.value;
+        let email = form_email.value;
+        let assunto = form_assunto.value;
+        let msg = mensagem.value;
+        let input_nome = document.getElementById('form_nome');
+        let input_email = document.getElementById('form_email');
+        let input_assunto = document.getElementById('form_assunto');
+        let input_mensagem = document.getElementById('mensagem');
+
+
+        if(nome != `` && email.includes("@") && msg != ``){
+            MensagemEnviada.innerHTML = `<span class="msg-enviada"> Mensagem Enviada!</span>`
+        }
+        
+        if (nome == ``)
+        {erroNome.innerHTML = `<span class="msg-erro"> ⓘ Por favor, informe seu nome</span>`
+        input_nome.style.border = "1px solid red"} 
+        else {erroNome.innerHTML = ``; input_nome.style.border = "1px solid green" }
+
+        if (email == ``|| !email.includes("@"))
+        {erroEmail.innerHTML = ` <span class="msg-erro"> ⓘ Digite um e-mail válido</span>`
+        input_email.style.border = "1px solid red"}
+        else {erroEmail.innerHTML = ``; input_email.style.border = "1px solid green"}
+
+         if (assunto != ``)
+         {input_assunto.style.border = "1px solid green" }
+
+        if (msg == ``){erroMensagem.innerHTML = `<span class="msg-erro"> ⓘ Escreva sua mensagem</span>`
+        input_mensagem.style.border = "1px solid red"}
+        else {erroMensagem.innerHTML = ``; input_mensagem.style.border = "1px solid green"}
+        
+    }
+
+    
+</script>
