@@ -1,0 +1,581 @@
+:root {
+    --primaria: #2B8997;
+    --background: #F4F9F8;
+    --brancoAcizentado: #FAFAFA;
+    --subtexto: #323D4C;
+    --titulo: #212327;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background);
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar {
+    width: 100%;
+    height: 60px;
+    margin: 0px;
+    display: flex;
+    justify-content: space-around;
+    gap: 50%;
+    align-items: center;
+
+    .navlink {
+        width: 60px;
+        gap: 20%;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo {
+        height: 40px;
+        display: flex;
+        align-items: center;
+
+        img {
+            height: 42px;
+            margin-right: 25px;
+            width: auto;
+        }
+    }
+
+    a {
+        margin-top: 11%;
+        text-decoration: none;
+        color: var(--primaria);
+        text-align: end;
+        font-weight: bold;
+        margin-right: 20%;
+    }
+
+    .forms {
+        display: flex;
+        gap: 12%;
+
+        .vazado {
+            color: var(--primaria);
+            font-weight: 700;
+            border-radius: 10px;
+            border: 1px solid var(--primaria);
+            background-color: var(--background);
+            padding: 5px 50px;
+
+        }
+
+        .preenchido {
+            color: white;
+            font-weight: 700;
+            background-color: var(--primaria);
+            border: 1px solid var(--primaria);
+            border-radius: 10px;
+            padding: 10px 30px;
+            white-space: nowrap;
+        }
+    }
+}
+.alert-container{
+        position: absolute;
+    right: 15px;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .alerta{
+    background-color: #F7D0D0;
+    width: 420px;
+    height: 70px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 10px;
+    div{
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        height: 50px;
+        .titulo{
+            font-size: 17px;
+            color: #750000;
+        }
+        span{
+            color: #000c0ec9;
+            font-size: 16px;
+            
+        }
+        
+    }
+    i{
+        color: #F00000;
+        font-size: 30px;
+    }
+    .fa-xmark{
+        font-size: 23px;
+        color: #000c0e69;
+        cursor: pointer;
+    }
+    }
+}
+.container-externo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1%;
+
+    .container {
+        width: 90%;
+    }
+}
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+
+    .topoEsquerda {
+        gap: 30px;
+        display: flex;
+        align-items: center;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    span {
+        font-size: 30px;
+        font-weight: 800;
+        color: var(--primaria);
+    }
+
+    select {
+        border-radius: 5px;
+        width: 110px;
+        padding-left: 2px;
+        font-weight: 500;
+        color: var(--primaria);
+        height: 30px;
+        border: none;
+        box-shadow: 0px 0px 4px rgba(33, 35, 39, 0.250);
+        background-color: #fff;
+        outline: none;
+    }
+
+}
+
+.kpis {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1%;
+
+    .card {
+        background-color: white;
+        box-shadow: 0px 0px 4px rgba(33, 35, 39, 0.250);
+        border-radius: 10px;
+        padding: 5px 10px;
+        width: 270px;
+
+        .topoCard {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            span {
+                color: var(--primaria);
+                font-weight: 600;
+                font-size: 14px;
+            }
+
+            img {
+                width: 30px;
+            }
+            i{
+                font-size: 30px;
+                color: var(--primaria);
+                
+            }
+        }
+
+        .numeroCard {
+            font-size: 30px;
+            color: var(--primaria);
+            font-weight: 600;
+            margin-top: 10px;
+            margin-left: 2px;
+        }
+
+        .statusCard {
+            width: 100%;
+            display: flex;
+            justify-content: end;
+
+            span {
+                background-color: #F7D0D0;
+                padding: 2px 0px;
+                width: 80px;
+                text-align: center;
+                margin-right: 10px;
+                font-size: 13px;
+                font-weight: 500;
+                color: #F00000;
+                border-radius: 10px;
+            }
+        }
+
+    }
+
+}
+
+.graficos {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.graficoBarra {
+    box-shadow: 0px 0px 4px rgba(33, 35, 39, 0.250);
+    background-color: white;
+    width: 60%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+
+    p {
+        margin: 0px;
+        margin-top: 20px;
+        font-size: 25px;
+        color: var(--primaria);
+        font-weight: 600;
+    }
+
+    .grafico {
+        width: 95%;
+        height: 350px;
+    }
+}
+
+.graficosEtanques {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+
+    .graficoLinha {
+        box-shadow: 0px 0px 4px rgba(33, 35, 39, 0.250);
+        background-color: white;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 10px;
+
+        p {
+            margin: 0px;
+            margin-left: 10px;
+            margin-top: 10px;
+            font-size: 15px;
+            color: var(--primaria);
+            font-weight: 600;
+
+        }
+
+        .grafico {
+
+            width: 95%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+
+            canvas {}
+        }
+    }
+
+
+}
+
+.tanques {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+
+    p {
+        margin: 0px;
+        font-size: 25px;
+        color: var(--primaria);
+        font-weight: 600;
+        padding: 0px;
+    }
+
+    span {
+        font-size: 12px;
+        margin: 0px;
+        opacity: 0.8;
+    }
+}
+
+.tanquesLista {
+    display: flex;
+    gap: 9px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    height: 160px;
+    overflow-y: scroll;
+
+
+}
+    /* largura do scroll */
+    .tanquesLista::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* fundo do scroll */
+    .tanquesLista::-webkit-scrollbar-track {
+        background: #d6d6d6;
+        border-radius: 10px;
+    }
+
+    /* parte que você arrasta */
+    .tanquesLista::-webkit-scrollbar-thumb {
+        background: var(--primaria);
+        border-radius: 10px;
+    }
+
+    /* quando passa o mouse */
+    .tanquesLista::-webkit-scrollbar-thumb:hover {
+        background: #61aeba;
+    }
+.tanqueCard {
+    background-color: white;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 150px;
+    height: 130px;
+}
+
+.borda {
+    background: linear-gradient(180deg, #226b76 0%, #2acee6 90%);
+    width: 8px;
+    height: 100%;
+}
+
+.conteudo {
+    width: 100%;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    color: var(--primaria);
+
+    p {
+        background-color: #DBEBEE;
+        font-size: 15px;
+        font-weight: 600;
+        padding-block: 10px;
+        padding-left: 5px;
+        text-align: start;
+    }
+
+    span {
+        font-size: 30px;
+        font-weight: 600;
+        margin-left: 10px;
+        margin-top: 10%;
+        opacity: 1;
+    }
+
+    .statusTanque {
+        padding: 2px 0px;
+        width: 80px;
+        text-align: center;
+
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 10px;
+        color: #5bb500;
+        background-color: #c0f5b7;
+
+    }
+}
+
+.risco {
+    color: #F00000;
+    background-color: #F7D0D0;
+}
+
+.atencao {
+    color: #F0C000;
+    background-color: #F9F5C2;
+}
+
+
+
+.TanqueAtencao {
+    .borda {
+        background: linear-gradient(180deg, #8A6E00 0%, #F0C000 100%);
+    }
+
+    .conteudo {
+        color: #F0C000;
+
+        p {
+            background-color: #F9F5C2;
+            color: #F0C000;
+        }
+    }
+
+    .statusTanque {
+
+        color: #F0C000;
+        background-color: #F9F5C2;
+
+    }
+}
+
+.TanqueRisco {
+    .borda {
+        background: linear-gradient(180deg, #900b0b 0%, #ee2f2f 70%);
+    }
+
+    .conteudo {
+        color: #F00000;
+
+        p {
+            background-color: #F7D0D0;
+            color: #F00000;
+        }
+    }
+
+    .statusTanque {
+
+        color: #F00000;
+        background-color: #F7D0D0;
+
+    }
+}
+
+@media screen and (min-width :1800px) {
+    .navbar {
+        height: 80px;
+        gap: 60%;
+
+        .navlink {
+            width: 100px;
+            font-size: 22px;
+        }
+
+        .logo {
+            img {
+                height: 55px;
+            }
+        }
+
+        .forms {
+            display: flex;
+            gap: 12%;
+
+            .vazado {
+                font-weight: 700;
+                border: 2px solid var(--primaria);
+                background-color: var(--background);
+                padding: 5px 50px;
+                font-size: 17px;
+            }
+
+            .preenchido {
+                border: 2px solid var(--primaria);
+                font-size: 17px;
+
+            }
+        }
+    }
+
+    .topo {
+
+
+        span {
+            font-size: 40px;
+        }
+
+        select {
+            width: 140px;
+            font-weight: 600;
+            height: 40px;
+            font-size: 16px;
+        }
+    }
+
+    .kpis {
+        .card {
+
+            padding: 5px 10px;
+            width: 350px;
+
+            .topoCard {
+                span {
+
+                    font-weight: 600;
+                    font-size: 18px;
+                }
+
+                img {
+                    width: 40px;
+                }
+            }
+
+            .numeroCard {
+                font-size: 40px;
+            }
+
+            .statusCard {
+                span {
+                    padding: 2px 10px;
+                    font-size: 17px;
+                }
+            }
+
+        }
+
+    }
+
+    .graficos {
+        margin-top: 20px;
+    }
+
+    .graficoBarra {
+        p {
+            font-size: 29px;
+        }
+
+        .grafico {
+            display: flex;
+            justify-content: center;
+            width: 90%;
+            height: 500px;
+        }
+    }
+
+    .graficosEtanques {
+        .graficoLinha {
+            .grafico {
+
+                width: 100%;
+                height: 300px;
+                display: flex;
+                justify-content: center;
+
+            }
+        }
+
+
+    }
+
+    .tanquesLista {
+        height: 170px;
+    }
+}
