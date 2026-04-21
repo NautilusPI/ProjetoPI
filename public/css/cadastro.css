@@ -102,3 +102,8 @@ input::placeholder{
 .banner img{
     border-radius: 10px;
 }
+
+.mensagem_erro{
+    color: rgba(255, 0, 0, 0.462);
+    font-size: 12px;
+}
