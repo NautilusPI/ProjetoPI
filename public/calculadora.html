@@ -7,264 +7,183 @@
   <title>Simulador Financeiro</title>
   <link rel="stylesheet" href="./css/calculadora.css">
 </head>
-  
-<body> 
+
+<body>
   <div class="navbar">
     <div class="navlink">
       <div class="logo">
-        <img src="./assets/Calculadora/logo.png" alt=""> 
+        <img src="./assets/Calculadora/logo.png" alt="">
       </div>
-        <a class="link" href="index.html">Inicio</a> 
-        <a class="link" href="dashboard/dashboardGeral.html">Dashboard</a>
-      </div>
-      <div class="forms">
-        <button class="vazado"><a href="login.html">Entre</a></button>
-        <button class="preenchido"><a href="cadastro.html">Cadastre-se</a> </button>
-      </div>
+      <a class="link" href="index.html">Inicio</a>
+      <a class="link" href="dashboard/dashboardGeral.html">Dashboard</a>
     </div>
+    <div class="forms">
+      <button class="vazado"><a href="login.html">Entre</a></button>
+      <button class="preenchido"><a href="cadastro.html">Cadastre-se</a> </button>
+    </div>
+  </div>
 
-  <div class="container_conteudo" >
+  <div class="container_conteudo">
     <div class="titulo">
       Simulador Financeiro de Criação de Tilápias
     </div>
     <div class="container_entrada">
       <div class="container_input_calcular_shadow">
-      <div class="container_input">
+        <div class="container_input">
           <p class="subtitulo">Informações Financeiras</p>
 
-            <div class="input_div">
-              <p class="subtexto">Despesas Mensais</p>
-              <input type="text" id="despesas_input">
-            </div>
+          <div class="input_div">
+            <p class="subtexto">Despesas Mensais</p>
+            <input type="text" id="despesas_input">
+          </div>
 
-            <div class="input_div">
-              <p class="subtexto">Ração mensal (kg)</p>
-              <input type="text" id="racao_mes_input">
-            </div>
+          <div class="input_div">
+            <p class="subtexto">Ração mensal (kg)</p>
+            <input type="text" id="racao_mes_input">
+          </div>
 
-            <div class="input_div">
-              <p class="subtexto">Preço da Ração por Quilo</p>
-              <input type="text" id="preco_racao_input">
-            </div>
+          <div class="input_div">
+            <p class="subtexto">Preço da Ração por Quilo</p>
+            <input type="text" id="preco_racao_input">
+          </div>
 
-            <div class="input_div">
-              <p class="subtexto">Preço unitário do Alevino</p>
-              <input type="text" id="preco_alevino_input">
-            </div>
+          <div class="input_div">
+            <p class="subtexto">Preço unitário do Alevino</p>
+            <input type="text" id="preco_alevino_input">
+          </div>
 
-            <div class="input_div">
-              <p class="subtexto">Valor de venda do peixe cru (kg)</p>
-              <input type="text" id="venda_cru_input">
-            </div>
+          <div class="input_div">
+            <p class="subtexto">Valor de venda do peixe cru por Quilo</p>
+            <input type="text" id="venda_cru_input">
+          </div>
 
-            <div class="input_div">
-              <p class="subtexto">Valor de venda do filé (kg)</p>
-              <input type="text" id="venda_file_input">
-            </div>
+          <div class="input_div">
+            <p class="subtexto">Valor de venda do filé por Quilo</p>
+            <input type="text" id="venda_file_input">
+          </div>
 
-            <div class="input_div">
-              <p class="subtexto">Valor de venda dos miúdos (kg)</p>
-              <input type="text" id="venda_miudos_input">
-            </div>
+          <div class="input_div">
+            <p class="subtexto">Valor de venda dos miúdos por Quilo</p>
+            <input type="text" id="venda_miudos_input">
+          </div>
 
-            <div class="input_div">
-              <p class="subtexto">Valor de venda dos miúdos (kg)</p>
-              <input type="text" id="venda_miudos_input">
-            </div>
+          <div class="input_div">
+            <p class="subtexto">Duração do ciclo em meses</p>
+            <input type="text" id="duracao_ciclo_input">
+          </div>
 
-           
+
         </div>
         <div class="container_input_calcular">
           <p class="subtitulo_calcular">Informações Sobre o Tanque</p>
 
           <div class="input_div">
-              <p class="subtexto">Peixes Iniciais</p>
-              <input type="text" id="peixes_iniciais_input">
-            </div>
+            <p class="subtexto">Peixes Iniciais (kg)</p>
+            <input type="text" id="peixes_iniciais_input">
+          </div>
 
-            <div class="input_div">
-              <p class="subtexto">Quantidade de kg no final do ciclo</p>
-              <input type="text" id="peixes_final_input">
-            </div>
+          <div class="input_div">
+            <p class="subtexto">Quantidade de peixes ao final do ciclo (kg) </p>
+            <input type="text" id="peixes_final_input">
+          </div>
 
-            <div class="botao">
-              <button onclick="calcular()" class="botao_preeenchido">Calcular</button>
-            </div>
+          <div class="botao">
+            <button onclick="calcular()" class="botao_preeenchido">Calcular</button>
           </div>
         </div>
-        
-        <div class="container_conteudoResultado">
-          <div class="container_prejuizo">
-            <div class="prejuizo">
-              <p class="titulo_prejuizo">Prejuízo</p>
-            </div>
-            <div class="prejuizo">
-              <p class="subtitulo_prejuizo">Prejuízo Total</p>
-              <p id="" class="valor_titulo"></p>
-            </div>
+      </div>
+
+      <div class="container_conteudoResultado">
+        <div class="container_prejuizo">
+          <div class="prejuizo">
+            <p class="titulo_prejuizo">Prejuízo</p>
           </div>
-          
-          <div class="container_prejuizo_info">
-            
-            <div class="resultado">
-              <span class="subtexto">Bruto</span>
-              <p id="bruto" class="subvalor"></p>
-            </div>
-            
-            <div class="resultado">
-              <span class="subtexto">Peixes Iniciais</span>
-              <p class="subvalor">R$</p>
-            </div>
-            
-            <div class="resultado">
-              <span class="subtexto">Perda com Ração</span>
-              <p class="subvalor">R$</p>
-            </div>
-            
-            <div class="resultado">
-              <span class="subtexto">Custos</span>
-              <p id="custo" class="subvalor"></p>
-            </div>
-            
-            <div class="resultado">
-              <span class="subtexto">Peixes Mortos</span>
-              <p class="subvalor">R$</p>
-            </div>
-            
-            <div class="resultado">
-              <span class="subtexto">Perda Alevinos</span>
-              <p class="subvalor">R$</p>
-            </div>
-            
-            <div class="resultado">
-              <span class="subtexto">Líquido</span>
-              <p id="liquido" class="subvalor"></p>
-            </div>
-            
-            <div class="resultado">
-              <span class="subtexto">Taxa de Perda</span>
-              <p class="subvalor">R$</p>
-            </div>
-            
-            <div class="resultado">
-              <span class="subtexto">Perda de Peixes</span>
-              <p class="subvalor">R$</p>
-            </div>
-            
-            <div class="resultado">
-              <span class="subtexto">Tanques</span>
-              <p class="subvalor">R$</p>
-            </div> 
-      </div>
+          <div class="prejuizo">
+            <p class="subtitulo_prejuizo">Prejuízo Total</p>
+            <p id="prejuizo" class="valor_titulo"></p>
+          </div>
+        </div>
+
+        <div class="container_prejuizo_info">
+
+          <div class="resultado">
+            <span class="subtexto">Bruto</span>
+            <p id="bruto" class="subvalor"></p>
+          </div>
+
+          <div class="resultado">
+            <span class="subtexto">Peixes Iniciais</span>
+            <p id="inicial"   class="subvalor"></p>
+          </div>
+
+          <div class="resultado">
+            <span class="subtexto">Perda com Ração</span>
+            <p id="racao" class="subvalor"></p>
+          </div>
+
+          <div class="resultado">
+            <span class="subtexto">Custos</span>
+            <p id="custo" class="subvalor"></p>
+          </div>
+
+          <div class="resultado">
+            <span class="subtexto">Peixes Mortos</span>
+            <p id="mortos" class="subvalor"></p>
+          </div>
+
+          <div class="resultado">
+            <span class="subtexto">Perda Alevinos</span>
+            <p id="alevino" class="subvalor"></p>
+          </div>
+
+          <div class="resultado">
+            <span class="subtexto">Líquido</span>
+            <p id="liquidos" class="subvalor"></p>
+          </div>
+
+          <div class="resultado">
+            <span class="subtexto">Taxa de Perda</span>
+            <p id="taxaPerda" class="subvalor"></p>
+          </div>
+
+          <div class="resultado">
+            <span class="subtexto">Perda de Peixes</span>
+            <p id="perdaPeixesTotal" class="subvalor"></p>
+          </div>
+
+          <div class="resultado">
+            <span class="subtexto">Tanques</span>
+            <p id="qtdTanques" class="subvalor"></p>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div id ="containerCards" class="container_relatorios">
     
-    <div class="container_relatorios">
-      <div class="relatorios">
-        <div class="titulo1">
-          Tanque 1
-        </div>
-        <div class="titulo2">
-          Perda por vendas não realizadas
-        </div>
-        <div class="valor_relatorio">
-          R$
-        </div>
-        <div class="painel">
-          Peixes mortos: 
-          <br>Taxa de peixes mortos:
-          <br>Ganho com vendas:
-          <br>Perda com alevinos:
-        </div>
-      </div>
-      
-      <div class="relatorios">
-        <div class="titulo1">
-          Tanque 2
-        </div>
-        <div class="titulo2">
-        Perda por vendas não realizadas
-      </div>
-      <div class="valor_relatorio">
-        R$
-      </div>
-      <div class="painel">
-        Peixes mortos: 
-        <br>Taxa de peixes mortos:
-        <br>Ganho com vendas:
-        <br>Perda com alevinos:
-      </div>
-    </div>
-    
-    <div class="relatorios">
-      <div class="titulo1">
-        Tanque 3
-      </div>
-      <div class="titulo2">
-        Perda por vendas não realizadas
-      </div>
-      <div class="valor_relatorio">
-        R$
-      </div>
-      <div class="painel">
-        Peixes mortos: 
-        <br>Taxa de peixes mortos:
-        <br>Ganho com vendas:
-        <br>Perda com alevinos:
-      </div>
-    </div>
-    
-    <div class="relatorios">
-      <div class="titulo1">
-        Tanque 4
-      </div>
-      <div class="titulo2">
-        Perda por vendas não realizadas
-      </div>
-      <div class="valor_relatorio">
-        R$
-      </div>
-      <div class="painel">
-        Peixes mortos: 
-        <br>Taxa de peixes mortos:
-        <br>Ganho com vendas:
-        <br>Perda com alevinos:
-      </div>
-    </div>
-    
-    <div class="relatorios">
-      <div class="titulo1">
-        Tanque 5
-      </div>
-      <div class="titulo2">
-        Perda por vendas não realizadas
-      </div>
-      <div class="valor_relatorio">
-        R$
-      </div>
-      <div class="painel">
-        Peixes mortos: 
-        <br>Taxa de peixes mortos:
-        <br>Ganho com vendas:
-        <br>Perda com alevinos:
-      </div>
     </div>
   </div>
-</div>
-  
+  </div>
+
 </body>
+
 </html>
 <script>
-    // Variáveis Globais //
-    let peixesMortosTotal = 0
-    let peixesInicialTotal = 0
-    let peixesMortosPorcentagemTotal = 0
-    let perdasPorPeixesMortosTotal = 0
-    let ganhosPeixesTotal = 0
-    let percaComAlevinoTotal = 0
+  // Variáveis Globais //
+   let tanque = 0
+   let peixesMortosTotal = 0
+   let peixesInicialTotal = 0
+   let perdasPorPeixesMortosTotal = 0
+   let ganhosPeixesTotal = 0
+   let percaComAlevinoTotal = 0
+   let perdaComAlevinoTotal = 0
+   let perdaRacao = 0
+   let brutos = 0
+   let custos = 0
+   let liquido = 0
 
-   function calcular() {
-     // Peixes //
+  function calcular() {
+    // Peixes //
     let peixesInicial = Number(peixes_iniciais_input.value);
     let peixesFinal = Number(peixes_final_input.value);
     // Venda //
@@ -278,7 +197,7 @@
     let racaoMes = Number(racao_mes_input.value)
     let despesas = Number(despesas_input.value)
 
-// validação de valores ------------------------------------------------------ //
+    // validação de valores ------------------------------------------------------ //
     if (despesas <= 0) {
       alert('Insira um valor de despesas válido')
     } else if (racaoMes <= 0) {
@@ -296,62 +215,94 @@
     } else if (vendaMiudos <= 0) {
       alert('Insira um valor de venda dos miúdos válido')
     } else {
-  
-// -------------------------------------------------------------------------- //
-   // calcular //
 
-    // Peixes //
-// --------------------------------------------------------------- //
-    let peixesMortos = peixesInicial - peixesFinal;
-    let peixesMortosPorcentagem = (peixesMortos * 100) / peixesInicial;
+      // -------------------------------------------------------------------------- //
+      // calcular //
 
-    // Venda //
-// --------------------------------------------------------------- //
-    let peixesCruVenda = (peixesFinal / 2) * vendaCru
-// --------------------------------------------------------------- //
-    let peixesFileVenda = ((peixesFinal / 2) * 0.3) * vendaFile;
-// --------------------------------------------------------------- //
-    let peixesMiudosVenda = ((peixesFinal / 2) * 0.7) * vendaMiudos;
+      // Peixes //
+      // --------------------------------------------------------------- //
+      let peixesMortos = peixesInicial - peixesFinal;
+      let peixesMortosPorcentagem = peixesMortos / peixesInicial;
+    
+      // Venda //
+      // --------------------------------------------------------------- //
+      let peixesCruVenda = (peixesFinal / 2) * vendaCru
+      let peixesFileVenda = ((peixesFinal / 2) * 0.3) * vendaFile;
+      let peixesMiudosVenda = ((peixesFinal / 2) * 0.7) * vendaMiudos;
 
-    // Perda //
-// --------------------------------------------------------------- //
-    let peixesCruPerdido = (peixesMortos / 2) * vendaCru;
-    let peixesFilePerdido = ((peixesMortos / 2) * 0.3) * vendaFile;
-    let peixesMiudosPerdido = ((peixesMortos / 2) * 0.7) * vendaMiudos;
-    let perdaComAlevino = precoAlevino * peixesMortos;
+      // Perda //
+      // --------------------------------------------------------------- //
+      let peixesCruPerdido = (peixesMortos / 2) * vendaCru;
+      let peixesFilePerdido = ((peixesMortos / 2) * 0.3) * vendaFile;
+      let peixesMiudosPerdido = ((peixesMortos / 2) * 0.7) * vendaMiudos;
+      let perdaComAlevino = precoAlevino * peixesMortos;
 
       // Perda Peixes Mortos //  
-    let perdasPorPeixesMortos = peixesCruPerdido + peixesFilePerdido + peixesMiudosPerdido;
+      let perdasPorPeixesMortos = peixesCruPerdido + peixesFilePerdido + peixesMiudosPerdido;
 
-    // Ganhos //
-// --------------------------------------------------------------- //
-    let ganhosPeixes = peixesCruVenda + peixesFileVenda + peixesMiudosVenda;
+      // Ganhos //
+      // --------------------------------------------------------------- //
+      let ganhosPeixes = peixesCruVenda + peixesFileVenda + peixesMiudosVenda;
 
-    // Perdas Totais //
-// --------------------------------------------------------------- //
-    let peixesMortosPorcentagemTotal = (peixesMortosTotal * 100) / peixesInicialTotal;
-    peixesMortosTotal += peixesMortos;
-    peixesInicialTotal += peixesInicial;
-    perdasPorPeixesMortosTotal += perdasPorPeixesMortos;
-    ganhosPeixesTotal += ganhosPeixes;
-    percaComAlevinoTotal += perdaComAlevino;
+      // Perdas Totais //
+      // --------------------------------------------------------------- //
+     
+      peixesMortosTotal += peixesMortos;
+      peixesInicialTotal += peixesInicial;
+      perdasPorPeixesMortosTotal += perdasPorPeixesMortos;
+      ganhosPeixesTotal += ganhosPeixes;
+      perdaComAlevinoTotal += perdaComAlevino;
+      let peixesMortosPorcentagemTotal = peixesMortosTotal / peixesInicialTotal;
 
-    // Custos Operacionais //
-// --------------------------------------------------------------- //   
-    perdaRacao = (racaoMes / peixesInicialTotal) * peixesMortosTotal;
-// --------------------------------------------------------------- // 
-    let custos = (despesas + racaoMes + precoAlevino )* peixesInicialTotal;
-    let brutos = ganhosPeixesTotal
-    let liquido = brutos - custos
-// --------------------------------------------------------------- //   
+      // Custos Operacionais //
+      // --------------------------------------------------------------- //   
+      perdaRacao = (racaoMes / peixesInicialTotal) * peixesMortosTotal;
+      // --------------------------------------------------------------- // 
+      let brutos = ganhosPeixesTotal
+      let custos = (despesas + racaoMes + precoAlevino) * peixesInicialTotal;
+      let liquido = brutos - custos
+      let prejuizoTotal = perdasPorPeixesMortosTotal + perdaRacao + perdaComAlevino
 
-      bruto.innerHTML = `${brutos}`
+      // Exibindo os resultados //
+      tanque++
+      // --------------------------------------------------------------- //  
+      prejuizo.innerHTML = `${prejuizoTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}` 
+      // Coluna 1 //
+      bruto.innerHTML = `${brutos.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`;
       custo.innerHTML = `${custos.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`;
-      liquido.innerHTML = `${liquido.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`
-      
+      liquidos.innerHTML = `${liquido.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`
+      qtdTanques.innerHTML = `${tanque}`
+      // Coluna 2 //
+      inicial.innerHTML = `${new Intl.NumberFormat('pt-BR', { style: 'unit', unit: 'kilogram' }).format(peixesInicialTotal)}`
+      mortos.innerHTML = `${new Intl.NumberFormat('pt-BR', { style: 'unit', unit: 'kilogram' }).format(peixesMortosTotal)}`
+      taxaPerda.innerHTML = `${new Intl.NumberFormat('pt-BR', { style: 'percent'}).format(peixesMortosPorcentagemTotal)};`
+      // Coluna 3 //
+      racao.innerHTML = `${perdaRacao.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`;
+      alevino.innerHTML = `${perdaComAlevinoTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`
+      perdaPeixesTotal.innerHTML = `${perdasPorPeixesMortosTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`
+
+      // CARDS TANQUE //
+      // --------------------------------------------------------------- //   
+      containerCards.innerHTML += `
+      <div class="relatorios">
+        <div class="titulo1">
+          Tanque ${tanque}
+        </div>
+        <div class="titulo2">
+          Perda por vendas não realizadas 
+        </div>
+        <div class="valor_relatorio"> 
+        ${perdasPorPeixesMortos.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+        </div>
+        <div class="painel">
+          Peixes mortos: ${peixesMortos} kg
+          <br>Taxa de peixes mortos: ${new Intl.NumberFormat('pt-BR', { style: 'percent'}).format(peixesMortosPorcentagem)}
+          <br>Ganho com vendas: ${ganhosPeixes.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+          <br>Perda com alevinos: ${perdaComAlevino.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+        </div>
+      </div>
+      `
     }
-  
-}
+
+  }
 </script>
-
-
