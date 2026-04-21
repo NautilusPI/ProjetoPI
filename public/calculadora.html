@@ -72,9 +72,7 @@
               <input type="text" id="venda_miudos_input">
             </div>
 
-            <div>
-              <button class="botao_vazado" onclick="validar()">Validar</button>
-            </div>
+           
         </div>
         <div class="container_input_calcular">
           <p class="subtitulo_calcular">Informações Sobre o Tanque</p>
@@ -102,7 +100,7 @@
             </div>
             <div class="prejuizo">
               <p class="subtitulo_prejuizo">Prejuízo Total</p>
-              <p class="valor_titulo">R$</p>
+              <p id="" class="valor_titulo"></p>
             </div>
           </div>
           
@@ -110,7 +108,7 @@
             
             <div class="resultado">
               <span class="subtexto">Bruto</span>
-              <p class="subvalor">R$</p>
+              <p id="bruto" class="subvalor"></p>
             </div>
             
             <div class="resultado">
@@ -125,7 +123,7 @@
             
             <div class="resultado">
               <span class="subtexto">Custos</span>
-              <p class="subvalor">R$</p>
+              <p id="custo" class="subvalor"></p>
             </div>
             
             <div class="resultado">
@@ -140,7 +138,7 @@
             
             <div class="resultado">
               <span class="subtexto">Líquido</span>
-              <p class="subvalor">R$</p>
+              <p id="liquido" class="subvalor"></p>
             </div>
             
             <div class="resultado">
@@ -256,6 +254,104 @@
   
 </body>
 </html>
+<script>
+    // Variáveis Globais //
+    let peixesMortosTotal = 0
+    let peixesInicialTotal = 0
+    let peixesMortosPorcentagemTotal = 0
+    let perdasPorPeixesMortosTotal = 0
+    let ganhosPeixesTotal = 0
+    let percaComAlevinoTotal = 0
 
+   function calcular() {
+     // Peixes //
+    let peixesInicial = Number(peixes_iniciais_input.value);
+    let peixesFinal = Number(peixes_final_input.value);
+    // Venda //
+    let vendaFile = Number(venda_file_input.value)
+    let vendaMiudos = Number(venda_miudos_input.value)
+    let vendaCru = Number(venda_cru_input.value)
+    // Preço //
+    let precoRacao = Number(preco_racao_input.value)
+    let precoAlevino = Number(preco_alevino_input.value)
+    // Custos Operacionais //
+    let racaoMes = Number(racao_mes_input.value)
+    let despesas = Number(despesas_input.value)
+
+// validação de valores ------------------------------------------------------ //
+    if (despesas <= 0) {
+      alert('Insira um valor de despesas válido')
+    } else if (racaoMes <= 0) {
+      alert('Insira um valor de kilos de ração por mês válido')
+    } else if (precoRacao <= 0) {
+      alert('Insira um valor de preço do kilo da ração válido')
+    } else if (racaoMes <= 0) {
+      alert('Insira um valor de kilos de ração por mês válido')
+    } else if (precoAlevino <= 0) {
+      alert('Insira um valor do preço unitário do alevino válido')
+    } else if (vendaCru <= 0) {
+      alert('Insira um valor de venda do peixe cru válido')
+    } else if (vendaFile <= 0) {
+      alert('Insira um valor de venda do filé válido')
+    } else if (vendaMiudos <= 0) {
+      alert('Insira um valor de venda dos miúdos válido')
+    } else {
+  
+// -------------------------------------------------------------------------- //
+   // calcular //
+
+    // Peixes //
+// --------------------------------------------------------------- //
+    let peixesMortos = peixesInicial - peixesFinal;
+    let peixesMortosPorcentagem = (peixesMortos * 100) / peixesInicial;
+
+    // Venda //
+// --------------------------------------------------------------- //
+    let peixesCruVenda = (peixesFinal / 2) * vendaCru
+// --------------------------------------------------------------- //
+    let peixesFileVenda = ((peixesFinal / 2) * 0.3) * vendaFile;
+// --------------------------------------------------------------- //
+    let peixesMiudosVenda = ((peixesFinal / 2) * 0.7) * vendaMiudos;
+
+    // Perda //
+// --------------------------------------------------------------- //
+    let peixesCruPerdido = (peixesMortos / 2) * vendaCru;
+    let peixesFilePerdido = ((peixesMortos / 2) * 0.3) * vendaFile;
+    let peixesMiudosPerdido = ((peixesMortos / 2) * 0.7) * vendaMiudos;
+    let perdaComAlevino = precoAlevino * peixesMortos;
+
+      // Perda Peixes Mortos //  
+    let perdasPorPeixesMortos = peixesCruPerdido + peixesFilePerdido + peixesMiudosPerdido;
+
+    // Ganhos //
+// --------------------------------------------------------------- //
+    let ganhosPeixes = peixesCruVenda + peixesFileVenda + peixesMiudosVenda;
+
+    // Perdas Totais //
+// --------------------------------------------------------------- //
+    let peixesMortosPorcentagemTotal = (peixesMortosTotal * 100) / peixesInicialTotal;
+    peixesMortosTotal += peixesMortos;
+    peixesInicialTotal += peixesInicial;
+    perdasPorPeixesMortosTotal += perdasPorPeixesMortos;
+    ganhosPeixesTotal += ganhosPeixes;
+    percaComAlevinoTotal += perdaComAlevino;
+
+    // Custos Operacionais //
+// --------------------------------------------------------------- //   
+    perdaRacao = (racaoMes / peixesInicialTotal) * peixesMortosTotal;
+// --------------------------------------------------------------- // 
+    let custos = (despesas + racaoMes + precoAlevino )* peixesInicialTotal;
+    let brutos = ganhosPeixesTotal
+    let liquido = brutos - custos
+// --------------------------------------------------------------- //   
+
+      bruto.innerHTML = `${brutos}`
+      custo.innerHTML = `${custos.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`;
+      liquido.innerHTML = `${liquido.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`
+      
+    }
+  
+}
+</script>
 
 
