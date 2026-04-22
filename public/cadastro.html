@@ -24,12 +24,12 @@
             </div>
 
             <div class="campo">
-                <label for="form_confirmacao"><span>CPF</span><span id="erroConfirmacao"></span></label>
-                <input type="text" id="inpt_confirmacao" placeholder="Insira seu cpf">
+                <label for="form_confirmacao"><span>CPF</span><span></span></label>
+                <input type="text" placeholder="Insira seu cpf">
             </div>
             <div class="campo">
                 <label for="form_confirmacao"><span>Codigo da criação</span><span id="erroConfirmacao"></span></label>
-                <input type="text" id="inpt_confirmacao" placeholder="Insira o codigo de ativação">
+                <input type="text" placeholder="Insira o codigo de ativação">
             </div>
             <div class="campo" id="campo_senha">
                 <label for="form_senha"><span>Senha</span><span id="erroSenha"></span></label>
@@ -62,13 +62,14 @@
         let inputSenha = document.getElementById('inpt_senha');
         let inputConfirmacao = document.getElementById('inpt_confirmacao');
 
+        let temErro = false;
         // verificações
 
         // EMAIL
         if (!email.includes('@')) {
             erroEmail.innerHTML = `<span class="mensagem_erro"> ⓘ O email deve conter @ </span>`;
             inputEmail.style.border = `1px solid red`;
-
+            temErro = true;
         } else {
             erroEmail.innerHTML = '';
             inputEmail.style.border = '';
@@ -78,6 +79,7 @@
         if (senha.length < 6) {
             erroSenha.innerHTML = `<span class="mensagem_erro"> ⓘ Senha muito curta </span>`;
             inputSenha.style.border = `1px solid red`;
+            temErro = true;
 
         } else {
             erroSenha.innerHTML = '';
@@ -88,10 +90,16 @@
         if (senha != confirmacaoSenha) {
             erroConfirmacao.innerHTML = `<span class="mensagem_erro"> ⓘ Senha incorreta </span>`;
             inputConfirmacao.style.border = `1px solid red`;
+            temErro = true;
 
         } else {
             erroConfirmacao.innerHTML = '';
             inputConfirmacao.style.border = '';
+            
+        }
+
+        if(!temErro){
+            window.location.href = "login.html";
         }
     }
 </script>
