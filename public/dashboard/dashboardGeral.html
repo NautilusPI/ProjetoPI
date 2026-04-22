@@ -18,7 +18,7 @@
             <i class="fa-solid fa-circle-exclamation" onclick="abrirAlerta()"></i>
             <div>
                 <span class="titulo">Risco na criação</span>
-                <span>O tanque 1 está fora da temperatura ideal</span>
+                <span>O tanque 4 está fora da temperatura ideal</span>
             </div>
             <i class="fa-solid fa-xmark" onclick="fecharAlerta()"></i>
         </div>
@@ -44,13 +44,12 @@
                     <span>Dashboard</span>
                     <select name="" id="">
                         <option value="">Visão geral</option>
-                        <option value="">1</option>
-                        <option value="">1</option>
-                        <option value="">1</option>
-                        <option value="">1</option>
-                        <option value="">1</option>
-                        <option value="">1</option>
-                        <option value="">1</option>
+                        <option value="">Tanque 1</option>
+                        <option value="">Tanque 2</option>
+                        <option value="">Tanque 3</option>
+                        <option value="">Tanque 4</option>
+                        <option value="">Tanque 5</option>
+                        <option value="">Tanque 6</option>
                     </select>
                 </div>
 
@@ -119,7 +118,7 @@
                 </div>
                 <div class="graficosEtanques">
                     <div class="graficoLinha">
-                        <p>Temperatura máxima e minima por hora</p>
+                        <p>Histórico de alertas por dia</p>
                         <div class="grafico"><canvas id="graficoLinha"></canvas></div>
                     </div>
                     <div class="tanques">
@@ -313,45 +312,19 @@ const ctx2 = document.getElementById('graficoLinha');
    new Chart(ctx2, {
   type: 'line',
   data: {
-    labels: ['13:00', '14:00', '15:00', '16:00', '17:00'],
+    labels: ['12/04','13/04','14/04','15/04','16/04','17/04','18/04','19/04','20/04'],
     datasets: [
       {
         label: 'Temperatura máxima',
-        data: [29,30,27,32,35],
+        data: [2,6,3,2,7,1,0,1,2],
         borderWidth: 2,
         borderColor: '#4DA3B8',
         tension: 0.4
       },
-      {
-        label: 'Temperatura mínima',
-        data: [26,27,25,30,25],
-        borderWidth: 2,
-        borderColor: 'red',
-        tension: 0.4
-      },
-
-      
-      {
-        type: 'line',
-        data :[33,33,33,33,33],
-        borderColor: '#E74C3C',
-        borderWidth: 2,
-        borderDash: [6, 6],
-        pointRadius: 0
-      },
+     
 
       
    
-
-     
-      {
-        type: 'line',
-        data: [23,23,23,23,23],
-        borderColor: '#E74C3C',
-        borderWidth: 2,
-        borderDash: [6, 6],
-        pointRadius: 0
-      }
     ]
   },
 
@@ -367,7 +340,7 @@ const ctx2 = document.getElementById('graficoLinha');
 
     scales: {
       y: {
-        min: 20,
+        min: 0,
         
         beginAtZero: true,
         grid: {

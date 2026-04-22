@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/cadastro.css">
 </head>
+
 <body>
     <div class="tela">
         <div class="form">
@@ -13,31 +15,83 @@
 
             <div class="campo">
                 <span>Nome Completo</span>
-                <input type="text" placeholder="Insira seu nome completo" style="font-size: 15px; color: #2B8997;">
+                <input type="text" id="inpt_nome" placeholder="Insira seu nome completo">
             </div>
-           
-            <div class="campo">
-                <span>Email</span>
-                <input type="text" placeholder="Insira seu email" style="font-size: 15px; color: #2B8997;">
-            </div>
-            
-            <div class="campo">
-                <span>Senha</span>
-                <input type="text" placeholder="Insira a senha" style="font-size: 15px; color: #2B8997;">
+
+            <div class="campo" id="campo_email">
+                <label for="form_email"><span>Email</span><span id="erroEmail"></span></label>
+                <input type="text" id="inpt_email" placeholder="Insira seu email">
             </div>
 
             <div class="campo">
-                <span>Confirmar senha</span>
-                <input type="text" placeholder="Insira a senha novamente" style="font-size: 15px; color: #2B8997;">
+                <label for="form_confirmacao"><span>CPF</span><span id="erroConfirmacao"></span></label>
+                <input type="text" id="inpt_confirmacao" placeholder="Insira seu cpf">
+            </div>
+            <div class="campo">
+                <label for="form_confirmacao"><span>Codigo da criação</span><span id="erroConfirmacao"></span></label>
+                <input type="text" id="inpt_confirmacao" placeholder="Insira o codigo de ativação">
+            </div>
+            <div class="campo" id="campo_senha">
+                <label for="form_senha"><span>Senha</span><span id="erroSenha"></span></label>
+                <input class="input_senha" type="password" id="inpt_senha" placeholder="Insira a senha">
             </div>
 
-            <button class="cadastre" style="margin-top: 20px;">Cadastre-se</button>
-            <p style="color: #323D4C; font-weight: bold;">Já tem uma conta?<a href="login.html" style="color: #2B8997; text-decoration: none; font-weight: bold;"> Logar-se</a> </p>
-            
+            <div class="campo" id="campo_confirmacao">
+                <label for="form_confirmacao"><span>Confirmar senha</span><span id="erroConfirmacao"></span></label>
+                <input type="password" id="inpt_confirmacao" placeholder="Insira a senha novamente">
+            </div>
+            <button class="cadastre" style="margin-top: 20px;" onclick="cadastrar()">Cadastre-se</button>
+            <p style="color: #323d4c82; font-weight: bold;">Já tem uma conta?<a href="login.html"
+                    style="color: #2B8997; text-decoration: none; font-weight: bold;"> Logar-se</a> </p>
+
         </div>
         <div class="banner">
-            <img src="./assets/Login/banner.png" alt="">
+            <img src="./assets/Login/banner1.png" alt="">
         </div>
     </div>
 </body>
+
 </html>
+<script>
+    function cadastrar() {
+        // declarar variaveis
+        let email = inpt_email.value;
+        let senha = inpt_senha.value;
+        let confirmacaoSenha = inpt_confirmacao.value;
+        let inputEmail = document.getElementById('inpt_email');
+        let inputSenha = document.getElementById('inpt_senha');
+        let inputConfirmacao = document.getElementById('inpt_confirmacao');
+
+        // verificações
+
+        // EMAIL
+        if (!email.includes('@')) {
+            erroEmail.innerHTML = `<span class="mensagem_erro"> ⓘ O email deve conter @ </span>`;
+            inputEmail.style.border = `1px solid red`;
+
+        } else {
+            erroEmail.innerHTML = '';
+            inputEmail.style.border = '';
+        }
+
+        // SENHA
+        if (senha.length < 6) {
+            erroSenha.innerHTML = `<span class="mensagem_erro"> ⓘ Senha muito curta </span>`;
+            inputSenha.style.border = `1px solid red`;
+
+        } else {
+            erroSenha.innerHTML = '';
+            inputSenha.style.border = '';
+        }
+
+        // CONFIRMACAO DE SENHA
+        if (senha != confirmacaoSenha) {
+            erroConfirmacao.innerHTML = `<span class="mensagem_erro"> ⓘ Senha incorreta </span>`;
+            inputConfirmacao.style.border = `1px solid red`;
+
+        } else {
+            erroConfirmacao.innerHTML = '';
+            inputConfirmacao.style.border = '';
+        }
+    }
+</script>
