@@ -21,7 +21,7 @@ const serial = async (
         {
             host: '127.0.0.1',
             user: 'API',
-            password: 'Urubu@2025',
+            password: 'Urubu@2026',
             database: 'Nautilus',
             port: 3307 
         }
@@ -61,7 +61,7 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO registroTemperatura (registro) VALUES (?)',
+                'INSERT INTO RegistroTemperatura (registro) VALUES (?)',
                 [sensorAnalogico]
             );
             console.log("valores inseridos no banco: ", sensorAnalogico );
