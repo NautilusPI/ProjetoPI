@@ -19,11 +19,11 @@ const serial = async (
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: '127.0.0.1',
+            host: '10.18.32.230',
             user: 'API',
             password: 'Urubu@2026',
             database: 'Nautilus',
-            port: 3307 
+            port: 3307
         }
     ).promise();
 

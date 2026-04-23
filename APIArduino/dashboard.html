@@ -50,8 +50,8 @@
                     <div class="topoCard">
                         <span>Temperatura atual</span>
                     </div>
-                    <div class="numeroCard">
-                        <span>29.0 ºC</span>
+                    <div class="numeroCard" >
+                        <span id="cardTemperatura">0.0 ºC</span>
                     </div>
                    
                 </div>
@@ -72,7 +72,7 @@
 
                     </div>
                     <div class="numeroCard">
-                        <span>Seguro</span>
+                        <span id="statusCard">Seguro</span>
                     </div>
 
                 </div>
@@ -92,13 +92,13 @@
                         <span>Histórico de temperatura </span>
                         <select name="" id="">
                             <option value="">Tanque 1</option>
-                            <option value="">Visão Geral</option>
                             <option value="">Tanque 1</option>
                             <option value="">Tanque 2</option>
                             <option value="">Tanque 3</option>
                             <option value="">Tanque 4</option>
                             <option value="">Tanque 5</option>
                             <option value="">Tanque 6</option>
+                            <option value="">Visão Geral</option>
                         </select>
                     </div>
                     <div class="grafico">
@@ -225,7 +225,7 @@
                             display: false // remove as linhas de fundo
                         },
                         min: 20,
-                        max: 35,
+                        max: 40,
                         beginAtZero: false
                     }
                 }
@@ -237,7 +237,7 @@
         var tempo = {};
 
         function obterDados(grafico, endpoint) {
-            fetch('http://IP:3300/sensores/' + endpoint)
+            fetch('http://d22222:3300/sensores/' + endpoint)
                 .then(response => response.json())
                 .then(valores => {
                     if (paginacao[endpoint] == null) {
@@ -259,6 +259,13 @@
 
 
                         grafico.data.datasets[0].data.push(parseFloat(valor));
+                        cardTemperatura.innerHTML = `${parseFloat(valor)} ºC`
+                        if(valor > 25 &&valor<31){
+                            statusCard.innerHTML ='Seguro'
+                        }else{
+                            statusCard.innerHTML ='Risco'
+
+                        }
                         let date = new Date()
                         grafico.data.labels.push(date.toLocaleTimeString());
 
@@ -273,22 +280,18 @@
 
         setInterval(() => {
             obterDados(sensorAnalogico, 'analogico');
-          
-          
             maximo.push(33)
             amarelo1.push(25)
             amarelo2.push(30)
             minimo.push(23)
-            
+
             if (minimo.length > 10) {
-             
                 maximo = maximo.slice(-10)
                 amarelo1  =amarelo1.slice(-10)                  
                 amarelo2=amarelo2.slice(-10)
                 minimo= minimo.slice(-10)
-               
             }
-            
+
             console.log()
         }, 1000);
 

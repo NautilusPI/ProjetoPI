@@ -6,32 +6,34 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body style="font-family: Arial, Helvetica, sans-serif;">
 
-    <h1>Graphics</h1>
-    <div style="display: flex;">
+    <h1>Temperatura do tanque</h1>
+    <div style="display: flex;justify-content: center;">
         <div style="width: 50%;">
             <canvas id="sensorAnalogico"></canvas>
         </div>
-        <div style="width: 50%;">
-            <canvas id="sensorDigital"></canvas>
-        </div>
+       
     </div>
-<!-- 
+
     <script>
         var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
             type: 'line',
             data: {
                 datasets: [{
                     label: 'Analogico',
-                    borderColor: '#63B1BC',
-                    backgroundColor: '#ED145B'
+                   borderColor: '#4DA3B8',
+                    backgroundColor: 'rgba(77, 163, 184, 0.2)',
+                    tension:0,
+                    fill: true,
+                animation: false,
+                    
                 }]
             },
             options: {
                 scales: {
                     x: {
-                        beginAtZero: true
+                        beginAtZero: false
                     },
                     y: {
                         title: {
@@ -39,33 +41,10 @@
                             text: '(%)'
                         },
                         beginAtZero: true,
+                        min:18,
+                        max:35
                     },
                 },
-            }
-        });
-
-        var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: 'Digital',
-                    borderColor: '#63B1BC',
-                    backgroundColor: '#0762C8'
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(0-1)'
-                        },
-                        beginAtZero: true
-                    }
-                }
             }
         });
 
@@ -104,9 +83,9 @@
         setInterval(() => {
             obterDados(sensorAnalogico, 'analogico');
             obterDados(sensorDigital, 'digital');
-        }, 1000);
+        }, 500);
 
-    </script> -->
+    </script>
 </body>
 
 </html>
