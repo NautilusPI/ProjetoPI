@@ -34,7 +34,7 @@
             <div class="campo" id="campo_senha">
                 <label for="form_senha"><span>Senha</span><span id="erroSenha"></span></label>
                 <input class="input_senha" type="password" id="inpt_senha" placeholder="Insira a senha" oninput="verificarSenha()">
-                <p id="aviso_senha"></p>
+                <p id="aviso_senha" style="font-size: 10px;">ssss</p>
             </div>
 
             <div class="campo" id="campo_confirmacao">
@@ -56,14 +56,14 @@
     function verificarSenha(){
         let senha = inpt_senha.value;
         if (senha.length < 6){
-            aviso_senha.innerHTML = '<span style="color: red;">*A senha deve ter ao menos 7 caracteres.</span>'
+            aviso_senha.innerHTML = '<span style="color: red; font-size: 12px;">*A senha deve ter ao menos 7 caracteres.</span>'
         } else
-        if (!(senha.includes('@') || senha.includes('#') || senha.includes('$'))){
-            aviso_senha.innerHTML = '*<span style="color: red;">A senha deve ter ao menos 1 caractere especial</span>'
+        if (!(senha.includes('@') || senha.includes('#') || senha.includes('$') || senha.includes('!'))){
+            aviso_senha.innerHTML = '*<span style="color: red;font-size: 12px;">A senha deve ter ao menos 1 caractere especial</span>'
         } else  if (senha.toUpperCase() == senha || senha.toLowerCase() == senha){
-            aviso_senha.innerHTML = '<span style="color: red;">*A senha deve conter letras maiusculas e minuculas.</span>'
+            aviso_senha.innerHTML = '<span style="color: red; font-size: 12px;">*A senha deve conter letras maiusculas e minuculas.</span>'
         } else {
-            aviso_senha.innerHTML = '<span style="color: green;">*Senha valida.</span>'
+            aviso_senha.innerHTML = '<span style="color: green; font-size: 12px;">*Senha valida.</span>'
         }
     }
 
