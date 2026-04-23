@@ -33,7 +33,8 @@
             </div>
             <div class="campo" id="campo_senha">
                 <label for="form_senha"><span>Senha</span><span id="erroSenha"></span></label>
-                <input class="input_senha" type="password" id="inpt_senha" placeholder="Insira a senha">
+                <input class="input_senha" type="password" id="inpt_senha" placeholder="Insira a senha" oninput="verificarSenha()">
+                <p id="aviso_senha"></p>
             </div>
 
             <div class="campo" id="campo_confirmacao">
@@ -43,7 +44,6 @@
             <button class="cadastre" style="margin-top: 20px;" onclick="cadastrar()">Cadastre-se</button>
             <p style="color: #323d4c82; font-weight: bold;">Já tem uma conta?<a href="login.html"
                     style="color: #2B8997; text-decoration: none; font-weight: bold;"> Logar-se</a> </p>
-
         </div>
         <div class="banner">
             <img src="./assets/Login/banner1.png" alt="">
@@ -53,6 +53,21 @@
 
 </html>
 <script>
+    function verificarSenha(){
+        let senha = inpt_senha.value;
+        if (senha.length < 6){
+            aviso_senha.innerHTML = '<span style="color: red;">*A senha deve ter ao menos 7 caracteres.</span>'
+        } else
+        if (!(senha.includes('@') || senha.includes('#') || senha.includes('$'))){
+            aviso_senha.innerHTML = '*<span style="color: red;">A senha deve ter ao menos 1 caractere especial</span>'
+        } else  if (senha.toUpperCase() == senha || senha.toLowerCase() == senha){
+            aviso_senha.innerHTML = '<span style="color: red;">*A senha deve conter letras maiusculas e minuculas.</span>'
+        } else {
+            aviso_senha.innerHTML = '<span style="color: green;">*Senha valida.</span>'
+        }
+    }
+
+
     function cadastrar() {
         // declarar variaveis
         let email = inpt_email.value;
