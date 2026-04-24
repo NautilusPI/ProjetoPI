@@ -11,28 +11,30 @@
 <body>
     <div class="tela">
         <div class="form">
-           <a href="index.html"><img src="./assets/Login/logo.png" alt="" class="logo"></a>
+            <img src="./assets/Login/logo.png" alt="" class="logo">
 
             <div class="campo">
-                <span>Nome Completo</span>
+                <span>Nome Completo <span style= "color:red">*</span><span id="erroNome"></span></span>
                 <input type="text" id="inpt_nome" placeholder="Insira seu nome completo">
             </div>
 
             <div class="campo" id="campo_email">
-                <label for="form_email"><span>Email</span><span id="erroEmail"></span></label>
+                <label for="form_email"><span>Email<span style= "color:red">*</span><span id="erroEmail"></span></label>
                 <input type="text" id="inpt_email" placeholder="Insira seu email">
             </div>
 
             <div class="campo">
-                <label for="form_confirmacao"><span>CPF</span><span></span></label>
-                <input type="text" placeholder="Insira seu cpf">
+                <label for="form_confirmacao"><span>CPF<span style= "color:red">*</span><span id="erroCPF"></span></label>
+                <input type="text" id="inpt_cpf" placeholder="Insira seu cpf">
             </div>
+
             <div class="campo">
-                <label for="form_confirmacao"><span>Codigo da criação</span><span id="erroConfirmacao"></span></label>
-                <input type="text" placeholder="Insira o codigo de ativação">
+                <label for="form_código"><span>Código da empresa<span style= "color:red">*</span><span id="erroCodigo"></span></label>
+                <input type="text" id="inpt_codigo" placeholder="Insira o codigo de ativação">
             </div>
+
             <div class="campo" id="campo_senha">
-                <label for="form_senha"><span>Senha</span><span id="erroSenha"></span></label>
+                <label for="form_senha"><span>Senha<span style= "color:red">*</span><span id="erroSenha"></span></label>
                 <input class="input_senha" type="password" id="inpt_senha" placeholder="Insira a senha">
             </div>
 
@@ -55,15 +57,26 @@
 <script>
     function cadastrar() {
         // declarar variaveis
+        let nome = inpt_nome.value;
         let email = inpt_email.value;
+        let cpf = inpt_cpf.value;
+        let codigo = inpt_codigo.value;
         let senha = inpt_senha.value;
         let confirmacaoSenha = inpt_confirmacao.value;
+
         let inputEmail = document.getElementById('inpt_email');
         let inputSenha = document.getElementById('inpt_senha');
         let inputConfirmacao = document.getElementById('inpt_confirmacao');
 
         let temErro = false;
+
         // verificações
+
+        // NOME
+        if (nome == ``)
+        {erroNome.innerHTML = `<span class="mensagem_erro"> ⓘ Por favor, informe seu nome</span>`
+        inpt_nome.style.border = "1px solid red"} 
+        else {erroNome.innerHTML = ``; inpt_nome.style.border = `1px solid green`}
 
         // EMAIL
         if (!email.includes('@')) {
@@ -72,7 +85,27 @@
             temErro = true;
         } else {
             erroEmail.innerHTML = '';
-            inputEmail.style.border = '';
+            inputEmail.style.border = `1px solid green`;
+        }
+
+        // CPF
+        if (cpf == ``) {
+            erroCPF.innerHTML = `<span class="mensagem_erro"> ⓘ Este campo não pode estar vazio</span>`;
+            inpt_cpf.style.border = `1px solid red`;
+            temErro = true;
+        } else {
+            erroCPF.innerHTML = '';
+            inpt_cpf.style.border = `1px solid green`;
+        }
+
+        // CÓDIGO DA EMPRESA
+        if (codigo == ``) {
+            erroCodigo.innerHTML = `<span class="mensagem_erro"> ⓘ Insira um código válido</span>`;
+            inpt_codigo.style.border = `1px solid red`;
+            temErro = true;
+        } else {
+            erroCodigo.innerHTML = '';
+            inpt_codigo.style.border = `1px solid green`;
         }
 
         // SENHA
@@ -83,18 +116,18 @@
 
         } else {
             erroSenha.innerHTML = '';
-            inputSenha.style.border = '';
+            inputSenha.style.border = `1px solid green`;
         }
 
         // CONFIRMACAO DE SENHA
-        if (senha != confirmacaoSenha) {
-            erroConfirmacao.innerHTML = `<span class="mensagem_erro"> ⓘ Senha incorreta </span>`;
+        if (senha != confirmacaoSenha || confirmacaoSenha == ``) {
+            erroConfirmacao.innerHTML = `<span class="mensagem_erro"> ⓘ As senhas não coincidem</span>`;
             inputConfirmacao.style.border = `1px solid red`;
             temErro = true;
 
         } else {
             erroConfirmacao.innerHTML = '';
-            inputConfirmacao.style.border = '';
+            inputConfirmacao.style.border = `1px solid green`;
             
         }
 
