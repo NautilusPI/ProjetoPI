@@ -32,16 +32,16 @@
             <div class="topo">
                 <div class="topoEsquerda">
                     <span>Dashboard</span>
-                    <select name="" id="">
-                        <option value="">Tanque 1</option>
-                        <option value="">Visão Geral</option>
-                        <option value="">Tanque 1</option>
-                        <option value="">Tanque 2</option>
-                        <option value="">Tanque 3</option>
-                        <option value="">Tanque 4</option>
-                        <option value="">Tanque 5</option>
-                        <option value="">Tanque 6</option>
-                    </select>
+                      <select id="menu" onchange="irParaPagina()">
+                            <option value="">Tanque 1</option>
+                            <option value="../public/dashboard/dashboardGeral.html">Visão Geral</option>
+                            <option value="">Tanque 1</option>
+                            <option value="">Tanque 2</option>
+                            <option value="">Tanque 3</option>
+                            <option value="">Tanque 4</option>
+                            <option value="">Tanque 5</option>
+                            <option value="">Tanque 6</option>
+                        </select>
                 </div>
 
             </div>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="card">
                     <div class="topoCard">
-                        <span>Momentos de risco (Último 7 días)</span>
+                        <span>Volume de Alertas (7 dias)</span>
 
 
                     </div>
@@ -72,13 +72,13 @@
 
                     </div>
                     <div class="numeroCard">
-                        <span id="statusCard">Seguro</span>
+                        <span id="statusCard">Risco</span>
                     </div>
 
                 </div>
                 <div class="card">
                     <div class="topoCard">
-                        <span>Ultimo alerta </span>
+                        <span>Último alerta </span>
 
                     </div>
                     <div class="numeroCard">
@@ -91,14 +91,14 @@
                     <div class="topo">
                         <span>Histórico de temperatura </span>
                         <select name="" id="">
-                            <option value="">Tanque 1</option>
-                            <option value="">Tanque 1</option>
-                            <option value="">Tanque 2</option>
-                            <option value="">Tanque 3</option>
-                            <option value="">Tanque 4</option>
-                            <option value="">Tanque 5</option>
-                            <option value="">Tanque 6</option>
-                            <option value="">Visão Geral</option>
+                            <option value="">13:00 </option>
+                            <option value="">14:00 </option>
+                            <option value="">15:00 </option>
+                            <option value="">16:00 </option>
+                            <option value="">17:00 </option>
+                            <option value="">18:00 </option>
+                            <option value="">19:00 </option>
+                            <option value="">Agora</option>
                         </select>
                     </div>
                     <div class="grafico">
@@ -111,7 +111,7 @@
                             <span>Status do sensor</span>
                         </div>
                         <div class="numeroCard">
-                            <span>Estável</span>
+                            <span>Offline</span>
                         </div>
                     </div>
                     <div class="card">
@@ -135,7 +135,7 @@
                             <span>Capacidade do tanque</span>
                         </div>
                         <div class="numeroCard">
-                            <span>15.000 Litros</span>
+                            <span>750.000 Litros</span>
                         </div>
                     </div>
                 </div>  
@@ -146,6 +146,15 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
+        function irParaPagina() {
+          const select = document.getElementById("menu");
+          const pagina = select.value;
+
+          if (pagina) {
+            window.location.href = pagina;
+          }
+        }
+
         var labelsHorario = []
         var maximo = []
         var minimo = []
