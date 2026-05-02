@@ -237,7 +237,7 @@
         var tempo = {};
 
         function obterDados(grafico, endpoint) {
-            fetch('http://10.18.33.0:3300/sensores/' + endpoint)
+            fetch('http://10.18.32.7:3300/sensores/' + endpoint)
                 .then(response => response.json())
                 .then(valores => {
                     if (paginacao[endpoint] == null) {
