@@ -35,42 +35,42 @@
 
           <div class="input_div">
             <p class="subtexto">Despesas Mensais</p>
-            <input type="text" id="despesas_input">
+            <input type="text" id="despesas_input" value="1200">
           </div>
 
           <div class="input_div">
             <p class="subtexto">Ração mensal (kg)</p>
-            <input type="text" id="racao_mes_input">
+            <input type="text" id="racao_mes_input" value="500">
           </div>
 
           <div class="input_div">
             <p class="subtexto">Preço da Ração por Quilo</p>
-            <input type="text" id="preco_racao_input">
+            <input type="text" id="preco_racao_input" value="1300">
           </div>
 
           <div class="input_div">
             <p class="subtexto">Preço unitário do Alevino</p>
-            <input type="text" id="preco_alevino_input">
+            <input type="text" id="preco_alevino_input" value="50">
           </div>
 
             <div class="input_div">
               <p class="subtexto">Valor de venda do peixe inteiro (kg)</p>
-              <input type="text" id="venda_cru_input">
+              <input type="text" id="venda_cru_input" value="100">
             </div>
 
           <div class="input_div">
             <p class="subtexto">Valor de venda do filé por Quilo</p>
-            <input type="text" id="venda_file_input">
+            <input type="text" id="venda_file_input" value="150">
           </div>
 
           <div class="input_div">
             <p class="subtexto">Valor de venda dos miúdos por Quilo</p>
-            <input type="text" id="venda_miudos_input">
+            <input type="text" id="venda_miudos_input" value="200">
           </div>
 
           <div class="input_div">
             <p class="subtexto">Duração do ciclo em meses</p>
-            <input type="text" id="duracao_ciclo_input">
+            <input type="text" id="duracao_ciclo_input" value="3">
           </div>
 
 
@@ -80,12 +80,12 @@
 
           <div class="input_div">
             <p class="subtexto">Peixes Iniciais (kg)</p>
-            <input type="text" id="peixes_iniciais_input">
+            <input type="text" id="peixes_iniciais_input" value="10000">
           </div>
 
           <div class="input_div">
             <p class="subtexto">Quantidade de peixes ao final do ciclo (kg) </p>
-            <input type="text" id="peixes_final_input">
+            <input type="text" id="peixes_final_input" value="8000">
           </div>
 
           <div class="botao">
@@ -296,10 +296,10 @@
         ${perdasPorPeixesMortos.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
         </div>
         <div class="painel">
-          Peixes mortos: ${peixesMortos} kg
-          <br>Taxa de peixes mortos: ${new Intl.NumberFormat('pt-BR', { style: 'percent'}).format(peixesMortosPorcentagem)}
-          <br>Ganho com vendas: ${ganhosPeixes.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
-          <br>Perda com alevinos: ${perdaComAlevino.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+          Peixes mortos: <br> ${peixesMortos} kg
+          <br>Taxa de peixes mortos: <br> ${new Intl.NumberFormat('pt-BR', { style: 'percent'}).format(peixesMortosPorcentagem)}
+          <br>Ganho com vendas: <br>${ganhosPeixes.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+          <br>Perda com alevinos: <br> ${perdaComAlevino.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
         </div>
       </div>
       `
