@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tanque Especifico</title>
+    <title>Sua dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5fcf1c6510.js" crossorigin="anonymous"></script>
 
@@ -17,7 +17,7 @@
     <div class="navbar">
         <div class="navlink">
             <div class="logo">
-                <img src="../assets/Dashboard/logo.png" alt="">
+                <img src="../public/assets/Dashboard/logo.png" alt="">
             </div>
             <a class="link" href="inicio">Inicio</a>
             <a class="link" href="simulador">Simulador</a>
@@ -32,16 +32,16 @@
             <div class="topo">
                 <div class="topoEsquerda">
                     <span>Dashboard</span>
-                    <select name="" id="">
-                        <option value="">Tanque 1</option>
-                        <option value="">Visão Geral</option>
-                        <option value="">Tanque 1</option>
-                        <option value="">Tanque 2</option>
-                        <option value="">Tanque 3</option>
-                        <option value="">Tanque 4</option>
-                        <option value="">Tanque 5</option>
-                        <option value="">Tanque 6</option>
-                    </select>
+                      <select id="menu" onchange="irParaPagina()">
+                            <option value="">Tanque 1</option>
+                            <option value="../public/dashboard/dashboardGeral.html">Visão Geral</option>
+                            <option value="">Tanque 1</option>
+                            <option value="">Tanque 2</option>
+                            <option value="">Tanque 3</option>
+                            <option value="">Tanque 4</option>
+                            <option value="">Tanque 5</option>
+                            <option value="">Tanque 6</option>
+                        </select>
                 </div>
 
             </div>
@@ -50,14 +50,14 @@
                     <div class="topoCard">
                         <span>Temperatura atual</span>
                     </div>
-                    <div class="numeroCard">
-                        <span>29.0 ºC</span>
+                    <div class="numeroCard" >
+                        <span id="cardTemperatura">0.0 ºC</span>
                     </div>
                    
                 </div>
                 <div class="card">
                     <div class="topoCard">
-                        <span>Momentos de risco (Último 7 días)</span>
+                        <span>Volume de Alertas (7 dias)</span>
 
 
                     </div>
@@ -72,13 +72,13 @@
 
                     </div>
                     <div class="numeroCard">
-                        <span>Seguro</span>
+                        <span id="statusCard">Risco</span>
                     </div>
 
                 </div>
                 <div class="card">
                     <div class="topoCard">
-                        <span>Ultimo alerta </span>
+                        <span>Último alerta </span>
 
                     </div>
                     <div class="numeroCard">
@@ -91,18 +91,18 @@
                     <div class="topo">
                         <span>Histórico de temperatura </span>
                         <select name="" id="">
-                            <option value="">Tanque 1</option>
-                            <option value="">Visão Geral</option>
-                            <option value="">Tanque 1</option>
-                            <option value="">Tanque 2</option>
-                            <option value="">Tanque 3</option>
-                            <option value="">Tanque 4</option>
-                            <option value="">Tanque 5</option>
-                            <option value="">Tanque 6</option>
+                            <option value="">13:00 </option>
+                            <option value="">14:00 </option>
+                            <option value="">15:00 </option>
+                            <option value="">16:00 </option>
+                            <option value="">17:00 </option>
+                            <option value="">18:00 </option>
+                            <option value="">19:00 </option>
+                            <option value="">Agora</option>
                         </select>
                     </div>
                     <div class="grafico">
-                        <canvas id="graficoLinha"></canvas>
+                        <canvas id="sensorAnalogico"></canvas>
                     </div>
                 </div>
                 <div class="kpisSecundarias">
@@ -111,7 +111,7 @@
                             <span>Status do sensor</span>
                         </div>
                         <div class="numeroCard">
-                            <span>Estável</span>
+                            <span>Offline</span>
                         </div>
                     </div>
                     <div class="card">
@@ -119,7 +119,7 @@
                             <span>Modelo do sensor</span>
                         </div>
                         <div class="numeroCard">
-                            <span>ML35</span>
+                            <span>LM35</span>
                         </div>
                     </div>
                     <div class="card">
@@ -135,108 +135,99 @@
                             <span>Capacidade do tanque</span>
                         </div>
                         <div class="numeroCard">
-                            <span>15.000 Litros</span>
+                            <span>750.000 Litros</span>
                         </div>
                     </div>
-                </div>
+                </div>  
             </div>
         </div>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctx = document.getElementById('graficoLinha');
+<script src="../js/dashTanque.js"></script>
+    <script>
+        
 
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [
-                "00:00", "01:00", "02:00", "03:00", "04:00", "05:00",
-                "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
-                "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",
-                "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"
-            ],
-            datasets: [{
-                label: 'Temperatura',
-                data: [
-                    24.5, 25.2, 26.0, 26.5, 25.8, 24.2,
-                    25.5, 25.8, 26.7, 28.5, 29.8, 30.2,
-                    29.9, 29.5, 28.7, 27.9, 27.5, 28.1,
-                    29.0, 30.0, 31.2, 30.5, 29.0, 32.2,
-                ],
-                borderWidth: 1,
-                tension: 0.5,
-                fill: true,
-                pointRadius: 2,
-                borderColor: '#4DA3B8',
-                backgroundColor: 'rgba(77, 163, 184, 0.2)'
-            },
-            {
-                type: 'line',
-                data: [33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 3333, 33, 33, 33, 33, 33, 33, 33, 33],
-                borderColor: 'rgba(231, 76, 60, 0.3)',
-                borderWidth: 2,
-                borderDash: [6, 6],
-                pointRadius: 0
-            },
+        function irParaPagina() {
+          const select = document.getElementById("menu");
+          const pagina = select.value;
 
-            {
-                type: 'line',
-                data: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
-                borderColor: 'rgba(243, 156, 18, 0.3)',
-                borderWidth: 2,
-                borderDash: [6, 6],
-                pointRadius: 0
-            },
-
-            {
-                type: 'line',
-                data: [26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26],
-                borderColor: 'rgba(243, 156, 18, 0.3)',
-                borderWidth: 2,
-                borderDash: [6, 6],
-                pointRadius: 0
-            },
-
-            {
-                type: 'line',
-                data: [23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23],
-                borderColor: 'rgba(231, 76, 60, 0.3)',
-                borderWidth: 2,
-                borderDash: [6, 6],
-                pointRadius: 0
-            }
-
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                x: {
-                    grid: {
-                        display: false // remove as linhas de fundo
-                    },
-                    border: {
-                        display: false // remove a linha do eixo (ESSA AQUI)
-                    },
-                },
-                y: {
-                    grid: {
-                        display: false // remove as linhas de fundo
-                    },
-                    min: 20,
-                    max: 35,
-                    beginAtZero: false
-                }
-            }
+          if (pagina) {
+            window.location.href = pagina;
+          }
         }
-    });
-</script>
+
+        var labelsHorario = []
+        var maximo = []
+        var minimo = []
+        var amarelo1 = []
+        var amarelo2 = []
+    
+
+
+        var paginacao = {};
+        var tempo = {};
+
+        // function obterDados(grafico, endpoint) {
+        //     fetch('http://10.18.32.7:3300/sensores/' + endpoint)
+        //         .then(response => response.json())
+        //         .then(valores => {
+        //             if (paginacao[endpoint] == null) {
+        //                 paginacao[endpoint] = 0;
+        //             }
+        //             if (tempo[endpoint] == null) {
+        //                 tempo[endpoint] = 0;
+        //             }
+
+        //             var ultimaPaginacao = paginacao[endpoint];
+        //             paginacao[endpoint] = valores.length;
+        //             valores = valores.slice(ultimaPaginacao);
+
+        //             valores.forEach((valor) => {
+        //                 if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+        //                     grafico.data.labels.shift();
+        //                     grafico.data.datasets[0].data.shift();
+        //                 }
+
+
+        //                 grafico.data.datasets[0].data.push(parseFloat(valor));
+        //                 cardTemperatura.innerHTML = `${parseFloat(valor)} ºC`
+        //                 if(valor > 25 &&valor<31){
+        //                     statusCard.innerHTML ='Seguro'
+        //                 }else{
+        //                     statusCard.innerHTML ='Risco'
+
+        //                 }
+        //                 let date = new Date()
+        //                 grafico.data.labels.push(date.toLocaleTimeString());
+
+        //                 grafico.update();
+        //             });
+        //             if (grafico.data.datasets[0].data.length > 10) {
+        //                 grafico.data.datasets[0].data = grafico.data.datasets[0].data.slice(-10)
+        //             }
+        //         })
+        //         .catch(error => console.error('Erro ao obter dados:', error));
+        // }
+
+        // setInterval(() => {
+        //     obterDados(sensorAnalogico, 'analogico');
+        //     maximo.push(33)
+        //     amarelo1.push(25)
+        //     amarelo2.push(30)
+        //     minimo.push(23)
+
+        //     if (minimo.length > 10) {
+        //         maximo = maximo.slice(-10)
+        //         amarelo1  =amarelo1.slice(-10)                  
+        //         amarelo2=amarelo2.slice(-10)
+        //         minimo= minimo.slice(-10)
+        //     }
+
+        //     console.log()
+        // }, 1000);
+
+
+    </script>
 
 </html>
