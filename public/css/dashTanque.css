@@ -74,9 +74,10 @@ body {
             padding: 10px 30px;
             white-space: nowrap;
         }
-        .preenchido a{
+
+        .preenchido a {
             color: white;
-         }
+        }
     }
 }
 
@@ -207,12 +208,28 @@ body {
         justify-content: space-between;
         align-items: center;
         padding-inline: 2%;
+        margin-top: 1%;
+
+        .inputsData {
+            display: flex;
+            gap: 20px;
+
+            input {
+                border-radius: 5px;
+                padding-inline: 10px;
+                font-weight: 500;
+                color: var(--primaria);
+                height: 30px;
+                border: none;
+                box-shadow: 0px 0px 4px rgba(33, 35, 39, 0.250);
+                background-color: #fff;
+                outline: none;
+            }
+        }
 
         span {
             font-size: 26px;
         }
-
-        margin-top: 1%
     }
 
     .grafico {
@@ -272,6 +289,7 @@ body {
     .graficoLinhaContainer {
         width: 75%;
     }
+
     .navbar {
         height: 80px;
         gap: 60%;

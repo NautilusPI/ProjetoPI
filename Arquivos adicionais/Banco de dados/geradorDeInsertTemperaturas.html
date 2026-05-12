@@ -1,56 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <button onclick="gerar()">GERAR</button>
     <button onclick="copiar()">copiar</button>
     <div id="div"></div>
 </body>
+
 </html>
 
 <script>
     let QueryCopiar = 'insert into registroTemperatura (registroTemperatura,dataHora,fkSensor) values'
-    function gerar(){
+    function gerar() {
         let mensagem = `insert into registroTemperatura (registroTemperatura,dataHora,fkSensor) values`
         let mes = 1
         let dia = 1
-        let hora =0
+        let hora = 0
         let minuto = 0
-        for(let i =0; i<6336;i++){
-            let temperatura = (Math.random() * 8 +24 ).toFixed(2)
+        let temperaturaAtual = 27
+        for (let i = 0; i < 6336; i++) {
+            temperaturaAtual += (Math.random() - 0.5)
+
+            if (temperaturaAtual < 25) {
+                temperaturaAtual = 25
+            }
+
+            if (temperaturaAtual > 31) {
+                temperaturaAtual = 31
+            }
+
+            let temperatura = temperaturaAtual.toFixed(2)
+
             mensagem += `(${temperatura},'2026-${mes}-${dia} ${hora}:${minuto}:00',1), <br>`
             QueryCopiar += `(${temperatura},'2026-${mes}-${dia} ${hora}:${minuto}:00',1),`
-            minuto +=30
-            if(minuto == 60){
+            minuto += 30
+            if (minuto == 60) {
                 minuto = 0
-                hora ++
+                hora++
             }
-            if(hora ==24){
+            if (hora == 24) {
                 hora = 0
                 dia++
             }
-             if (dia ==29 && mes==2){
+            if (dia == 29 && mes == 2) {
                 dia = 1
-                mes ++
+                mes++
             }
-            if (dia ==31 && mes %2 ==0){
+            if (dia == 31 && mes % 2 == 0) {
                 dia = 1
-                mes ++
+                mes++
             }
-            if(dia ==32 && mes %2 != 0){
+            if (dia == 32 && mes % 2 != 0) {
                 dia = 1
-                mes ++
+                mes++
             }
-            
+
         }
         div.innerHTML = mensagem
     }
 
-       function copiar(){
+    function copiar() {
         navigator.clipboard.writeText(QueryCopiar)
         alert('Copiado!')
     }

@@ -1,27 +1,51 @@
+let linhasDeMedidaMaxima = [];
+let linhasDeMedidaRiscoQuente = [];
+let linhasDeMedidaRiscoFrio = [];
+let linhasDeMedidaMinimo = [];
+let faixaSegura = [];
+let min = 50;
+let max = 0;
 function buscarRegistroTanque() {
-    let temperaturasLista =[]
-    let horasLista =[]
-  fetch(`/dash/graficoTanqueEspecifico/2`).then((dados) => {
+  const dataInicio = dataInicioInput.value
+  const dataFim = dataFimInput.value
+  const temperaturasLista = [];
+  let horasLista = [];
+  fetch(`/dash/graficoTanqueEspecifico/2/${dataInicio}/${dataFim}`).then((dados) => {
     dados.json().then((registros) => {
       for (let i = 0; i < registros.length; i++) {
-        temperaturasLista.push(registros[i].registroTemperatura);
+        let temperatura = registros[i].registroTemperatura
+        temperaturasLista.push(temperatura);
+        if(temperatura < min){
+          min = Number( Number(temperatura).toFixed())
+        }
+        if(temperatura >max){
+          max = Number(Number(temperatura).toFixed())
+        }
         let hora = registros[i].dataHora.substring(11, 16);
         horasLista.push(hora);
+        linhasDeMedidaMaxima.push(33);
+        linhasDeMedidaRiscoQuente.push(30);
+        linhasDeMedidaRiscoFrio.push(25);
+        faixaSegura.push(25);
+        linhasDeMedidaMinimo.push(23);
       }
       if (registros.length == temperaturasLista.length) {
-        chamarGrafico(temperaturasLista,horasLista);
+        chamarGrafico(temperaturasLista, horasLista);
       }
     });
   });
 }
 
-function chamarGrafico(temps,horas) {
+function chamarGrafico(temps, horas) {
   console.log(temps);
 
+  document.getElementById("containerGrafico").innerHTML =
+    '<canvas id="sensorAnalogico"></canvas>';
   var sensorAnalogico = new Chart(
     document.getElementById("sensorAnalogico").getContext("2d"),
     {
       type: "line",
+
       data: {
         labels: horas,
         datasets: [
@@ -29,31 +53,36 @@ function chamarGrafico(temps,horas) {
             label: "Temperatura",
             data: temps,
             borderWidth: 1,
-            tension: 0.5,
+            tension: 0.3,
             fill: true,
-            pointRadius: 2,
+            order: 100,
+            pointRadius: 1,
             borderColor: "#4DA3B8",
             backgroundColor: "rgba(77, 163, 184, 0.2)",
           },
+
           {
             type: "line",
-            data: [
-              33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33,
-              33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33,
-              3333, 33, 33, 33, 33, 33, 33, 33, 33,
-            ],
+            data: linhasDeMedidaMaxima,
             borderColor: "rgba(231, 76, 60, 0.3)",
             borderWidth: 2,
+            
             borderDash: [6, 6],
             pointRadius: 0,
           },
-
           {
             type: "line",
-            data: [
-              30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-              30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-            ],
+            data: faixaSegura,
+            borderColor: "green",
+            borderWidth: 0,
+            pointRadius: 0,
+            fill: "+1",
+            order: 1,
+            backgroundColor: "rgba(34, 197, 94, 0.14)",
+          },
+          {
+            type: "line",
+            data: linhasDeMedidaRiscoQuente,
             borderColor: "rgba(243, 156, 18, 0.3)",
             borderWidth: 2,
             borderDash: [6, 6],
@@ -62,10 +91,7 @@ function chamarGrafico(temps,horas) {
 
           {
             type: "line",
-            data: [
-              26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26,
-              26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26,
-            ],
+            data: linhasDeMedidaRiscoFrio,
             borderColor: "rgba(243, 156, 18, 0.3)",
             borderWidth: 2,
             borderDash: [6, 6],
@@ -74,10 +100,7 @@ function chamarGrafico(temps,horas) {
 
           {
             type: "line",
-            data: [
-              23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-              23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-            ],
+            data: linhasDeMedidaMinimo,
             borderColor: "rgba(231, 76, 60, 0.3)",
             borderWidth: 2,
             borderDash: [6, 6],
@@ -107,8 +130,8 @@ function chamarGrafico(temps,horas) {
             grid: {
               display: false, // remove as linhas de fundo
             },
-            min: 18,
-            max: 38,
+            min: min -3,
+            max: max +3,
             beginAtZero: false,
           },
         },
@@ -118,3 +141,7 @@ function chamarGrafico(temps,horas) {
 }
 
 buscarRegistroTanque();
+setInterval(()=>{
+buscarRegistroTanque();
+console.log('atualizando')
+},2000)
