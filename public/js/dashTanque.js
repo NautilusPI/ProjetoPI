@@ -145,3 +145,68 @@ setInterval(()=>{
 buscarRegistroTanque();
 console.log('atualizando')
 },2000)
+
+function carregarKPIs() {
+
+  // Temperatura atual 
+  fetch("/dash/temperatura-atual")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("cardTemperatura").innerHTML =
+        data[0].registroTemperatura + " ºC";
+    });
+
+  // Volume alertas 7 dias
+  fetch("/dash/alertas-7-dias")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("cardAlertas7dias").innerHTML =
+        data[0].totalAlertas;
+    });
+
+  // Status sensor
+  fetch("/dash/status-sensor")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("cardStatusSensor").innerHTML =
+        data[0].StatusSensor;
+    });
+
+    // Status tanque
+    fetch("/dash/status-tanque")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("cardStatusTanque").innerHTML =
+        data[0].descricao;
+    });
+
+  // Modelo sensor
+  fetch("/dash/modelo-sensor")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("cardModeloSensor").innerHTML =
+        data[0].Modelo;
+    });
+
+  // Instalação
+  fetch("/dash/instalacao")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("cardInstalacao").innerHTML =
+        data[0].DataInstalacao;
+    });
+
+  // Capacidade
+  fetch("/dash/capacidade")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("cardCapacidade").innerHTML =
+        data[0].CapacidadeLitros + " L";
+    });
+}
+
+carregarKPIs();
+
+setInterval(() => {
+  carregarKPIs();
+}, 5000);
