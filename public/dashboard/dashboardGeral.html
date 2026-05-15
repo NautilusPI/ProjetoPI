@@ -130,99 +130,8 @@
                     <div class="tanques">
                         <p>Tanques</p>
                         <span>Temperatura ideal: 26.0 ºC - 30.0 ºC</span>
-                        <div class="tanquesLista">
-
-                            <div class="tanqueCard TanqueRisco">
-                                <div class="borda">
-                                </div>
-                                <div class="conteudo">
-                                    <p>Tanque 16</p>
-                                    <span id="tanque9"></span>
-                                    <span class="statusTanque">Risco</span>
-                                </div>
-                            </div>
-                            <div class="tanqueCard TanqueRisco">
-                                <div class="borda">
-                                </div>
-                                <div class="conteudo">
-                                    <p>Tanque 4</p>
-                                    <span id="tanque3"></span>
-                                    <span class="statusTanque">Risco</span>
-                                </div>
-                            </div>
-                            <div class="tanqueCard TanqueAtencao">
-                                <div class="borda">
-                                </div>
-                                <div class="conteudo">
-                                    <p>Tanque 8</p>
-                                    <span id="tanque7"></span>
-                                    <span class="statusTanque">Atenção</span>
-                                </div>
-                            </div>
-
-                            <div class="tanqueCard TanqueAtencao">
-                                <div class="borda">
-                                </div>
-                                <div class="conteudo">
-                                    <p>Tanque 13</p>
-                                    <span id="tanque8"></span>
-                                    <span class="statusTanque">Atenção</span>
-                                </div>
-                            </div>
-                            <div class="tanqueCard">
-                                <div class="borda">
-                                </div>
-                                <div class="conteudo">
-                                    <p>Tanque 1</p>
-                                    <span id="tanque0"></span>
-                                    <span class="statusTanque">Estável</span>
-                                </div>
-                            </div>
-                            <div class="tanqueCard">
-                                <div class="borda">
-                                </div>
-                                <div class="conteudo">
-                                    <p>Tanque 2</p>
-                                    <span id="tanque1"></span>
-                                    <span class="statusTanque">Estável</span>
-                                </div>
-                            </div>
-                            <div class="tanqueCard">
-                                <div class="borda">
-                                </div>
-                                <div class="conteudo">
-                                    <p>Tanque 3</p>
-                                    <span id="tanque2"></span>
-                                    <span class="statusTanque">Estável</span>
-                                </div>
-                            </div>
-                            <div class="tanqueCard">
-                                <div class="borda">
-                                </div>
-                                <div class="conteudo">
-                                    <p>Tanque 5</p>
-                                    <span id="tanque4"></span>
-                                    <span class="statusTanque">Estável</span>
-                                </div>
-                            </div>
-                            <div class="tanqueCard">
-                                <div class="borda">
-                                </div>
-                                <div class="conteudo">
-                                    <p>Tanque 6</p>
-                                    <span id="tanque5"></span>
-                                    <span class="statusTanque">Estável</span>
-                                </div>
-                            </div>
-                            <div class="tanqueCard">
-                                <div class="borda">
-                                </div>
-                                <div class="conteudo">
-                                    <p>Tanque 7</p>
-                                    <span id="tanque6"></span>
-                                    <span class="statusTanque">Estável</span>
-                                </div>
-                            </div>
+                        <div id="div_tanqueLista" class="tanquesLista">
+  
                         </div>
 
                     </div>
@@ -374,11 +283,48 @@ const ctx2 = document.getElementById('graficoLinha');
         `
     }
     
-    let lista = [26.5,27.4,27.0,32.1,28.3,26.1,29.2,30.2,24.1,20.4]
+    function carregarMedidasTempoReal() {
+        fetch("/dash/buscarTempoReal").then(res => res.json())
+        .then(resultado => {
+            let tanque = [];
+            let registro = [];
+            let alerta = [];
 
-    for(cont = 0; cont < lista.length; cont++){
-        document.getElementById(`tanque${cont}`).innerHTML = lista[cont] + " °C";
+             resultado.forEach(item => {
+                tanque.push(item.nomeTanque);
+                registro.push(item.registroTemperatura);
+                alerta.push(item.descricao);
+            });
+            
+        
+
+            for(let i = 0; i < tanque.length; i++){
+                let corStatus = '';
+                if(
+                    (registro[i] > 30 && registro[i] <= 35) ||
+                    (registro[i] >= 23 && registro[i] < 26)
+                
+                ){
+                    corStatus = `TanqueAtencao`;
+                }else if(registro[i] > 35 || registro[i] < 23){
+                    corStatus = `TanqueRisco`;
+                }
+
+                document.getElementById(`div_tanqueLista`).innerHTML += `
+                            <div class="tanqueCard ${corStatus}">
+                                <div class="borda">
+                                </div>
+                                <div class="conteudo">
+                                    <p>${tanque[i]}</p>
+                                    <span id="tanque9">${registro[i]}</span>
+                                    <span class="statusTanque">${alerta[i]}</span>
+                                </div>
+                `
+            }
+        });    
     }
+    
+    carregarMedidasTempoReal();
 
 </script>
 

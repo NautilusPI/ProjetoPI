@@ -36,6 +36,12 @@ router.get("/temperatura-atual", function (req, res) {
 router.get("/ultimo-alerta", function (req, res) {
     dashController.ultimoAlerta(req, res);
 });
+
+router.get("/buscarTempoReal", function (req, res) {
+   dashController.buscarMedidasEmTempoReal(req,res)
+});
+
+
 module.exports = router;
 
 

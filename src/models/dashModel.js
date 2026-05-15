@@ -95,6 +95,22 @@ function buscarCapacidade(){
     return database.executar(query)
 }
 
+function buscarMedidasEmTempoReal() {
+
+    var instrucaoSql = `
+    SELECT t.nomeTanque, MAX(r.registroTemperatura) as 'registroTemperatura', a.descricao FROM tanque t
+    JOIN sensor as s
+    ON s.fkTanque = t.idTanque
+    JOIN registroTemperatura as r
+    ON r.fkSensor = s.idSensor
+    JOIN alerta as a
+    ON a.fkRegistroTemperatura = r.idRegistroTemperatura AND a.fkSensor = s.idSensor
+    GROUP BY t.nomeTanque, a.descricao
+    ORDER BY registroTemperatura DESC;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 
 module.exports = {
@@ -106,5 +122,6 @@ module.exports = {
     buscarUltimoAlerta,
     buscarModeloSensor,
     buscarInstalacao,
-    buscarCapacidade
+    buscarCapacidade,
+    buscarMedidasEmTempoReal
 };

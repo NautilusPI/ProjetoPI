@@ -71,6 +71,14 @@ function capacidade(req, res) {
         .then(resultado => res.status(200).json(resultado))
         .catch(erro => res.status(500).json(erro.sqlMessage));
 }
+
+function buscarMedidasEmTempoReal(req,res){
+   console.log(req.params.inicio+"   "+req.params.fim)
+   dashModel.buscarMedidasEmTempoReal(req.params.inicio,req.params.fim).then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
+
 module.exports = {
     graficoTanqueEspecifico,
     alertas7Dias,
@@ -80,5 +88,6 @@ module.exports = {
     StatusTanque,
     modeloSensor,
     instalacao,
-    capacidade
+    capacidade,
+    buscarMedidasEmTempoReal
 };
