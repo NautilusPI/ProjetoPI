@@ -189,11 +189,11 @@ function carregarKPIs() {
     });
 
   // Instalação
-  fetch("/dash/instalacao")
+ fetch("/dash/instalacao")
     .then(res => res.json())
     .then(data => {
       document.getElementById("cardInstalacao").innerHTML =
-        data[0].DataInstalacao;
+        new Date(data[0].DataInstalacao).toLocaleDateString('pt-BR')
     });
 
   // Capacidade

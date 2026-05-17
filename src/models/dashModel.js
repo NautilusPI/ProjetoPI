@@ -98,27 +98,26 @@ function buscarCapacidade(){
 function buscarMedidasEmTempoReal() {
 
     var instrucaoSql = `
-    SELECT t.nomeTanque, r.registroTemperatura, a.descricao FROM tanque t
-    JOIN sensor s
-    ON s.fkTanque = t.idTanque
-    JOIN registroTemperatura r
-    ON r.fkSensor = s.idSensor
-    LEFT JOIN alerta a
-    ON a.fkRegistroTemperatura = r.idRegistroTemperatura
-    AND a.fkSensor = s.idSensor
-    WHERE r.idRegistroTemperatura = (
-    SELECT MAX(r2.idRegistroTemperatura) FROM registroTemperatura r2
-    JOIN sensor s2
-	ON s2.idSensor = r2.fkSensor
+   SELECT t.nomeTanque, r.registroTemperatura, a.descricao
+FROM tanque t
+JOIN sensor s ON s.fkTanque = t.idTanque
+JOIN registroTemperatura r ON r.fkSensor = s.idSensor
+LEFT JOIN alerta a
+    ON a.fkRegistroTemperatura = r.idRegistro
+    AND a.fkAlertaSensor = s.idSensor
+WHERE r.idRegistro = (
+    SELECT MAX(r2.idRegistro)
+    FROM registroTemperatura r2
+    JOIN sensor s2 ON s2.idSensor = r2.fkSensor
     WHERE s2.fkTanque = t.idTanque
-    )
-    ORDER BY 
-	CASE
-    WHEN a.descricao = 'Risco' THEN 1
-    WHEN a.descricao = 'Atenção' THEN 2
-    WHEN a.descricao = 'Estável' THEN 3
+)
+ORDER BY 
+    CASE
+        WHEN a.descricao = 'Risco' THEN 1
+        WHEN a.descricao = 'Atenção' THEN 2
+        WHEN a.descricao = 'Estável' THEN 3
     END,
-    r.registroTemperatura DESC;`;
+    r.registroTemperatura DESC;`
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
