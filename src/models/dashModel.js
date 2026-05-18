@@ -59,11 +59,12 @@ GROUP BY DATE(s.dataInstalacao);
 
 function buscarUltimoAlerta(){
     let query = `
-        SELECT *
-        FROM alerta
-        ORDER BY idAlerta DESC
-        LIMIT 1;
-    `
+         SELECT r.RegistroTemperatura, r.dataHora
+FROM RegistroTemperatura r
+WHERE r.RegistroTemperatura > 30
+   OR r.RegistroTemperatura < 26
+ORDER BY r.idRegistro DESC
+LIMIT 1;`
     return database.executar(query)
 }
 
@@ -104,7 +105,6 @@ JOIN sensor s ON s.fkTanque = t.idTanque
 JOIN registroTemperatura r ON r.fkSensor = s.idSensor
 LEFT JOIN alerta a
     ON a.fkRegistroTemperatura = r.idRegistro
-    AND a.fkAlertaSensor = s.idSensor
 WHERE r.idRegistro = (
     SELECT MAX(r2.idRegistro)
     FROM registroTemperatura r2

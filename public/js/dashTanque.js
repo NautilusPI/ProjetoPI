@@ -157,12 +157,26 @@ function carregarKPIs() {
     });
 
   // Volume alertas 7 dias
-  fetch("/dash/alertas-7-dias")
-    .then(res => res.json())
-    .then(data => {
+ fetch("/dash/alertas-7-dias")
+  .then(res => res.json())
+  .then(data => {
+
       document.getElementById("cardAlertas7dias").innerHTML =
-        data[0].totalAlertas;
-    });
+      data[0].totalAlertas;
+
+  });
+
+    // ultimo alerta
+   fetch("/dash/ultimo-alerta")
+  .then(res => res.json())
+  .then(data => {
+
+    console.log(data);
+
+    document.getElementById("cardUltimoAlerta").innerHTML =
+      `${data[0].RegistroTemperatura}°C`;
+
+  });
 
   // Status sensor
   fetch("/dash/status-sensor")
