@@ -14,27 +14,29 @@
             <img src="./assets/Login/logo.png" alt="" class="logo">
 
             <div class="campo">
-                <span>Nome Completo <span style= "color:red">*</span><span id="erroNome"></span></span>
+                <span>Nome Completo <span style="color:red">*</span><span id="erroNome"></span></span>
                 <input type="text" id="inpt_nome" placeholder="Insira seu nome completo">
             </div>
 
             <div class="campo" id="campo_email">
-                <label for="form_email"><span>Email<span style= "color:red">*</span><span id="erroEmail"></span></label>
+                <label for="form_email"><span>Email<span style="color:red">*</span><span id="erroEmail"></span></label>
                 <input type="text" id="inpt_email" placeholder="Insira seu email">
             </div>
 
             <div class="campo">
-                <label for="form_confirmacao"><span>CPF<span style= "color:red">*</span><span id="erroCPF"></span></label>
+                <label for="form_confirmacao"><span>CPF<span style="color:red">*</span><span
+                            id="erroCPF"></span></label>
                 <input type="text" id="inpt_cpf" placeholder="Insira seu cpf">
             </div>
 
             <div class="campo">
-                <label for="form_código"><span>Código da empresa<span style= "color:red">*</span><span id="erroCodigo"></span></label>
+                <label for="form_código"><span>Código da empresa<span style="color:red">*</span><span
+                            id="erroCodigo"></span></label>
                 <input type="text" id="inpt_codigo" placeholder="Insira o codigo de ativação">
             </div>
 
             <div class="campo" id="campo_senha">
-                <label for="form_senha"><span>Senha<span style= "color:red">*</span><span id="erroSenha"></span></label>
+                <label for="form_senha"><span>Senha<span style="color:red">*</span><span id="erroSenha"></span></label>
                 <input class="input_senha" type="password" id="inpt_senha" placeholder="Insira a senha">
             </div>
 
@@ -54,18 +56,18 @@
 
 </html>
 <script>
-    function verificarSenha(){
+    function verificarSenha() {
         let senha = inpt_senha.value;
-        if (senha.length < 6){
+        if (senha.length < 6) {
             aviso_senha.innerHTML = '<span style="color: red; font-size: 12px;">*A senha deve ter ao menos 7 caracteres.</span>'
         } else
-        if (!(senha.includes('@') || senha.includes('#') || senha.includes('$') || senha.includes('!'))){
-            aviso_senha.innerHTML = '*<span style="color: red;font-size: 12px;">A senha deve ter ao menos 1 caractere especial</span>'
-        } else  if (senha.toUpperCase() == senha || senha.toLowerCase() == senha){
-            aviso_senha.innerHTML = '<span style="color: red; font-size: 12px;">*A senha deve conter letras maiusculas e minuculas.</span>'
-        } else {
-            aviso_senha.innerHTML = '<span style="color: green; font-size: 12px;">*Senha valida.</span>'
-        }
+            if (!(senha.includes('@') || senha.includes('#') || senha.includes('$') || senha.includes('!'))) {
+                aviso_senha.innerHTML = '*<span style="color: red;font-size: 12px;">A senha deve ter ao menos 1 caractere especial</span>'
+            } else if (senha.toUpperCase() == senha || senha.toLowerCase() == senha) {
+                aviso_senha.innerHTML = '<span style="color: red; font-size: 12px;">*A senha deve conter letras maiusculas e minuculas.</span>'
+            } else {
+                aviso_senha.innerHTML = '<span style="color: green; font-size: 12px;">*Senha valida.</span>'
+            }
     }
 
 
@@ -87,10 +89,11 @@
         // verificações
 
         // NOME
-        if (nome == ``)
-        {erroNome.innerHTML = `<span class="mensagem_erro"> ⓘ Por favor, informe seu nome</span>`
-        inpt_nome.style.border = "1px solid red"} 
-        else {erroNome.innerHTML = ``; inpt_nome.style.border = `1px solid green`}
+        if (nome == ``) {
+            erroNome.innerHTML = `<span class="mensagem_erro"> ⓘ Por favor, informe seu nome</span>`
+            inpt_nome.style.border = "1px solid red"
+        }
+        else { erroNome.innerHTML = ``; inpt_nome.style.border = `1px solid green` }
 
         // EMAIL
         if (!email.includes('@')) {
@@ -142,11 +145,35 @@
         } else {
             erroConfirmacao.innerHTML = '';
             inputConfirmacao.style.border = `1px solid green`;
-            
+
         }
 
-        if(!temErro){
-            window.location.href = "login.html";
+        // CHAMANDO A API
+        if (!temErro) {
+            fetch("http://localhost:3333/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nomeServer: nome,
+                    emailServer: email,
+                    senhaServer: senha,
+                    idEmpresaVincularServer: codigo  // código de ativação da empresa
+                })
+            })
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                        alert("Cadastro realizado com sucesso!");
+                        window.location.href = "login.html";
+                    } else {
+                        alert("Erro ao cadastrar. Verifique os dados.");
+                    }
+                })
+                .catch(function (erro) {
+                    console.error("Erro na requisição:", erro);
+                    alert("Não foi possível conectar ao servidor.");
+                });
         }
     }
 </script>

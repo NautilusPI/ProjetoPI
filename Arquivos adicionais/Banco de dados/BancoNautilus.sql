@@ -1,68 +1,59 @@
-CREATE DATABASE nautilus;
-USE nautilus;
+create database Nautilus;
+use Nautilus;
 
--- Tabela Usuario
-CREATE TABLE usuario (
-    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) not null,
-    email VARCHAR(80) not null,
-    senha VARCHAR(15) not null,
-    telefone CHAR(11)
+CREATE TABLE Empresa (
+	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+	Nome VARCHAR(45),
+	Endereco VARCHAR(80),
+	CodigoDeAtivacao CHAR(8),
+	CNPJ CHAR(14)
 );
 
--- Tabela Empresa
-CREATE TABLE empresa (
-    idEmpresa INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) not null,
-    endereco VARCHAR(80),
-    codigoDeAtivacao VARCHAR(45) not null,
-    cnpj CHAR(14) not null,
-    fkUsuarioDono INT ,
-    FOREIGN KEY (fkUsuarioDono) REFERENCES usuario(idUsuario)
+CREATE TABLE Usuario (
+	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+	Nome VARCHAR(45) NOT NULL,
+	Email VARCHAR(80) NOT NULL,
+	Senha VARCHAR(15) NOT NULL,
+	Telefone CHAR(11),
+    CPF CHAR(11) NOT NULL,
+	fkEmpresa INT,
+	CONSTRAINT fkEmpresa_const FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
--- Tabela Tanque
-CREATE TABLE tanque (
-    idTanque INT AUTO_INCREMENT PRIMARY KEY,
-    nomeTanque VARCHAR(45),
-    capacidadeLitros INT,
-    fkEmpresa INT,
-    FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa)
-    
+CREATE TABLE Tanque (
+	idTanque INT PRIMARY KEY AUTO_INCREMENT,
+	NomeTanque VARCHAR(45),
+	CapacidadeLitros INT,
+	Setor VARCHAR(45),
+	fkEmpresa INT,
+	CONSTRAINT fkEmpresa_const_tanque FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
--- Tabela Sensor
-CREATE TABLE sensor (
-    idSensor INT AUTO_INCREMENT PRIMARY KEY,
-    modelo VARCHAR(100),
-    dataInstalacao DATE,
-    statusSensor VARCHAR(20),
-    fkTanque INT,
-    FOREIGN KEY (fkTanque) REFERENCES tanque(idTanque)
-    
+CREATE TABLE Sensor (
+	idSensor INT PRIMARY KEY AUTO_INCREMENT,
+	Modelo VARCHAR(40),
+	DataInstalacao DATE,
+	StatusSensor VARCHAR(20), 
+	CONSTRAINT chkStatus CHECK (StatusSensor IN('Crítico','Atenção','Estável')),
+	fkTanque INT,
+	CONSTRAINT fkTanque_const FOREIGN KEY (fkTanque) REFERENCES Tanque(idTanque)
 );
 
--- Tabela RegistroTemperatura
-CREATE TABLE registroTemperatura (
-    idRegistroTemperatura INT AUTO_INCREMENT,
-    registroTemperatura DECIMAL(5,2),
-    dataHora DATETIME,
+CREATE TABLE RegistroTemperatura (
+	idRegistro INT AUTO_INCREMENT,
+    RegistroTemperatura DECIMAL(4,2),
+    DataHora DATETIME,
     fkSensor INT,
-    FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor),
-    primary key(idRegistroTemperatura,fkSensor)
+    CONSTRAINT fkSensor_const FOREIGN KEY (fkSensor) REFERENCES Sensor(idSensor),
+    PRIMARY KEY (idRegistro, fkSensor) 
+	);
     
-);
-
--- Tabela Alerta
-CREATE TABLE alerta (
-    idAlerta INT AUTO_INCREMENT ,
-    descricao VARCHAR(200),
+    CREATE TABLE Alerta(
+    idAlerta INT AUTO_INCREMENT,
+    Descricao VARCHAR(200),
     fkRegistroTemperatura INT,
-    fkSensor INT,
-    FOREIGN KEY (fkRegistroTemperatura) REFERENCES registroTemperatura(idRegistroTemperatura),
-    primary key(idAlerta,fkSensor)
-);
-
-CREATE USER'grupo11API'@'%' IDENTIFIED BY 'Grupo11@';
-GRANT INSERT, SELECT, DELETE,UPDATE ON *.* TO 'grupo11API'@'%';
-FLUSH PRIVILEGES;
+    fkAlertaSensor INT,
+	CONSTRAINT fkRegistroTemperatura FOREIGN KEY (fkRegistroTemperatura) REFERENCES RegistroTemperatura(idRegistro),
+	CONSTRAINT fkAlertaSensor FOREIGN KEY (fkAlertaSensor) REFERENCES RegistroTemperatura(fkSensor),
+	PRIMARY KEY (idAlerta, fkRegistroTemperatura)
+    );
