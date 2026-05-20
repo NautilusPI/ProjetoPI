@@ -158,8 +158,9 @@
                 body: JSON.stringify({
                     nomeServer: nome,
                     emailServer: email,
-                    senhaServer: senha,
-                    idEmpresaVincularServer: codigo  // código de ativação da empresa
+                    cpfServer: cpf,
+                    codigoServer: codigo,  // codigo de ativacao da empresa
+                    senhaServer: senha
                 })
             })
                 .then(function (resposta) {
