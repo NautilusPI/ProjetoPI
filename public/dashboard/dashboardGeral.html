@@ -31,7 +31,9 @@
             </div>
             <a class="link" href="../index.html">Inicio</a>
             <a class="link" href="../calculadora.html">Simulador</a>
-            <a class="link" href="dashboard.html">Dashboard</a>
+            <a class="link" href="dashboardGeral.html">Dashboard</a>
+            <a class="link" href="../testeIA.html">Suporte</a>
+
         </div>
         <div class="forms">
             <button class="vazado"><a href="../login.html">Entre</a></button>
@@ -68,16 +70,16 @@
                 <div class="card">
                     <div class="topoCard">
                         <span>Sensores offline</span>
-                        
+
                         <img src="../assets/Dashboard/sensor-de-temperatura.png" alt="">
                     </div>
                     <div class="numeroCard">
                         <span>1</span>
                     </div>
                     <div class="descricao">
-                            <span>Tanque: 1</span>
-                        </div>
-        
+                        <span>Tanque: 1</span>
+                    </div>
+
                 </div>
                 <div class="card">
                     <div class="topoCard">
@@ -86,11 +88,11 @@
                     </div>
                     <div class="numeroCard">
                         <span>3</span>
-                            <div class="statusCard">
+                        <div class="statusCard">
                             <span>Risco</span>
-                            </div>
+                        </div>
                     </div>
-                    
+
                 </div>
                 <div class="card">
                     <div class="topoCard">
@@ -104,19 +106,19 @@
             </div>
             <div class="graficos">
                 <div class="graficoBarra">
-                   <div class="topoGraficoBarra">
-                     <p>Temperatura por tanque</p>
-                     <select name="" id="">
-                        <option value="">19:00 (Agora)</option>
-                        <option value="">18:00</option>
-                        <option value="">17:00</option>
-                        <option value="">16:00</option>
-                        <option value="">15:00</option>
-                        <option value="">14:00</option>
-                        <option value="">13:00</option>
-                        <option value="">12:00</option>
-                    </select>
-                   </div>
+                    <div class="topoGraficoBarra">
+                        <p>Temperatura por tanque</p>
+                        <select name="" id="">
+                            <option value="">19:00 (Agora)</option>
+                            <option value="">18:00</option>
+                            <option value="">17:00</option>
+                            <option value="">16:00</option>
+                            <option value="">15:00</option>
+                            <option value="">14:00</option>
+                            <option value="">13:00</option>
+                            <option value="">12:00</option>
+                        </select>
+                    </div>
 
                     <div class="grafico">
                         <canvas id="graficoBarra"></canvas>
@@ -131,7 +133,7 @@
                         <p>Tanques</p>
                         <span>Temperatura ideal: 26.0 ºC - 30.0 ºC</span>
                         <div id="div_tanqueLista" class="tanquesLista">
-  
+
                         </div>
 
                     </div>
@@ -145,126 +147,126 @@
     const ctx = document.getElementById('graficoBarra');
 
     new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'],
-    datasets: [
-      {
-        label: 'Temperatura',
-        data: [24.3, 26.1, 25.4, 27.8, 29.0, 28.2, 30.5, 31.2, 29.7, 32.4, 30.8, 28.9, 27.3, 26.5, 25.9],
-        backgroundColor: '#4DA3B8',
-        borderRadius: 4,
-        barThickness: 30
-      },
+        type: 'bar',
+        data: {
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'],
+            datasets: [
+                {
+                    label: 'Temperatura',
+                    data: [24.3, 26.1, 25.4, 27.8, 29.0, 28.2, 30.5, 31.2, 29.7, 32.4, 30.8, 28.9, 27.3, 26.5, 25.9],
+                    backgroundColor: '#4DA3B8',
+                    borderRadius: 4,
+                    barThickness: 30
+                },
 
-      {
-        type: 'line',
-        data: [33,33,33,33,33,33,33,33,33,33,33,33,33,33,33],
-        borderColor: '#E74C3C',
-        borderWidth: 2,
-        borderDash: [6, 6],
-        pointRadius: 0
-      },
+                {
+                    type: 'line',
+                    data: [33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33],
+                    borderColor: '#E74C3C',
+                    borderWidth: 2,
+                    borderDash: [6, 6],
+                    pointRadius: 0
+                },
 
-      {
-        type: 'line',
-        data: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
-        borderColor: '#F39C12',
-        borderWidth: 2,
-        borderDash: [6, 6],
-        pointRadius: 0
-      },
+                {
+                    type: 'line',
+                    data: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+                    borderColor: '#F39C12',
+                    borderWidth: 2,
+                    borderDash: [6, 6],
+                    pointRadius: 0
+                },
 
-      {
-        type: 'line',
-        data: [26,26,26,26,26,26,26,26,26,26,26,26,26,26,26],
-        borderColor: '#F39C12',
-        borderWidth: 2,
-        borderDash: [6, 6],
-        pointRadius: 0
-      },
+                {
+                    type: 'line',
+                    data: [26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26],
+                    borderColor: '#F39C12',
+                    borderWidth: 2,
+                    borderDash: [6, 6],
+                    pointRadius: 0
+                },
 
-      {
-        type: 'line',
-        data:[23,23,23,23,23,23,23,23,23,23,23,23,23,23,23],
-        borderColor: '#E74C3C',
-        borderWidth: 2,
-        borderDash: [6, 6],
-        pointRadius: 0
-      }
-    ]
-  },
+                {
+                    type: 'line',
+                    data: [23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23],
+                    borderColor: '#E74C3C',
+                    borderWidth: 2,
+                    borderDash: [6, 6],
+                    pointRadius: 0
+                }
+            ]
+        },
 
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
 
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
 
-    scales: {
-      x: {
-        grid: {
-          display: false
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    min: 20,
+                    grid: {
+                        color: '#eee'
+                    }
+                }
+            }
         }
-      },
-      y: {
-        beginAtZero: true,
-        min:20,
-        grid: {
-          color: '#eee'
+    });
+
+    const ctx2 = document.getElementById('graficoLinha');
+
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['12/04', '13/04', '14/04', '15/04', '16/04', '17/04', '18/04', '19/04', '20/04'],
+            datasets: [
+                {
+                    label: 'Temperatura máxima',
+                    data: [2, 6, 3, 2, 7, 1, 0, 1, 2],
+                    borderWidth: 2,
+                    borderColor: '#4DA3B8',
+                    tension: 0.4
+                },
+
+
+
+
+            ]
+        },
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+
+            scales: {
+                y: {
+                    min: 0,
+
+                    beginAtZero: true,
+                    grid: {
+                        color: '#eee'
+                    }
+                }
+            }
         }
-      }
-    }
-  }
-});
-
-const ctx2 = document.getElementById('graficoLinha');
-
-   new Chart(ctx2, {
-  type: 'line',
-  data: {
-    labels: ['12/04','13/04','14/04','15/04','16/04','17/04','18/04','19/04','20/04'],
-    datasets: [
-      {
-        label: 'Temperatura máxima',
-        data: [2,6,3,2,7,1,0,1,2],
-        borderWidth: 2,
-        borderColor: '#4DA3B8',
-        tension: 0.4
-      },
-     
-
-      
-   
-    ]
-  },
-
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-
-    scales: {
-      y: {
-        min: 0,
-        
-        beginAtZero: true,
-        grid: {
-          color: '#eee'
-        }
-      }
-    }
-  }
-});
+    });
 </script>
 <script>
     function fecharAlerta() {
@@ -282,35 +284,35 @@ const ctx2 = document.getElementById('graficoLinha');
            </div>
         `
     }
-    
+
     function carregarMedidasTempoReal() {
         fetch("/dash/buscarTempoReal").then(res => res.json())
-        .then(resultado => {
-            let tanque = [];
-            let registro = [];
-            let alerta = [];
+            .then(resultado => {
+                let tanque = [];
+                let registro = [];
+                let alerta = [];
 
-             resultado.forEach(item => {
-                tanque.push(item.nomeTanque);
-                registro.push(item.registroTemperatura);
-                alerta.push(item.descricao);
-            });
-            
-        
+                resultado.forEach(item => {
+                    tanque.push(item.nomeTanque);
+                    registro.push(item.registroTemperatura);
+                    alerta.push(item.descricao);
+                });
 
-            for(let i = 0; i < tanque.length; i++){
-                let corStatus = '';
-                if(
-                    (registro[i] > 30 && registro[i] <= 35) ||
-                    (registro[i] >= 23 && registro[i] < 26)
-                
-                ){
-                    corStatus = `TanqueAtencao`;
-                }else if(registro[i] > 35 || registro[i] < 23){
-                    corStatus = `TanqueRisco`;
-                }
 
-                document.getElementById(`div_tanqueLista`).innerHTML += `
+
+                for (let i = 0; i < tanque.length; i++) {
+                    let corStatus = '';
+                    if (
+                        (registro[i] > 30 && registro[i] <= 35) ||
+                        (registro[i] >= 23 && registro[i] < 26)
+
+                    ) {
+                        corStatus = `TanqueAtencao`;
+                    } else if (registro[i] > 35 || registro[i] < 23) {
+                        corStatus = `TanqueRisco`;
+                    }
+
+                    document.getElementById(`div_tanqueLista`).innerHTML += `
                             <div class="tanqueCard ${corStatus}">
                                 <div class="borda">
                                 </div>
@@ -320,12 +322,12 @@ const ctx2 = document.getElementById('graficoLinha');
                                     <span class="statusTanque">${alerta[i]}</span>
                                 </div>
                 `
-            }
-        });    
+                }
+            });
     }
-    
+
     carregarMedidasTempoReal();
-    
+
 
 </script>
 
