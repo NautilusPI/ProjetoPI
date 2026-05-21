@@ -19,8 +19,7 @@ function buscarTemperaturaAtual(){
     let query = `
         SELECT registroTemperatura
         FROM registroTemperatura
-        ORDER BY dataHora DESC
-        LIMIT 1;
+        ORDER BY dataHora DESC;
     `
     return database.executar(query)
 }
@@ -28,15 +27,13 @@ function buscarTemperaturaAtual(){
 function buscarStatusSensor(){
     let query = `
         SELECT StatusSensor
-        FROM sensor
-        LIMIT 1;
+        FROM sensor;
     `
     return database.executar(query)
 }
 
 function buscarStatusTanque(){
-    let query = `SELECT descricao from alerta
-    limit 1;`
+    let query = `SELECT descricao from alerta;`
 
      return database.executar(query)
 }
@@ -63,16 +60,14 @@ function buscarUltimoAlerta(){
 FROM RegistroTemperatura r
 WHERE r.RegistroTemperatura > 30
    OR r.RegistroTemperatura < 26
-ORDER BY r.idRegistro DESC
-LIMIT 1;`
+ORDER BY r.idRegistro DESC;`
     return database.executar(query)
 }
 
 function buscarModeloSensor(){
     let query = `
         SELECT Modelo
-        FROM sensor
-        LIMIT 1;
+        FROM sensor;
     `
     return database.executar(query)
 }
@@ -80,8 +75,7 @@ function buscarModeloSensor(){
 function buscarInstalacao(){
     let query = `
         SELECT DataInstalacao
-        FROM sensor
-        LIMIT 1 ;
+        FROM sensor;
     `
     return database.executar(query)
 }
@@ -90,8 +84,7 @@ function buscarCapacidade(){
     let query = `
         SELECT CapacidadeLitros
         FROM tanque
-        WHERE NomeTanque = 'tanque 1'
-        LIMIT 1;
+        WHERE NomeTanque = 'tanque 1';
     `
     return database.executar(query)
 }
