@@ -144,6 +144,8 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+
+    
     const ctx = document.getElementById('graficoBarra');
 
     new Chart(ctx, {
@@ -176,7 +178,7 @@
                     borderDash: [6, 6],
                     pointRadius: 0
                 },
-
+                
                 {
                     type: 'line',
                     data: [26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26],
@@ -224,28 +226,48 @@
         }
     });
 
-    const ctx2 = document.getElementById('graficoLinha');
+    window.onload = exibirGraficoLinha();
 
-    new Chart(ctx2, {
-        type: 'line',
-        data: {
-            labels: ['12/04', '13/04', '14/04', '15/04', '16/04', '17/04', '18/04', '19/04', '20/04'],
-            datasets: [
-                {
-                    label: 'Temperatura máxima',
-                    data: [2, 6, 3, 2, 7, 1, 0, 1, 2],
-                    borderWidth: 2,
-                    borderColor: '#4DA3B8',
-                    tension: 0.4
-                },
+    function exibirGraficoLinha() {
+        console.log('Iniciando processo para exibição do gráfico de linha...');
+        obterDadosGraficoLinha();
+        setInterval(obterDadosGraficoLinha, 1000);
+    }
 
+    function obterDadosGraficoLinha(){
+        fetch(`/dash/buscarTotalAlertasDia`, {cache: 'no-store'}).then(function (response){
+            if (response.ok) {
+                response.json().then(function (resposta){
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
 
+                    plotarGraficoLinha(resposta);
 
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
 
-            ]
-        },
+    function plotarGraficoLinha(resposta){
+        console.log('iniciando plotagem do gráfico...');
 
-        options: {
+        let labels = [];
+
+        let dados= {
+            labels: labels,
+            datasets: [{
+                label: 'Quantidade de Alertas',
+                data: [],
+                borderWidth: 2,
+                borderColor: '#4DA3B8',
+                tension: 0.4
+            }],
+            options: {
             responsive: true,
             maintainAspectRatio: false,
 
@@ -254,11 +276,13 @@
                     display: false
                 }
             },
-
             scales: {
                 y: {
                     min: 0,
-
+                    max: 50,
+                    ticks: {
+                        stepSize: 2
+                    },
                     beginAtZero: true,
                     grid: {
                         color: '#eee'
@@ -266,7 +290,81 @@
                 }
             }
         }
-    });
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.date);
+            dados.datasets[0].data.push(registro.totalAlertas);
+            
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        let myChart = new Chart(
+            document.getElementById(`graficoLinha`),
+            config
+        );
+    }
+
+    // const ctx2 = document.getElementById('graficoLinha');
+
+    // new Chart(ctx2, {
+    //     type: 'line',
+    //     data: {
+    //         labels: ['12/04', '13/04', '14/04', '15/04', '16/04', '17/04', '18/04', '19/04', '20/04'],
+    //         datasets: [
+    //             {
+    //                 label: 'Quantidade de Alertas:',
+    //                 data: [2, 6, 3, 2, 7, 1, 0, 1, 2],
+    //                 borderWidth: 2,
+    //                 borderColor: '#4DA3B8',
+    //                 tension: 0.4
+    //             },
+
+
+
+
+    //         ]
+    //     },
+
+    //     options: {
+    //         responsive: true,
+    //         maintainAspectRatio: false,
+
+    //         plugins: {
+    //             legend: {
+    //                 display: false
+    //             }
+    //         },
+
+    //         scales: {
+    //             y: {
+    //                 min: 0,
+
+    //                 beginAtZero: true,
+    //                 grid: {
+    //                     color: '#eee'
+    //                 }
+    //             }
+    //         }
+    //     }
+    // });
 </script>
 <script>
     function fecharAlerta() {

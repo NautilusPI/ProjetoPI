@@ -91,7 +91,7 @@ function buscarCapacidade(){
 
 function buscarMedidasEmTempoReal() {
 
-    var instrucaoSql = `
+    var query = `
    SELECT t.nomeTanque, r.registroTemperatura, a.descricao
 FROM tanque t
 JOIN sensor s ON s.fkTanque = t.idTanque
@@ -112,8 +112,21 @@ ORDER BY
     END,
     r.registroTemperatura DESC;`
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + query);
+    return database.executar(query);
+}
+
+function buscarTotalAlertasDia(){
+    let query = `
+        SELECT DATE_FORMAT(r.DataHora, '%d/%m') AS date, COUNT(a.idAlerta) as totalAlertas FROM Alerta a
+        JOIN RegistroTemperatura r
+        ON r.idRegistro = a.fkRegistroTemperatura
+        GROUP BY DATE_FORMAT(r.DataHora, '%d/%m')
+        ORDER BY DATE_FORMAT(r.DataHora, '%d/%m') DESC
+        LIMIT 10;
+    `
+    
+    return database.executar(query);
 }
 
 
@@ -127,5 +140,6 @@ module.exports = {
     buscarModeloSensor,
     buscarInstalacao,
     buscarCapacidade,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarTotalAlertasDia
 };

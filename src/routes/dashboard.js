@@ -41,6 +41,10 @@ router.get("/buscarTempoReal", function (req, res) {
    dashController.buscarMedidasEmTempoReal(req,res)
 });
 
+router.get("/buscarTotalAlertasDia", function (req, res) {
+   dashController.buscarTotalAlertasDia(req,res)
+});
+
 
 module.exports = router;
 
