@@ -129,6 +129,78 @@ function buscarTotalAlertasDia(){
     return database.executar(query);
 }
 
+function buscarTotalTanques(){
+    let query = `
+        SELECT COUNT(*) AS totalTanques
+        FROM tanque;
+    `
+
+    return database.executar(query);
+}
+
+function buscarSensoresOffline(){
+
+    let query = `
+        SELECT DISTINCT t.idTanque
+        FROM tanque t
+        JOIN sensor s
+            ON s.fkTanque = t.idTanque
+        LEFT JOIN registroTemperatura r
+            ON r.fkSensor = s.idSensor
+        WHERE r.RegistroTemperatura IS NULL;
+    `;
+
+    return database.executar(query);
+}
+
+function buscarTanquesRisco(){
+    let query = `
+        SELECT COUNT(DISTINCT t.idTanque) AS tanquesRisco
+        FROM tanque t
+        JOIN sensor s
+            ON s.fkTanque = t.idTanque
+        JOIN registroTemperatura r
+            ON r.fkSensor = s.idSensor
+        WHERE r.RegistroTemperatura < 26
+        OR r.RegistroTemperatura > 30;
+    `
+
+    return database.executar(query);
+}
+
+function buscarStatusViveiro(){
+
+    let query = `
+        SELECT COUNT(*) AS totalRisco
+        FROM alerta
+        WHERE descricao = 'Risco';
+    `;
+
+    return database.executar(query);
+}
+
+function buscarDadosGraficoBarra(){
+
+    let query = `
+        SELECT 
+            t.idTanque,
+            r.RegistroTemperatura
+        FROM tanque t
+        JOIN sensor s
+            ON s.fkTanque = t.idTanque
+        JOIN registroTemperatura r
+            ON r.fkSensor = s.idSensor
+        WHERE r.idRegistro = (
+            SELECT MAX(r2.idRegistro)
+            FROM registroTemperatura r2
+            WHERE r2.fkSensor = s.idSensor
+        )
+        ORDER BY t.idTanque;
+    `;
+
+    return database.executar(query);
+}
+
 
 module.exports = {
     buscarRegistroTanque,
@@ -141,5 +213,10 @@ module.exports = {
     buscarInstalacao,
     buscarCapacidade,
     buscarMedidasEmTempoReal,
-    buscarTotalAlertasDia
+    buscarTotalAlertasDia,
+    buscarTotalTanques,
+    buscarSensoresOffline,
+    buscarTanquesRisco,
+    buscarStatusViveiro,
+    buscarDadosGraficoBarra
 };

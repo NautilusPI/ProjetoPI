@@ -621,3 +621,7 @@ body {
         height: 240px;
     }
 }
+
+.CorStatus {
+    color: var(--primaria);
+}

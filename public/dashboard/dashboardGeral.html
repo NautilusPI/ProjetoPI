@@ -1,325 +1,381 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sua dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/5fcf1c6510.js" crossorigin="anonymous"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/5fcf1c6510.js"
+      crossorigin="anonymous"
+    ></script>
 
-    <link rel="stylesheet" href="../css/dash.css">
-</head>
+    <link rel="stylesheet" href="../css/dash.css" />
+  </head>
 
-<body>
-
+  <body>
     <div class="alert-container" id="alertas">
-        <div class="alerta">
-            <i class="fa-solid fa-circle-exclamation" onclick="abrirAlerta()"></i>
-            <div>
-                <span class="titulo">Risco na criação</span>
-                <span>O tanque 4 está fora da temperatura ideal</span>
-            </div>
-            <i class="fa-solid fa-xmark" onclick="fecharAlerta()"></i>
+      <div class="alerta">
+        <i class="fa-solid fa-circle-exclamation" onclick="abrirAlerta()"></i>
+        <div>
+          <span class="titulo">Risco na criação</span>
+          <span>O tanque 4 está fora da temperatura ideal</span>
         </div>
-
+        <i class="fa-solid fa-xmark" onclick="fecharAlerta()"></i>
+      </div>
     </div>
     <div class="navbar">
-        <div class="navlink">
-            <div class="logo">
-                <img src="../assets/Dashboard/logo.png" alt="">
-            </div>
-            <a class="link" href="../index.html">Inicio</a>
-            <a class="link" href="../calculadora.html">Simulador</a>
-            <a class="link" href="dashboardGeral.html">Dashboard</a>
-            <a class="link" href="../testeIA.html">Suporte</a>
-
+      <div class="navlink">
+        <div class="logo">
+          <img src="../assets/Dashboard/logo.png" alt="" />
         </div>
-        <div class="forms">
-            <button class="vazado"><a href="../login.html">Entre</a></button>
-            <button class="preenchido"><a href="../cadastro.html">Cadastre-se</a> </button>
-        </div>
+        <a class="link" href="../index.html">Inicio</a>
+        <a class="link" href="../calculadora.html">Simulador</a>
+        <a class="link" href="dashboardGeral.html">Dashboard</a>
+        <a class="link" href="../testeIA.html">Suporte</a>
+      </div>
+      <div class="forms">
+        <button class="vazado"><a href="../login.html">Entre</a></button>
+        <button class="preenchido">
+          <a href="../cadastro.html">Cadastre-se</a>
+        </button>
+      </div>
     </div>
     <div class="container-externo">
-        <div class="container">
-            <div class="topo">
-                <div class="topoEsquerda">
-                    <span>Dashboard</span>
-                    <select name="" id="" onchange="window.location = 'dashboardTanque.html'">
-                        <option value="">Visão geral</option>
-                        <option value="">Tanque 1</option>
-                        <option value="">Tanque 2</option>
-                        <option value="">Tanque 3</option>
-                        <option value="">Tanque 4</option>
-                        <option value="">Tanque 5</option>
-                        <option value="">Tanque 6</option>
-                    </select>
-                </div>
-
-            </div>
-            <div class="kpis">
-                <div class="card">
-                    <div class="topoCard">
-                        <span>Tanques em sua criação</span>
-                        <img src="../assets/Dashboard/tanque-de-agua.png" alt="">
-                    </div>
-                    <div class="numeroCard">
-                        <span>18</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="topoCard">
-                        <span>Sensores offline</span>
-
-                        <img src="../assets/Dashboard/sensor-de-temperatura.png" alt="">
-                    </div>
-                    <div class="numeroCard">
-                        <span>1</span>
-                    </div>
-                    <div class="descricao">
-                        <span>Tanque: 1</span>
-                    </div>
-
-                </div>
-                <div class="card">
-                    <div class="topoCard">
-                        <span>Tanques fora da faixa ideal</span>
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                    </div>
-                    <div class="numeroCard">
-                        <span>3</span>
-                        <div class="statusCard">
-                            <span>Risco</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="card">
-                    <div class="topoCard">
-                        <span style="color: #F00000;">Status do Viveiro</span>
-                        <i style="color:#F00000" class="fa-solid fa-fish-fins"></i>
-                    </div>
-                    <div class="numeroCard">
-                        <span style="color: #F00000;">Critico</span>
-                    </div>
-                </div>
-            </div>
-            <div class="graficos">
-                <div class="graficoBarra">
-                    <div class="topoGraficoBarra">
-                        <p>Temperatura por tanque</p>
-                        <select name="" id="">
-                            <option value="">19:00 (Agora)</option>
-                            <option value="">18:00</option>
-                            <option value="">17:00</option>
-                            <option value="">16:00</option>
-                            <option value="">15:00</option>
-                            <option value="">14:00</option>
-                            <option value="">13:00</option>
-                            <option value="">12:00</option>
-                        </select>
-                    </div>
-
-                    <div class="grafico">
-                        <canvas id="graficoBarra"></canvas>
-                    </div>
-                </div>
-                <div class="graficosEtanques">
-                    <div class="graficoLinha">
-                        <p>Histórico de alertas por dia</p>
-                        <div class="grafico"><canvas id="graficoLinha"></canvas></div>
-                    </div>
-                    <div class="tanques">
-                        <p>Tanques</p>
-                        <span>Temperatura ideal: 26.0 ºC - 30.0 ºC</span>
-                        <div id="div_tanqueLista" class="tanquesLista">
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <div class="topo">
+          <div class="topoEsquerda">
+            <span>Dashboard</span>
+            <select
+              name=""
+              id=""
+              onchange="window.location = 'dashboardTanque.html'"
+            >
+              <option value="">Visão geral</option>
+              <option value="">Tanque 1</option>
+              <option value="">Tanque 2</option>
+              <option value="">Tanque 3</option>
+              <option value="">Tanque 4</option>
+              <option value="">Tanque 5</option>
+              <option value="">Tanque 6</option>
+            </select>
+          </div>
         </div>
+        <div class="kpis">
+          <div class="card">
+            <div class="topoCard">
+              <span>Tanques em sua criação</span>
+              <img src="../assets/Dashboard/tanque-de-agua.png" alt="" />
+            </div>
+            <div class="numeroCard">
+              <span id="kpiTanques"></span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="topoCard">
+              <span>Sensores offline</span>
+
+              <img src="../assets/Dashboard/sensor-de-temperatura.png" alt="" />
+            </div>
+            <div class="numeroCard">
+              <span id="kpiOffline"></span>
+            </div>
+            <div class="descricao" id="statusOffline" style="display: none">
+              <span>Tanques: <span id="tanquesOffline"></span></span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="topoCard">
+              <span>Tanques fora da faixa ideal</span>
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div class="numeroCard">
+              <span id="kpiRisco"></span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="topoCard">
+              <span style="color: #2b8997" id="statusViveiro" 
+                >Status do Viveiro</span
+              >
+              <i 
+                class="fa-solid fa-fish-fins"></i>
+            </div>
+            <div class="numeroCard">
+              <span id="kpiStatus" class="CorStatus"></span>
+            </div>
+          </div>
+        </div>
+        <div class="graficos">
+          <div class="graficoBarra">
+            <div class="topoGraficoBarra">
+              <p>Temperatura por tanque</p>
+              <select name="" id="">
+                <option value="">19:00 (Agora)</option>
+                <option value="">18:00</option>
+                <option value="">17:00</option>
+                <option value="">16:00</option>
+                <option value="">15:00</option>
+                <option value="">14:00</option>
+                <option value="">13:00</option>
+                <option value="">12:00</option>
+              </select>
+            </div>
+
+            <div class="grafico">
+              <canvas id="graficoBarra"></canvas>
+            </div>
+          </div>
+          <div class="graficosEtanques">
+            <div class="graficoLinha">
+              <p>Histórico de alertas por dia</p>
+              <div class="grafico"><canvas id="graficoLinha"></canvas></div>
+            </div>
+            <div class="tanques">
+              <p>Tanques</p>
+              <span>Temperatura ideal: 26.0 ºC - 30.0 ºC</span>
+              <div id="div_tanqueLista" class="tanquesLista"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/dashGeral.js"></script>
+  <script>
+    window.onload = exibirGraficoLinha();
+    function exibirGraficoLinha() {
+      console.log("Iniciando processo para exibição do gráfico de linha...");
+      obterDadosGraficoLinha();
+      setInterval(obterDadosGraficoLinha, 1000);
+    }
 
-    
-    const ctx = document.getElementById('graficoBarra');
+    fetch("/dash/graficoBarra")
+      .then(function (resposta) {
+        return resposta.json();
+      })
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'],
+      .then(function (dados) {
+        let labels = [];
+        let temperaturas = [];
+
+        for (let i = 0; i < dados.length; i++) {
+          labels.push(dados[i].idTanque);
+
+          temperaturas.push(dados[i].RegistroTemperatura);
+        }
+
+        const ctx = document.getElementById("graficoBarra");
+
+        new Chart(ctx, {
+          type: "bar",
+
+          data: {
+            labels: labels,
+
             datasets: [
-                {
-                    label: 'Temperatura',
-                    data: [24.3, 26.1, 25.4, 27.8, 29.0, 28.2, 30.5, 31.2, 29.7, 32.4, 30.8, 28.9, 27.3, 26.5, 25.9],
-                    backgroundColor: '#4DA3B8',
-                    borderRadius: 4,
-                    barThickness: 30
-                },
+              {
+                label: "Temperatura",
 
-                {
-                    type: 'line',
-                    data: [33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33],
-                    borderColor: '#E74C3C',
-                    borderWidth: 2,
-                    borderDash: [6, 6],
-                    pointRadius: 0
-                },
+                data: temperaturas,
 
-                {
-                    type: 'line',
-                    data: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
-                    borderColor: '#F39C12',
-                    borderWidth: 2,
-                    borderDash: [6, 6],
-                    pointRadius: 0
-                },
-                
-                {
-                    type: 'line',
-                    data: [26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26],
-                    borderColor: '#F39C12',
-                    borderWidth: 2,
-                    borderDash: [6, 6],
-                    pointRadius: 0
-                },
+                backgroundColor: "#4DA3B8",
 
-                {
-                    type: 'line',
-                    data: [23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23],
-                    borderColor: '#E74C3C',
-                    borderWidth: 2,
-                    borderDash: [6, 6],
-                    pointRadius: 0
-                }
-            ]
-        },
+                borderRadius: 4,
 
-        options: {
+                barThickness: 30,
+              },
+
+              {
+                type: "line",
+
+                data: labels.map(() => 33),
+
+                borderColor: "#E74C3C",
+
+                borderWidth: 2,
+
+                borderDash: [6, 6],
+
+                pointRadius: 0,
+              },
+
+              {
+                type: "line",
+
+                data: labels.map(() => 30),
+
+                borderColor: "#F39C12",
+
+                borderWidth: 2,
+
+                borderDash: [6, 6],
+
+                pointRadius: 0,
+              },
+
+              {
+                type: "line",
+
+                data: labels.map(() => 26),
+
+                borderColor: "#F39C12",
+
+                borderWidth: 2,
+
+                borderDash: [6, 6],
+
+                pointRadius: 0,
+              },
+
+              {
+                type: "line",
+
+                data: labels.map(() => 23),
+
+                borderColor: "#E74C3C",
+
+                borderWidth: 2,
+
+                borderDash: [6, 6],
+
+                pointRadius: 0,
+              },
+            ],
+          },
+
+          options: {
             responsive: true,
+
             maintainAspectRatio: false,
 
             plugins: {
-                legend: {
-                    display: false
-                }
+              legend: {
+                display: false,
+              },
             },
 
             scales: {
-                x: {
-                    grid: {
-                        display: false
-                    }
+              x: {
+                grid: {
+                  display: false,
                 },
-                y: {
-                    beginAtZero: true,
-                    min: 20,
-                    grid: {
-                        color: '#eee'
-                    }
-                }
-            }
-        }
-    });
+              },
+
+              y: {
+                beginAtZero: true,
+
+                min: 20,
+
+                grid: {
+                  color: "#eee",
+                },
+              },
+            },
+          },
+        });
+      });
 
     window.onload = exibirGraficoLinha();
 
     function exibirGraficoLinha() {
-        console.log('Iniciando processo para exibição do gráfico de linha...');
-        obterDadosGraficoLinha();
-        setInterval(obterDadosGraficoLinha, 1000);
+      console.log("Iniciando processo para exibição do gráfico de linha...");
+      obterDadosGraficoLinha();
+      setInterval(obterDadosGraficoLinha, 1000);
     }
 
-    function obterDadosGraficoLinha(){
-        fetch(`/dash/buscarTotalAlertasDia`, {cache: 'no-store'}).then(function (response){
-            if (response.ok) {
-                response.json().then(function (resposta){
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
+    function obterDadosGraficoLinha() {
+      fetch(`/dash/buscarTotalAlertasDia`, { cache: "no-store" })
+        .then(function (response) {
+          if (response.ok) {
+            response.json().then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+              resposta.reverse();
 
-                    plotarGraficoLinha(resposta);
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+              plotarGraficoLinha(resposta);
             });
+          } else {
+            console.error("Nenhum dado encontrado ou erro na API");
+          }
+        })
+        .catch(function (error) {
+          console.error(
+            `Erro na obtenção dos dados p/ gráfico: ${error.message}`,
+          );
+        });
     }
 
-    function plotarGraficoLinha(resposta){
-        console.log('iniciando plotagem do gráfico...');
+    function plotarGraficoLinha(resposta) {
+      console.log("iniciando plotagem do gráfico...");
 
-        let labels = [];
+      let labels = [];
 
-        let dados= {
-            labels: labels,
-            datasets: [{
-                label: 'Quantidade de Alertas',
-                data: [],
-                borderWidth: 2,
-                borderColor: '#4DA3B8',
-                tension: 0.4
-            }],
-            options: {
-            responsive: true,
-            maintainAspectRatio: false,
+      let dados = {
+        labels: labels,
+        datasets: [
+          {
+            label: "Quantidade de Alertas",
+            data: [],
+            borderWidth: 2,
+            borderColor: "#4DA3B8",
+            tension: 0.4,
+          },
+        ],
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
 
-            plugins: {
-                legend: {
-                    display: false
-                }
+          plugins: {
+            legend: {
+              display: false,
             },
-            scales: {
-                y: {
-                    min: 0,
-                    max: 50,
-                    ticks: {
-                        stepSize: 2
-                    },
-                    beginAtZero: true,
-                    grid: {
-                        color: '#eee'
-                    }
-                }
-            }
-        }
-        };
+          },
+          scales: {
+            y: {
+              min: 0,
+              max: 50,
+              ticks: {
+                stepSize: 2,
+              },
+              beginAtZero: true,
+              grid: {
+                color: "#eee",
+              },
+            },
+          },
+        },
+      };
 
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
+      console.log("----------------------------------------------");
+      console.log(
+        'Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":',
+      );
+      console.log(resposta);
 
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.date);
-            dados.datasets[0].data.push(registro.totalAlertas);
-            
-        }
+      for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labels.push(registro.date);
+        dados.datasets[0].data.push(registro.totalAlertas);
+      }
 
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
+      console.log("----------------------------------------------");
+      console.log("O gráfico será plotado com os respectivos valores:");
+      console.log("Labels:");
+      console.log(labels);
+      console.log("Dados:");
+      console.log(dados.datasets);
+      console.log("----------------------------------------------");
 
-        const config = {
-            type: 'line',
-            data: dados,
-        };
+      const config = {
+        type: "line",
+        data: dados,
+      };
 
-        let myChart = new Chart(
-            document.getElementById(`graficoLinha`),
-            config
-        );
+      let myChart = new Chart(document.getElementById(`graficoLinha`), config);
     }
 
     // const ctx2 = document.getElementById('graficoLinha');
@@ -336,9 +392,6 @@
     //                 borderColor: '#4DA3B8',
     //                 tension: 0.4
     //             },
-
-
-
 
     //         ]
     //     },
@@ -365,13 +418,13 @@
     //         }
     //     }
     // });
-</script>
-<script>
+  </script>
+  <script>
     function fecharAlerta() {
-        alertas.innerHTML = ``
+      alertas.innerHTML = ``;
     }
     function abrirAlerta() {
-        alertas.innerHTML += `
+      alertas.innerHTML += `
         <div class="alerta">
              <i class="fa-solid fa-circle-exclamation" ></i>
             <div>
@@ -380,37 +433,35 @@
             </div>
             <i class="fa-solid fa-xmark" onclick="fecharAlerta()"></i>
            </div>
-        `
+        `;
     }
 
     function carregarMedidasTempoReal() {
-        fetch("/dash/buscarTempoReal").then(res => res.json())
-            .then(resultado => {
-                let tanque = [];
-                let registro = [];
-                let alerta = [];
+      fetch("/dash/buscarTempoReal")
+        .then((res) => res.json())
+        .then((resultado) => {
+          let tanque = [];
+          let registro = [];
+          let alerta = [];
 
-                resultado.forEach(item => {
-                    tanque.push(item.nomeTanque);
-                    registro.push(item.registroTemperatura);
-                    alerta.push(item.descricao);
-                });
+          resultado.forEach((item) => {
+            tanque.push(item.nomeTanque);
+            registro.push(item.registroTemperatura);
+            alerta.push(item.descricao);
+          });
 
+          for (let i = 0; i < tanque.length; i++) {
+            let corStatus = "";
+            if (
+              (registro[i] > 30 && registro[i] <= 35) ||
+              (registro[i] >= 23 && registro[i] < 26)
+            ) {
+              corStatus = `TanqueAtencao`;
+            } else if (registro[i] > 35 || registro[i] < 23) {
+              corStatus = `TanqueRisco`;
+            }
 
-
-                for (let i = 0; i < tanque.length; i++) {
-                    let corStatus = '';
-                    if (
-                        (registro[i] > 30 && registro[i] <= 35) ||
-                        (registro[i] >= 23 && registro[i] < 26)
-
-                    ) {
-                        corStatus = `TanqueAtencao`;
-                    } else if (registro[i] > 35 || registro[i] < 23) {
-                        corStatus = `TanqueRisco`;
-                    }
-
-                    document.getElementById(`div_tanqueLista`).innerHTML += `
+            document.getElementById(`div_tanqueLista`).innerHTML += `
                             <div class="tanqueCard ${corStatus}">
                                 <div class="borda">
                                 </div>
@@ -419,14 +470,11 @@
                                     <span id="tanque9">${registro[i]}</span>
                                     <span class="statusTanque">${alerta[i]}</span>
                                 </div>
-                `
-                }
-            });
+                `;
+          }
+        });
     }
 
     carregarMedidasTempoReal();
-
-
-</script>
-
+  </script>
 </html>

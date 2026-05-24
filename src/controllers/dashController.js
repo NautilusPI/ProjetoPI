@@ -1,100 +1,175 @@
 var dashModel = require("../models/dashModel");
 
 function graficoTanqueEspecifico(req, res) {
+  const tanqueID = req.params.tanqueID;
+  const inicio = req.params.inicio;
+  const fim = req.params.fim;
 
-    const tanqueID = req.params.tanqueID;
-    const inicio = req.params.inicio;
-    const fim = req.params.fim;
+  console.log(tanqueID + " | " + inicio + " | " + fim);
 
-    console.log(tanqueID + " | " + inicio + " | " + fim);
-
-    dashModel.buscarRegistroTanque(tanqueID, inicio, fim)
-        .then((resultado) => {
-            res.status(200).json(resultado);
-        })
-        .catch((erro) => {
-            console.log(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
+  dashModel
+    .buscarRegistroTanque(tanqueID, inicio, fim)
+    .then((resultado) => {
+      res.status(200).json(resultado);
+    })
+    .catch((erro) => {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function alertas7Dias(req, res) {
-
-    dashModel.buscarAlertas7Dias()
-        .then(resultado => {
-            res.status(200).json(resultado);
-        })
-        .catch(erro => {
-            console.log(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
+  dashModel
+    .buscarAlertas7Dias()
+    .then((resultado) => {
+      res.status(200).json(resultado);
+    })
+    .catch((erro) => {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function temperaturaAtual(req, res) {
-    dashModel.buscarTemperaturaAtual()
-        .then(resultado => res.status(200).json(resultado))
-        .catch(erro => res.status(500).json(erro.sqlMessage));
+  dashModel
+    .buscarTemperaturaAtual()
+    .then((resultado) => res.status(200).json(resultado))
+    .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function ultimoAlerta(req, res) {
-    dashModel.buscarUltimoAlerta()
-        .then(resultado => res.status(200).json(resultado))
-        .catch(erro => res.status(500).json(erro.sqlMessage));
+  dashModel
+    .buscarUltimoAlerta()
+    .then((resultado) => res.status(200).json(resultado))
+    .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function statusSensor(req, res) {
-    dashModel.buscarStatusSensor()
-        .then(resultado => res.status(200).json(resultado))
-        .catch(erro => res.status(500).json(erro.sqlMessage));
+  dashModel
+    .buscarStatusSensor()
+    .then((resultado) => res.status(200).json(resultado))
+    .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function StatusTanque(req, res) {
-    dashModel.buscarStatusTanque()
-        .then(resultado => res.status(200).json(resultado))
-        .catch(erro => res.status(500).json(erro.sqlMessage));
+  dashModel
+    .buscarStatusTanque()
+    .then((resultado) => res.status(200).json(resultado))
+    .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function modeloSensor(req, res) {
-    dashModel.buscarModeloSensor()
-        .then(resultado => res.status(200).json(resultado))
-        .catch(erro => res.status(500).json(erro.sqlMessage));
+  dashModel
+    .buscarModeloSensor()
+    .then((resultado) => res.status(200).json(resultado))
+    .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function instalacao(req, res) {
-    dashModel.buscarInstalacao()
-        .then(resultado => res.status(200).json(resultado))
-        .catch(erro => res.status(500).json(erro.sqlMessage));
+  dashModel
+    .buscarInstalacao()
+    .then((resultado) => res.status(200).json(resultado))
+    .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function capacidade(req, res) {
-    dashModel.buscarCapacidade()
-        .then(resultado => res.status(200).json(resultado))
-        .catch(erro => res.status(500).json(erro.sqlMessage));
+  dashModel
+    .buscarCapacidade()
+    .then((resultado) => res.status(200).json(resultado))
+    .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
-function buscarMedidasEmTempoReal(req,res){
-   console.log(req.params.inicio+"   "+req.params.fim)
-   dashModel.buscarMedidasEmTempoReal(req.params.inicio,req.params.fim).then((resultado) => {
-    res.status(200).json(resultado);
-  });
+function buscarMedidasEmTempoReal(req, res) {
+  console.log(req.params.inicio + "   " + req.params.fim);
+  dashModel
+    .buscarMedidasEmTempoReal(req.params.inicio, req.params.fim)
+    .then((resultado) => {
+      res.status(200).json(resultado);
+    });
 }
 
-function buscarTotalAlertasDia(req,res){
-   dashModel.buscarTotalAlertasDia()
-        .then(resultado => res.status(200).json(resultado))
-        .catch(erro => res.status(500).json(erro.sqlMessage));
+function buscarTotalAlertasDia(req, res) {
+  dashModel
+    .buscarTotalAlertasDia()
+    .then((resultado) => res.status(200).json(resultado))
+    .catch((erro) => res.status(500).json(erro.sqlMessage));
+}
+
+function totalTanques(req, res) {
+  dashModel
+    .buscarTotalTanques()
+    .then((resultado) => {
+      res.status(200).json(resultado);
+    })
+    .catch((erro) => {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function sensoresOffline(req, res) {
+  dashModel
+    .buscarSensoresOffline()
+    .then((resultado) => {
+      res.status(200).json(resultado);
+    })
+    .catch((erro) => {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function tanquesRisco(req, res) {
+  dashModel
+    .buscarTanquesRisco()
+    .then((resultado) => {
+      res.status(200).json(resultado);
+    })
+    .catch((erro) => {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function statusViveiro(req, res) {
+  dashModel
+    .buscarStatusViveiro()
+    .then((resultado) => {
+      res.status(200).json(resultado);
+    })
+    .catch((erro) => {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function graficoBarra(req, res) {
+  dashModel
+    .buscarDadosGraficoBarra()
+    .then((resultado) => {
+      res.status(200).json(resultado);
+    })
+    .catch((erro) => {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 module.exports = {
-    graficoTanqueEspecifico,
-    alertas7Dias,
-    temperaturaAtual,
-    ultimoAlerta,
-    statusSensor,
-    StatusTanque,
-    modeloSensor,
-    instalacao,
-    capacidade,
-    buscarMedidasEmTempoReal,
-    buscarTotalAlertasDia
+  graficoTanqueEspecifico,
+  alertas7Dias,
+  temperaturaAtual,
+  ultimoAlerta,
+  statusSensor,
+  StatusTanque,
+  modeloSensor,
+  instalacao,
+  capacidade,
+  buscarMedidasEmTempoReal,
+  buscarTotalAlertasDia,
+  totalTanques,
+  sensoresOffline,
+  tanquesRisco,
+  statusViveiro,
+  graficoBarra,
 };

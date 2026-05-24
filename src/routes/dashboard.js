@@ -45,6 +45,31 @@ router.get("/buscarTotalAlertasDia", function (req, res) {
    dashController.buscarTotalAlertasDia(req,res)
 });
 
+router.get("/totalTanques", function(req, res){
+    dashController.totalTanques(req,res);
+});
+
+router.get("/sensoresOffline", function(req, res){
+    dashController.sensoresOffline(req, res);
+});
+
+router.get("/tanquesRisco", function(req, res){
+    dashController.tanquesRisco(req, res);
+});
+
+router.get("/statusViveiro", function(req, res){
+    dashController.statusViveiro(req, res);
+});
+
+router.get("/sensoresOffline", function(req, res){
+    dashController.sensoresOffline(req, res);
+});
+
+router.get("/graficoBarra", function(req, res){
+
+    dashController.graficoBarra(req, res);
+
+});
 
 module.exports = router;
 
