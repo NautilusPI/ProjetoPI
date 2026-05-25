@@ -43,13 +43,13 @@ fetch("/dash/statusViveiro")
 
     if (total >= 4) {
       status = "Crítico";
-        // document.getElementsByClassName("CorStatusKPI").style.color = "#6bbf59"
+         document.getElementByClassName("CorStatusKPI").style.color = "#6bbf59"
     } else if (total >= 2) {
         status = "Atenção";
-        // document.getElementsByClassName("CorStatusKPI").style.color = "#bfb059"
+         document.getElementByClassName("CorStatusKPI").style.color = "#bfb059"
     } else {
         status = "Estável";
-        // document.getElementsByClassName("CorStatusKPI").style.color = "#bf5959"
+         document.getElementByClassName("CorStatusKPI").style.color = "#bf5959"
     }
 
     document.getElementById("kpiStatus").innerHTML = status;
