@@ -5,35 +5,46 @@ let linhasDeMedidaMinimo = [];
 let faixaSegura = [];
 let min = 50;
 let max = 0;
+let aovivo =false
 function buscarRegistroTanque() {
-  const dataInicio = dataInicioInput.value
-  const dataFim = dataFimInput.value
+  let dataInicio = dataInicioInput.value;
+  let dataFim = dataFimInput.value;
   const temperaturasLista = [];
+  if(aovivoCheck.checked){
+    dataInicio ='aovivo'; 
+    dataFim = 'aovivo'}
   let horasLista = [];
-  fetch(`/dash/graficoTanqueEspecifico/2/${dataInicio}/${dataFim}`).then((dados) => {
-    dados.json().then((registros) => {
-      for (let i = 0; i < registros.length; i++) {
-        let temperatura = registros[i].registroTemperatura
-        temperaturasLista.push(temperatura);
-        if(temperatura < min){
-          min = Number( Number(temperatura).toFixed())
+  fetch(`/dash/graficoTanqueEspecifico/1/${dataInicio}/${dataFim}`).then(
+    (dados) => {
+      dados.json().then((registros) => {
+        for (let i = 0; i < registros.length; i++) {
+          let temperatura = registros[i].registroTemperatura;
+          temperaturasLista.push(temperatura);
+          if (temperatura < min) {
+            min = Number(Number(temperatura).toFixed());
+          }
+          if (temperatura > max) {
+            max = Number(Number(temperatura).toFixed());
+          }
+          let dataBanco = registros[i].dataHora;
+          
+          const data = new Date(dataBanco);
+          const hora = data.toLocaleString("pt-BR", {
+            timeZone: "America/Sao_Paulo",
+          }).substring(12,17);
+          horasLista.push(hora);
+          linhasDeMedidaMaxima.push(33);
+          linhasDeMedidaRiscoQuente.push(30);
+          linhasDeMedidaRiscoFrio.push(25);
+          faixaSegura.push(25);
+          linhasDeMedidaMinimo.push(23);
         }
-        if(temperatura >max){
-          max = Number(Number(temperatura).toFixed())
+        if (registros.length == temperaturasLista.length) {
+          chamarGrafico(temperaturasLista, horasLista);
         }
-        let hora = registros[i].dataHora.substring(11, 16);
-        horasLista.push(hora);
-        linhasDeMedidaMaxima.push(33);
-        linhasDeMedidaRiscoQuente.push(30);
-        linhasDeMedidaRiscoFrio.push(25);
-        faixaSegura.push(25);
-        linhasDeMedidaMinimo.push(23);
-      }
-      if (registros.length == temperaturasLista.length) {
-        chamarGrafico(temperaturasLista, horasLista);
-      }
-    });
-  });
+      });
+    },
+  );
 }
 
 function chamarGrafico(temps, horas) {
