@@ -2,14 +2,21 @@ var database = require("../database/config");
 
 
 function buscarRegistroTanque(tanqueID, dataInicio, dataFim){
-
+    let where =''
+    console.log(dataFim)
+    if(dataInicio == 'aovivo' || dataFim == 'aovivo' ){
+        where = 'order by DataHora desc limit 15'
+    }else{
+        where =`and dataHora between '${dataInicio}' and '${dataFim}'`
+    }
+   
     let query = `
         select registroTemperatura, dataHora 
         from registroTemperatura 
         join sensor on fkSensor = idSensor 
         join tanque on fkTanque = idTanque 
         where idTanque = ${tanqueID}
-        and dataHora between '${dataInicio}' and '${dataFim}';
+        ${where};
     `;
 
     return database.executar(query);

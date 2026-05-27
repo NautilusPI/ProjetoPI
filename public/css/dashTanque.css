@@ -375,3 +375,42 @@ body {
 
 
 }
+.checkBox {
+    display: flex;
+    align-items: center;
+    color: var(--primaria);
+    margin: 0px;
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: -5px;
+    box-shadow: none;
+
+    input {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+
+        border: 2px solid var(--primaria);
+        border-radius: 10px;
+
+        cursor: pointer;
+        transition: 0.2s;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    input:checked {
+        background: var(--primaria);
+        border-color: var(--primaria);
+    }
+
+    input:checked::after {
+        content: "✓";
+        color: white;
+        font-size: 15px;
+        position: absolute;
+     
+    }
+}
