@@ -125,4 +125,9 @@ input::placeholder{
     width: 430px;
 }
 
+.mensagem_erro{
+    color: rgba(255, 0, 0, 0.462);
+    font-size: 12px;
+}
+
 

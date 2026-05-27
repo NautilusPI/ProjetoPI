@@ -14,7 +14,6 @@ CREATE TABLE Usuario (
 	Nome VARCHAR(45) NOT NULL,
 	Email VARCHAR(80) NOT NULL,
 	Senha VARCHAR(15) NOT NULL,
-	Telefone CHAR(11),
     CPF CHAR(11) NOT NULL,
 	fkEmpresa INT,
 	CONSTRAINT fkEmpresa_const FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)

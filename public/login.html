@@ -12,20 +12,21 @@
             <img src="./assets/Login/logo.png" alt="" class="logo">
            
             <div class="campo">
-                <span>Email</span>
-                <input type="text" placeholder="Insira seu email" style="font-size: 15px; color: #2B8997;">
+                <span>Email <span style="color:red">*</span><span id="erroEmail"></span></span>
+                <input type="text" id="email_input" placeholder="Insira seu email" style="font-size: 15px; color: #2B8997;">
             </div>
-            
+ 
             <div class="campo">
-                <span>Senha</span>
-                <input type="password" placeholder="Insira sua senha" style="font-size: 15px; color: #2B8997;">
+                <span>Senha <span style="color:red">*</span><span id="erroSenha"></span></span>
+                <input type="password" id="senha_input" placeholder="Insira sua senha" style="font-size: 15px; color: #2B8997;">
+                <span id="erro_api"></span>
             </div>
 
             <div class="campo">
                 <a href="" style="text-decoration: none; color:#2B8997; font-size: 15px; font-weight: bold; font-size: 1.5vh;">Esqueceu a senha?</a>
             </div>
 
-            <a href="dashboard/dashboardGeral.html" class="entrar" style="margin-top: 20px;">Entrar</a>
+            <button onclick="entrar()" class="entrar" style="margin-top: 20px;">Entrar</button>
             <p><span style="color: #323D4C; font-size: 11px;">Não tem uma conta?</span> <a href="cadastro.html" style="color: #2B8997; font-size: 11px; text-decoration: none; font-weight: bold;">Cadastre-se</a> </p>
         
         </div>
@@ -35,3 +36,77 @@
     </div>
 </body>
 </html>
+
+ <script>
+ 
+    function entrar() {
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+ 
+        var temErro = false;
+
+        // verificações
+ 
+        if (emailVar == ``) {
+            erroEmail.innerHTML = `<span class="mensagem_erro"> ⓘ Este campo não pode estar vazio</span>`;
+            email_input.style.border = `1px solid red`;
+            temErro = true;
+        } else {
+            erroEmail.innerHTML = '';
+            email_input.style.border = `1px solid green`;
+        }
+ 
+        if (senhaVar == '') {
+            erroSenha.innerHTML = `<span class="mensagem_erro"> ⓘ Informe sua senha</span>`;
+            senha_input.style.border = `1px solid red`;
+            temErro = true;
+        } else {
+            erroSenha.innerHTML = '';
+            senha_input.style.border = `1px solid green`;
+        }
+
+        if (!temErro) {
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            })
+            .then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!");
+ 
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+ 
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO  = json.nome;
+                        sessionStorage.ID_USUARIO    = json.id;
+                        erro_api.innerHTML = ``;
+ 
+                        setTimeout(function () {
+                            window.location = "../dashboard/dashboardGeral.html";
+                        }, 1000);
+                    });
+                } else {
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        erro_api.innerHTML = `<span class="mensagem_erro"> ⓘ ${texto}</span>`;
+                    });
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                erro_api.innerHTML = `<span class="mensagem_erro"> ⓘ Não foi possível conectar ao servidor</span>`;
+            });
+        }
+ 
+        return false;
+    }
+ 
+</script>
