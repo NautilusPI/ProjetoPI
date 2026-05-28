@@ -328,7 +328,6 @@ body {
         }
 
         .grafico {
-
             width: 95%;
             height: 200px;
             display: flex;
@@ -368,8 +367,6 @@ body {
     flex-wrap: wrap;
     height: 160px;
     overflow-y: scroll;
-
-
 }
     /* largura do scroll */
     .tanquesLista::-webkit-scrollbar {
