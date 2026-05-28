@@ -28,13 +28,18 @@
         <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
         <br><br>
         <button onclick="gerarResposta()">Gerar Resposta</button>
-        <h3>Resposta da IA:</h3>
+        
         <div id="resposta"></div>
     </div>
-
+    <div id="loading">
+        <img src="assets/Home/d993b63388e95fb3e0afd500bd2aef52.gif" alt="">
+    </div>
+    
     <script>
-         resposta.style.display = 'block';
+        
+         
         async function gerarResposta() {
+            loading.style.display = 'flex'
             const pergunta = document.getElementById('pergunta').value;
 
             const response = await fetch('/perguntar', {
@@ -48,6 +53,8 @@
             const data = await response.json();
 
             resposta.style.display = 'block';
+            loading.style.display = 'none'
+
             document.getElementById('resposta').innerText = data.resultado;
         }
 
