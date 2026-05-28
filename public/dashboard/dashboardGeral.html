@@ -285,7 +285,7 @@
     function exibirGraficoLinha() {
       console.log("Iniciando processo para exibição do gráfico de linha...");
       obterDadosGraficoLinha();
-      setInterval(obterDadosGraficoLinha, 1000);
+      setInterval(obterDadosGraficoLinha, 7000);
     }
 
     function obterDadosGraficoLinha() {
@@ -297,6 +297,7 @@
               resposta.reverse();
 
               plotarGraficoLinha(resposta);
+
             });
           } else {
             console.error("Nenhum dado encontrado ou erro na API");
@@ -378,46 +379,6 @@
       let myChart = new Chart(document.getElementById(`graficoLinha`), config);
     }
 
-    // const ctx2 = document.getElementById('graficoLinha');
-
-    // new Chart(ctx2, {
-    //     type: 'line',
-    //     data: {
-    //         labels: ['12/04', '13/04', '14/04', '15/04', '16/04', '17/04', '18/04', '19/04', '20/04'],
-    //         datasets: [
-    //             {
-    //                 label: 'Quantidade de Alertas:',
-    //                 data: [2, 6, 3, 2, 7, 1, 0, 1, 2],
-    //                 borderWidth: 2,
-    //                 borderColor: '#4DA3B8',
-    //                 tension: 0.4
-    //             },
-
-    //         ]
-    //     },
-
-    //     options: {
-    //         responsive: true,
-    //         maintainAspectRatio: false,
-
-    //         plugins: {
-    //             legend: {
-    //                 display: false
-    //             }
-    //         },
-
-    //         scales: {
-    //             y: {
-    //                 min: 0,
-
-    //                 beginAtZero: true,
-    //                 grid: {
-    //                     color: '#eee'
-    //                 }
-    //             }
-    //         }
-    //     }
-    // });
   </script>
   <script>
     function fecharAlerta() {
@@ -440,16 +401,20 @@
       fetch("/dash/buscarTempoReal")
         .then((res) => res.json())
         .then((resultado) => {
+
+        console.log(`Dados recebidos: ${JSON.stringify(resultado)}`);
+
           let tanque = [];
           let registro = [];
           let alerta = [];
 
-          resultado.forEach((item) => {
-            tanque.push(item.nomeTanque);
-            registro.push(item.registroTemperatura);
-            alerta.push(item.descricao);
-          });
+          for(i = 0; i < resultado.length; i++){
+            tanque.push(resultado[i].nomeTanque);
+            registro.push(resultado[i].registroTemperatura);
+            alerta.push(resultado[i].descricao);
+          } 
 
+          
           for (let i = 0; i < tanque.length; i++) {
             let corStatus = "";
             if (
@@ -469,13 +434,19 @@
                                     <p>${tanque[i]}</p>
                                     <span id="tanque9">${registro[i]}</span>
                                     <span class="statusTanque">${alerta[i]}</span>
-                                </div>
-                `;
-          }
-        });
-    }
+                                    </div>
+                                    `;
+                                }
+                            });
+
+                            console.log('tanque: ' + tanque);
+                            console.log('registro: ' + registro);
+                            console.log('alerta: ' + alerta);
+
+                        }
 
     carregarMedidasTempoReal();
+    setInterval(carregarMedidasTempoReal, 1000);
 
      if(sessionStorage.EMAIL_USUARIO == 'cesar@nautilus.suporte'){
            navlink.innerHTML += `

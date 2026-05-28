@@ -99,25 +99,25 @@ function buscarCapacidade(){
 function buscarMedidasEmTempoReal() {
 
     var query = `
-   SELECT t.nomeTanque, r.registroTemperatura, a.descricao
-FROM tanque t
-JOIN sensor s ON s.fkTanque = t.idTanque
-JOIN registroTemperatura r ON r.fkSensor = s.idSensor
-LEFT JOIN alerta a
+    SELECT t.nomeTanque, r.registroTemperatura, a.descricao 
+    FROM tanque t
+    JOIN sensor s ON s.fkTanque = t.idTanque
+    JOIN registroTemperatura r ON r.fkSensor = s.idSensor
+    LEFT JOIN alerta a
     ON a.fkRegistroTemperatura = r.idRegistro
-WHERE r.idRegistro = (
+    WHERE r.idRegistro = (
     SELECT MAX(r2.idRegistro)
     FROM registroTemperatura r2
     JOIN sensor s2 ON s2.idSensor = r2.fkSensor
     WHERE s2.fkTanque = t.idTanque
-)
-ORDER BY 
-    CASE
-        WHEN a.descricao = 'Risco' THEN 1
-        WHEN a.descricao = 'Atenção' THEN 2
-        WHEN a.descricao = 'Estável' THEN 3
-    END,
-    r.registroTemperatura DESC;`
+    )
+    ORDER BY 
+        CASE
+            WHEN a.descricao = 'Risco' THEN 1
+            WHEN a.descricao = 'Atenção' THEN 2
+            WHEN a.descricao = 'Estável' THEN 3
+        END,
+        r.registroTemperatura DESC;`
 
     console.log("Executando a instrução SQL: \n" + query);
     return database.executar(query);
