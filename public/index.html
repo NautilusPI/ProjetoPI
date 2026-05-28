@@ -8,16 +8,16 @@
 </head>
 <body>
     <div class="navbar">
-    <div class="navlink">
+    <div class="navlink" id="navlink">
       <div class="logo">
         <img src="./assets/Home/logo.png" alt=""> 
       </div>
         <a class="link" href="index.html">Inicio</a> 
         <a class="link" href="calculadora.html">Simulador</a>
         <a class="link" href="dashboard/dashboardGeral.html">Dashboard</a>
-            <a class="link" href="testeIA.html">Suporte</a>
+      
 
-      </div>
+    </div>
       <div class="forms">
         <button class="vazado"><a href="login.html">Entre</a></button>
         <button class="preenchido"><a href="cadastro.html">Cadastre-se</a> </button>
@@ -215,6 +215,12 @@
         else {erroMensagem.innerHTML = ``; input_mensagem.style.border = "1px solid green"}
         
     }
+    if(sessionStorage.EMAIL_USUARIO == 'cesar@nautilus.suporte'){
+           navlink.innerHTML += `
+            <a class="link" href="testeIA.html">Suporte</a>
+           
+           `
 
+    }
     
 </script>

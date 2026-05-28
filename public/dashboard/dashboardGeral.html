@@ -28,14 +28,14 @@
       </div>
     </div>
     <div class="navbar">
-      <div class="navlink">
+      <div class="navlink" id="navlink">
         <div class="logo">
           <img src="../assets/Dashboard/logo.png" alt="" />
         </div>
         <a class="link" href="../index.html">Inicio</a>
         <a class="link" href="../calculadora.html">Simulador</a>
         <a class="link" href="dashboardGeral.html">Dashboard</a>
-        <a class="link" href="../testeIA.html">Suporte</a>
+        
       </div>
       <div class="forms">
         <button class="vazado"><a href="../login.html">Entre</a></button>
@@ -476,5 +476,13 @@
     }
 
     carregarMedidasTempoReal();
+
+     if(sessionStorage.EMAIL_USUARIO == 'cesar@nautilus.suporte'){
+           navlink.innerHTML += `
+            <a class="link" href="testeIA.html">Suporte</a>
+           
+           `
+
+    }
   </script>
 </html>
