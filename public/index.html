@@ -14,13 +14,12 @@
       </div>
         <a class="link" href="index.html">Inicio</a> 
         <a class="link" href="calculadora.html">Simulador</a>
-        <a class="link" href="dashboard/dashboardGeral.html">Dashboard</a>
-      
-
     </div>
       <div class="forms">
-        <button class="vazado"><a href="login.html">Entre</a></button>
-        <button class="preenchido"><a href="cadastro.html">Cadastre-se</a> </button>
+        <a href="login.html"><button class="preenchido" id="btnEntrar">Entre</button></a>
+        <a href="cadastro.html"><button class="vazado" id="btnCadastrar">Cadastre-se</button></a>
+        <button class="preenchido" onclick="window.location = './areaUsuario.html'" style="display: none;" id="btnUser">Espaço do Cliente</button>
+        <button class="vazado" onclick="deslogar()" style="display: none;" id="btnSair">Sair</button>
       </div>
     </div>
 
@@ -220,7 +219,19 @@
             <a class="link" href="testeIA.html">Suporte</a>
            
            `
-
     }
     
+    function alterarBotao() {
+    if (sessionStorage.ID_USUARIO) {
+      document.getElementById("btnEntrar").style.display = "none";
+      document.getElementById("btnCadastrar").style.display = "none";
+      document.getElementById("btnSair").style.display = "block";
+      document.getElementById("btnUser").style.display = "block";
+    }
+  }
+
+  function deslogar() {
+    sessionStorage.clear();
+    window.location = "index.html"
+  }
 </script>

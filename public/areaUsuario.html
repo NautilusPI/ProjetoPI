@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espaço do Cliente</title>
+    <link rel="stylesheet" href="./css/usuario.css">
+</head>
+<body>
+    <div class="navbar">
+    <div class="navlink" id="navlink">
+      <div class="logo">
+        <img src="./assets/Home/logo.png" alt=""> 
+      </div>
+        <a class="link" href="index.html">Inicio</a> 
+        <a class="link" href="calculadora.html">Simulador</a>
+    </div>
+      <div class="forms">
+        <button class="preenchido" onclick="window.location = './areaUsuario.html'">Espaço do Cliente</button>
+        <button class="vazado" onclick="deslogar()">Sair</button>
+      </div>
+    </div>
+
+    <main>
+        <div class="container-titulo">
+            <div class="titulo">Olá, como podemos te ajudar?</div>
+        </div>
+
+        <div class="container-cards">
+            <button class="cards" onclick="exibirA()">
+                <img src="./assets/Usuário/dashboard.png" alt="" class="icon">
+                <div class="titulo">Dashboard</div>
+            </button>
+            <span class="descricao" id="conteudoA" style="display: none;"> <p>O painel de temperatura já está atualizado e pronto para você. <br>
+            <br>É essencial acompanhar as variações de temperatura dos seus tanques <br> diariamente para garantir a qualidade
+            do seu produto.</p> <div class="link"><a href="./dashboard/dashboardGeral.html">Acesse aqui a dashboard.</a></div>
+            </span>
+
+            <button class="cards" onclick="exibirB()">
+                <img src="./assets/Usuário/manual.png" alt="" class="icon">
+                <div class="titulo">Manual de Instalação</div>
+            </button>
+            <span class="descricao" id="conteudoB" style="display: none;"> <p>Este manual de instalação foi feito para ajudar você a configurar <br>seus sensores de temperatura de forma rápida e sem complicações. <br>
+            <br>Siga os passos abaixo para concluir a instalação do nosso serviço em seus tanques.
+            </p> <div class="link"><a href="./assets/Usuário/dashboard.png" download="Manual_Instalacao_Nautilus">Faça o download do Manual aqui.</a></div>
+            </span>
+
+            <button class="cards" onclick="exibirC()">
+                <img src="./assets/Usuário/customer-support.png" alt="" class="icon">
+                <div class="titulo">Suporte</div>
+            </button>
+            <span class="descricao" id="conteudoC" style="display: none;"> <p>Tem dúvidas ou precisa de ajuda com o serviço? <br>
+            <br> Abra um chamado para que possamos tratar do seu caso da melhor forma possível.</p> 
+            <a href="https://nautilushelp.atlassian.net/">Acesse o Jira para abrir um chamado.</a> 
+            </span>
+        </div>
+    </main>
+
+    <div class="footer">
+            <div class="icons-footer">
+                <div class="img-footer">
+                    <img src="./assets/Home/logo.png" alt="">
+                </div>
+                <div class="redes-footer">
+                    <a href=""><img src="./assets/Home/instagram.png" alt=""></a>
+                    <a href="https://github.com/NautilusPI"><img src="./assets/Home/github.png" alt=""></a>
+                    <a href=""><img src="./assets/Home/youtube.png" alt=""></a>
+                </div>
+            </div>
+
+            <div class="direitos-footer">
+                <p>Copyright &copy; 2026 NAUTILUS</p>
+            </div>
+
+            <div class="contatos-footer">
+                <h3>Contatos</h3>
+                <span>+55 (11)92459-3242</span>
+                <p>nautilus@gmail.com</p>
+            </div>
+    </div>
+    
+</body>
+</html>
+<script src="./js/areaUsuario.js"></script>
