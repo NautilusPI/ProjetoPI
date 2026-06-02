@@ -380,11 +380,11 @@ form textarea{
 }
 
 .icons-footer{
-    padding-left: 10px;
+    margin-left: 2vw;
 }
 
 .img-footer img{
-    width: 150px;
+    width: 120px;
     height: auto;
 }
 
@@ -396,17 +396,19 @@ form textarea{
 }
 
 .redes-footer img{
-    width: 40px;
+    width: 30px;
     height: auto;
 }
 
 .direitos-footer p{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
+    font-size: 0.8rem;
 }
 .contatos-footer{
     font-family: Arial, Helvetica, sans-serif;
     padding-right: 10px;
+    font-size: 0.8rem;
 }
 .contatos-footer h3{
     font-family: Arial, Helvetica, sans-serif;

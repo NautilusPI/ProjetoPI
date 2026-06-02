@@ -27,8 +27,9 @@
         </div>
 
         <div class="container-cards">
-            <button class="cards" onclick="exibirA()">
-                <img src="./assets/Usuário/dashboard.png" alt="" class="icon">
+            <button class="cards" onclick="exibirA()" onmousemove="mudarCorDash()" onmouseleave="voltarCinzaDash()">
+                <img src="./assets/Usuário/dashboard.png" alt="" class="icon" id="dashCinza">
+                <img src="./assets/Usuário/dashboard (2).png" alt="" class="icon" id="dashCor" style="display: none;">
                 <div class="titulo">Dashboard</div>
             </button>
             <span class="descricao" id="conteudoA" style="display: none;"> <p>O painel de temperatura já está atualizado e pronto para você. <br>
@@ -36,8 +37,9 @@
             do seu produto.</p> <div class="link"><a href="./dashboard/dashboardGeral.html">Acesse aqui a dashboard.</a></div>
             </span>
 
-            <button class="cards" onclick="exibirB()">
-                <img src="./assets/Usuário/manual.png" alt="" class="icon">
+            <button class="cards" onclick="exibirB()" onmousemove="mudarCorManual()" onmouseleave="voltarCinzaManual()">
+                <img src="./assets/Usuário/manual.png" alt="" class="icon" id="manualCinza">
+                <img src="./assets/Usuário/manual (1).png" alt="" class="icon" id="manualCor" style="display: none;">
                 <div class="titulo">Manual de Instalação</div>
             </button>
             <span class="descricao" id="conteudoB" style="display: none;"> <p>Este manual de instalação foi feito para ajudar você a configurar <br>seus sensores de temperatura de forma rápida e sem complicações. <br>
@@ -45,8 +47,9 @@
             </p> <div class="link"><a href="./assets/Usuário/dashboard.png" download="Manual_Instalacao_Nautilus">Faça o download do Manual aqui.</a></div>
             </span>
 
-            <button class="cards" onclick="exibirC()">
-                <img src="./assets/Usuário/customer-support.png" alt="" class="icon">
+            <button class="cards" onclick="exibirC()" onmousemove="mudarCorSup()" onmouseleave="voltarCinzaSup()">
+                <img src="./assets/Usuário/customer-support.png" alt="" class="icon" id="supCinza">
+                <img src="./assets/Usuário/customer-support (1).png" alt="" class="icon" id="supCor" style="display: none;">
                 <div class="titulo">Suporte</div>
             </button>
             <span class="descricao" id="conteudoC" style="display: none;"> <p>Tem dúvidas ou precisa de ajuda com o serviço? <br>
