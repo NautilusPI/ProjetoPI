@@ -383,18 +383,6 @@
     function fecharAlerta() {
       alertas.innerHTML = ``;
     }
-    function abrirAlerta() {
-      alertas.innerHTML += `
-        <div class="alerta">
-             <i class="fa-solid fa-circle-exclamation" ></i>
-            <div>
-                <span class="titulo">Risco na criação</span>
-                <span>O tanque 1 está fora da temperatura ideal</span>
-            </div>
-            <i class="fa-solid fa-xmark" onclick="fecharAlerta()"></i>
-           </div>
-        `;
-    }
 
     function carregarMedidasTempoReal() {
       fetch("/dash/buscarTempoReal")
@@ -434,6 +422,19 @@
                                         <span class="statusTanque">${alerta[i]}</span>
                                         </div>
                                         `;
+
+                function abrirAlerta() {
+      alertas.innerHTML += `
+        <div class="alerta">
+             <i class="fa-solid fa-circle-exclamation" ></i>
+            <div>
+                <span class="titulo">Risco na criação</span>
+                <span>O tanque 1 está fora da temperatura ideal</span>
+            </div>
+            <i class="fa-solid fa-xmark" onclick="fecharAlerta()"></i>
+           </div>
+        `;
+    }
             }
             });
                         }
