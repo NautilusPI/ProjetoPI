@@ -164,7 +164,7 @@
         let temperaturas = [];
 
         for (let i = 0; i < dados.length; i++) {
-          labels.push(dados[i].idTanque);
+          labels.push(dados[i].NomeTanque);
 
           temperaturas.push(dados[i].RegistroTemperatura);
         }
@@ -418,16 +418,12 @@
           
           for (let i = 0; i < tanque.length; i++) {
             let corStatus = "";
-            if (
-              (registro[i] > 30 && registro[i] <= 35) ||
-              (registro[i] >= 23 && registro[i] < 26)
-            ) {
+            if (alerta[i] == 'Atenção'){
               corStatus = `TanqueAtencao`;
-            } else if (registro[i] > 35 || registro[i] < 23) {
+            } else if (alerta[i] == "Crítico") {
               corStatus = `TanqueRisco`;
             }
             
-            if(alerta[i] != null) {
                 document.getElementById(`div_tanqueLista`).innerHTML += `
                                 <div class="tanqueCard ${corStatus}">
                                     <div class="borda">
@@ -438,8 +434,6 @@
                                         <span class="statusTanque">${alerta[i]}</span>
                                         </div>
                                         `;
-            }
-
             }
             });
                         }

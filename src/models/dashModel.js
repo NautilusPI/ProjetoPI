@@ -40,7 +40,7 @@ function buscarStatusSensor(){
 }
 
 function buscarStatusTanque(){
-    let query = `SELECT descricao from alerta;`
+    let query = `SELECT descricao FROM vw_statusTanque`
 
      return database.executar(query)
 }
@@ -97,27 +97,9 @@ function buscarCapacidade(){
 }
 
 function buscarMedidasEmTempoReal() {
-
     var query = `
-    SELECT t.nomeTanque, r.registroTemperatura, a.descricao 
-    FROM tanque t
-    JOIN sensor s ON s.fkTanque = t.idTanque
-    JOIN registroTemperatura r ON r.fkSensor = s.idSensor
-    LEFT JOIN alerta a
-    ON a.fkRegistroTemperatura = r.idRegistro
-    WHERE r.idRegistro = (
-    SELECT MAX(r2.idRegistro)
-    FROM registroTemperatura r2
-    JOIN sensor s2 ON s2.idSensor = r2.fkSensor
-    WHERE s2.fkTanque = t.idTanque
-    )
-    ORDER BY 
-        CASE
-            WHEN a.descricao = 'Risco' THEN 1
-            WHEN a.descricao = 'Atenção' THEN 2
-            WHEN a.descricao = 'Estável' THEN 3
-        END,
-        r.registroTemperatura DESC;`
+    SELECT * FROM vw_medidasEmTempoReal;
+    `
 
     console.log("Executando a instrução SQL: \n" + query);
     return database.executar(query);
@@ -178,9 +160,7 @@ function buscarTanquesRisco(){
 function buscarStatusViveiro(){
 
     let query = `
-        SELECT COUNT(*) AS totalRisco
-        FROM alerta
-        WHERE descricao = 'Risco';
+    SELECT COUNT(*) AS totalRisco FROM vw_medidasEmTempoReal WHERE descricao = 'Risco';
     `;
 
     return database.executar(query);
@@ -190,7 +170,7 @@ function buscarDadosGraficoBarra(){
 
     let query = `
         SELECT 
-            t.idTanque,
+            t.NomeTanque,
             r.RegistroTemperatura
         FROM tanque t
         JOIN sensor s
