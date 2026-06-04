@@ -19,11 +19,11 @@ const serial = async (
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: '10.18.32.230',
-            user: 'API',
-            password: 'Urubu@2026',
+            host: 'localhost',
+            user: 'root',
+            password: 'Simon@261714',
             database: 'Nautilus',
-            port: 3307
+            port: 3306
         }
     ).promise();
 
@@ -61,13 +61,35 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO RegistroTemperatura (registro) VALUES (?)',
-                [sensorAnalogico]
+                'INSERT INTO RegistroTemperatura (registroTemperatura, dataHora,fkSensor) VALUES (?, ?, ?)',
+                [sensorAnalogico, new Date(), 1] // substitua 1 pelo ID do seu sensor
             );
             console.log("valores inseridos no banco: ", sensorAnalogico );
 
         }
 
+        if (sensorAnalogico > 33 || sensorAnalogico < 23) {
+            try {
+                // Primeiro, pega o ID do registro de temperatura que foi inserido
+                const [resultados] = await poolBancoDados.execute(
+                    'SELECT idRegistro FROM RegistroTemperatura ORDER BY idRegistro DESC LIMIT 1'
+                );
+                
+                if (resultados.length > 0) {
+                    const idRegistro = resultados[0].idRegistro;
+                    
+                    // Insere o alerta com o ID do registro
+                    await poolBancoDados.execute(
+                        'INSERT INTO Alerta (fkRegistroTemperatura, fkAlertaSensor) VALUES (?, ?)',
+                        [idRegistro, 1] // substitua 1 pelo ID do seu sensor
+                    );
+                    
+                    console.log(`⚠️ ALERTA: Temperatura ${sensorAnalogico}°C fora dos limites!`);
+                }
+            } catch (erro) {
+                console.error('Erro ao criar alerta:', erro);
+            }
+}
     });
 
     // evento para lidar com erros na comunicação serial
