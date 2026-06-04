@@ -107,12 +107,18 @@ function buscarMedidasEmTempoReal() {
 
 function buscarTotalAlertasDia(){
     let query = `
-        SELECT DATE_FORMAT(r.DataHora, '%d/%m') AS date, COUNT(a.idAlerta) as totalAlertas FROM Alerta a
-        JOIN RegistroTemperatura r
-        ON r.idRegistro = a.fkRegistroTemperatura
-        GROUP BY DATE_FORMAT(r.DataHora, '%d/%m')
-        ORDER BY DATE_FORMAT(r.DataHora, '%d/%m') DESC
-        LIMIT 10;
+        SELECT DATE_FORMAT(dataDia, '%d/%m') AS 'date', totalAlertas 
+        FROM (
+            SELECT DATE(r.DataHora) AS dataDia, -- pega apenas a data, sem a hora
+                   COUNT(a.idAlerta) AS totalAlertas -- conta o número de alertas para cada data
+            FROM Alerta a 
+            JOIN RegistroTemperatura r
+            ON r.idRegistro = a.fkRegistroTemperatura
+            GROUP BY DATE(r.DataHora) -- agrupa os resultados por data
+            ORDER BY dataDia ASC -- ordena por data em ordem decrescente
+            LIMIT 10
+        ) AS dados -- renomeia a subconsulta para 'dados' para facilitar a referência
+        
     `
     
     return database.executar(query);

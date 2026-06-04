@@ -294,8 +294,7 @@
           if (response.ok) {
             response.json().then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-              resposta.reverse();
-
+              
               plotarGraficoLinha(resposta);
 
             });
@@ -357,9 +356,8 @@
       console.log(resposta);
 
       for (i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-        labels.push(registro.date);
-        dados.datasets[0].data.push(registro.totalAlertas);
+        labels.push(resposta[i].date);
+        dados.datasets[0].data.push(resposta[i].totalAlertas);
       }
 
       console.log("----------------------------------------------");
