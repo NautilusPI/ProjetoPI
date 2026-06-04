@@ -16,10 +16,10 @@
         <a class="link" href="calculadora.html">Simulador</a>
     </div>
       <div class="forms">
-        <a href="login.html"><button class="preenchido" id="btnEntrar">Entre</button></a>
-        <a href="cadastro.html"><button class="vazado" id="btnCadastrar">Cadastre-se</button></a>
-        <button class="preenchido" onclick="window.location = './areaUsuario.html'" style="display: none;" id="btnUser">Espaço do Cliente</button>
-        <button class="vazado" onclick="deslogar()" style="display: none;" id="btnSair">Sair</button>
+        <button class="preenchido" id="btnEntrar" onclick="window.location ='./login.html'">Entre</button>
+        <button class="vazado" id="btnCadastrar" onclick="window.location ='./cadastro.html'">Cadastre-se</button>
+        <button class="preenchidoB" onclick="window.location = './areaUsuario.html'" style="display: none;" id="btnUser">Espaço do Cliente</button>
+        <button class="vazadoB" onclick="deslogar()" style="display: none;" id="btnSair">Sair</button>
       </div>
     </div>
 
@@ -180,6 +180,10 @@
 </html>
 
 <script>
+    window.onload = function () {
+        alterarBotao()
+    }
+
     function enviar(){
         event.preventDefault()
         let nome = form_nome.value;

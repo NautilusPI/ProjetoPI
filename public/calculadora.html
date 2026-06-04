@@ -12,16 +12,18 @@
   <div class="navbar">
     <div class="navlink" id="navlink">
       <div class="logo">
-        <a href="index.html"><img src="./assets/Calculadora/logo.png" alt=""></a>
+        <img src="./assets/Home/logo.png" alt=""> 
       </div>
-      <a class="link" href="index.html">Inicio</a>
-      <a class="link" href="calculadora.html">Simulador</a>
+        <a class="link" href="index.html">Inicio</a> 
+        <a class="link" href="calculadora.html">Simulador</a>
     </div>
-    <div class="forms">
-      <button class="vazado"><a href="login.html">Entre</a></button>
-      <button class="preenchido"><a href="cadastro.html">Cadastre-se</a> </button>
+      <div class="forms">
+        <a href="login.html"><button class="preenchido" id="btnEntrar">Entre</button></a>
+        <a href="cadastro.html"><button class="vazado" id="btnCadastrar">Cadastre-se</button></a>
+        <button class="preenchido" onclick="window.location = './areaUsuario.html'" style="display: none;" id="btnUser">Espaço do Cliente</button>
+        <button class="vazado" onclick="deslogar()" style="display: none;" id="btnSair">Sair</button>
+      </div>
     </div>
-  </div>
 
   <div class="container_conteudo">
     <div class="titulo">

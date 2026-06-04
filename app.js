@@ -17,6 +17,7 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var dashRouter = require("./src/routes/dashboard");
 var usuarioRouter = require("./src/routes/usuarios");
+var areaUsuarioRouter = require("./src/routes/areaUsuario");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,6 +28,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/dash", dashRouter);
+app.use("/areaUsuario", areaUsuarioRouter);
 
 // configurando o gemini (IA)
 const chatIA = new GoogleGenAI({ apiKey: process.env.MINHA_CHAVE });
