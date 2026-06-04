@@ -147,14 +147,10 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../js/dashGeral.js"></script>
   <script>
-    window.onload = exibirGraficoLinha();
-    function exibirGraficoLinha() {
-      console.log("Iniciando processo para exibição do gráfico de linha...");
-      obterDadosGraficoLinha();
-      setInterval(obterDadosGraficoLinha, 1000);
-    }
 
-    fetch("/dash/graficoBarra")
+    
+
+    fetch(`/dash/graficoBarra/${idEmpresa}`)
       .then(function (resposta) {
         return resposta.json();
       })
@@ -289,7 +285,7 @@
     }
 
     function obterDadosGraficoLinha() {
-      fetch(`/dash/buscarTotalAlertasDia`, { cache: "no-store" })
+      fetch(`/dash/buscarTotalAlertasDia/${idEmpresa}`, { cache: "no-store" })
         .then(function (response) {
           if (response.ok) {
             response.json().then(function (resposta) {
@@ -383,7 +379,7 @@
     }
 
     function carregarMedidasTempoReal() {
-      fetch("/dash/buscarTempoReal")
+      fetch(`/dash/buscarTempoReal/${idEmpresa}`)
         .then((res) => res.json())
         .then((resultado) => {
 

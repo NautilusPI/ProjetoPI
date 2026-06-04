@@ -1,4 +1,6 @@
-fetch("/dash/totalTanques")
+let idEmpresa = sessionStorage.ID_EMPRESA;
+
+fetch(`/dash/totalTanques/${idEmpresa}`)
   .then(function (resposta) {
     return resposta.json();
   })
@@ -9,7 +11,7 @@ fetch("/dash/totalTanques")
     console.log(erro);
   });
 
-fetch("/dash/sensoresOffline")
+fetch(`/dash/sensoresOffline/${idEmpresa}`)
   .then(function (resposta) {
     return resposta.json();
   })
@@ -32,12 +34,12 @@ fetch("/dash/sensoresOffline")
     console.log(erro);
   });
 
-fetch("/dash/statusViveiro")
+fetch(`/dash/statusViveiro/${idEmpresa}`)
   .then(function (resposta) {
     return resposta.json();
   })
   .then(function (dados) {
-    let total = dados[0].totalRisco;
+    let total = dados[0].totalCritico;
 
     let status = "";
 
@@ -58,7 +60,7 @@ fetch("/dash/statusViveiro")
     console.log(erro);
   });
 
-fetch("/dash/tanquesRisco")
+fetch(`/dash/tanquesRisco/${idEmpresa}`)
   .then(function (resposta) {
     return resposta.json();
   })

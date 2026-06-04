@@ -96,44 +96,52 @@ function buscarCapacidade(){
     return database.executar(query)
 }
 
-function buscarMedidasEmTempoReal() {
+function buscarMedidasEmTempoReal(idEmpresa){
     var query = `
-    SELECT * FROM vw_medidasEmTempoReal;
+    SELECT * FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa};
     `
 
     console.log("Executando a instrução SQL: \n" + query);
     return database.executar(query);
 }
 
-function buscarTotalAlertasDia(){
+function buscarTotalAlertasDia(idEmpresa){
     let query = `
-        SELECT DATE_FORMAT(dataDia, '%d/%m') AS 'date', totalAlertas 
+        SELECT idEmpresa, DATE_FORMAT(dataDia, '%d/%m') AS 'date', totalAlertas 
         FROM (
-            SELECT DATE(r.DataHora) AS dataDia, -- pega apenas a data, sem a hora
-                   COUNT(a.idAlerta) AS totalAlertas -- conta o número de alertas para cada data
+            SELECT t.fkEmpresa as idEmpresa,
+				   DATE(r.DataHora) AS dataDia, -- pega apenas a data, sem a hora
+				   COUNT(a.idAlerta) AS totalAlertas -- conta o número de alertas para cada data
             FROM Alerta a 
             JOIN RegistroTemperatura r
             ON r.idRegistro = a.fkRegistroTemperatura
-            GROUP BY DATE(r.DataHora) -- agrupa os resultados por data
+            JOIN Sensor s
+            ON s.idSensor = r.fkSensor
+            JOIN Tanque t
+            ON t.idTanque = s.fkTanque
+            GROUP BY idEmpresa, DATE(r.DataHora) -- agrupa os resultados por data
             ORDER BY dataDia ASC -- ordena por data em ordem decrescente
             LIMIT 10
-        ) AS dados -- renomeia a subconsulta para 'dados' para facilitar a referência
-        
+        ) AS dados
+        WHERE idEmpresa = ${idEmpresa};
     `
     
     return database.executar(query);
 }
 
-function buscarTotalTanques(){
+function buscarTotalTanques(idEmpresa){
     let query = `
-        SELECT COUNT(*) AS totalTanques
-        FROM tanque;
+        SELECT t.fkEmpresa, COUNT(*) AS totalTanques
+        FROM tanque t
+        WHERE t.fkEmpresa = ${idEmpresa}
+        GROUP BY t.fkEmpresa;
     `
 
+    console.log("Executando a instrução SQL: \n" + query);
     return database.executar(query);
 }
 
-function buscarSensoresOffline(){
+function buscarSensoresOffline(idEmpresa){
 
     let query = `
         SELECT DISTINCT t.idTanque
@@ -142,13 +150,15 @@ function buscarSensoresOffline(){
             ON s.fkTanque = t.idTanque
         LEFT JOIN registroTemperatura r
             ON r.fkSensor = s.idSensor
-        WHERE r.RegistroTemperatura IS NULL;
+        WHERE r.RegistroTemperatura IS NULL
+        AND t.fkEmpresa = ${idEmpresa};
     `;
 
+    console.log("Executando a instrução SQL: \n" + query);
     return database.executar(query);
 }
 
-function buscarTanquesRisco(){
+function buscarTanquesRisco(idEmpresa){
     let query = `
         SELECT COUNT(DISTINCT t.idTanque) AS tanquesRisco
         FROM tanque t
@@ -156,26 +166,29 @@ function buscarTanquesRisco(){
             ON s.fkTanque = t.idTanque
         JOIN registroTemperatura r
             ON r.fkSensor = s.idSensor
-        WHERE r.RegistroTemperatura < 26
-        OR r.RegistroTemperatura > 30;
+        WHERE (r.RegistroTemperatura < 26
+        OR r.RegistroTemperatura > 30) AND t.fkEmpresa = ${idEmpresa};
     `
 
+    console.log("Executando a instrução SQL: \n" + query);
     return database.executar(query);
 }
 
-function buscarStatusViveiro(){
+function buscarStatusViveiro(idEmpresa){
 
     let query = `
-    SELECT COUNT(*) AS totalRisco FROM vw_medidasEmTempoReal WHERE descricao = 'Risco';
+        SELECT COUNT(*) AS totalCritico FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao COLLATE utf8mb4_unicode_ci = 'Crítico';
     `;
 
+    console.log("Executando a instrução SQL: \n" + query);
     return database.executar(query);
 }
 
-function buscarDadosGraficoBarra(){
+function buscarDadosGraficoBarra(idEmpresa){
 
     let query = `
-        SELECT 
+        SELECT
+            t.fkEmpresa, 
             t.NomeTanque,
             r.RegistroTemperatura
         FROM tanque t
@@ -187,7 +200,7 @@ function buscarDadosGraficoBarra(){
             SELECT MAX(r2.idRegistro)
             FROM registroTemperatura r2
             WHERE r2.fkSensor = s.idSensor
-        )
+        ) AND t.fkEmpresa = ${idEmpresa}
         ORDER BY t.idTanque;
     `;
 

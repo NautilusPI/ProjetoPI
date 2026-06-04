@@ -80,24 +80,28 @@ function capacidade(req, res) {
 }
 
 function buscarMedidasEmTempoReal(req, res) {
-  console.log(req.params.inicio + "   " + req.params.fim);
-  dashModel
-    .buscarMedidasEmTempoReal(req.params.inicio, req.params.fim)
-    .then((resultado) => {
+
+  let idEmpresa = req.params.idEmpresa;
+
+  dashModel.buscarMedidasEmTempoReal(idEmpresa).then((resultado) => {
       res.status(200).json(resultado);
     });
 }
 
 function buscarTotalAlertasDia(req, res) {
+  let idEmpresa = req.params.idEmpresa;
+
   dashModel
-    .buscarTotalAlertasDia()
+    .buscarTotalAlertasDia(idEmpresa)
     .then((resultado) => res.status(200).json(resultado))
     .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function totalTanques(req, res) {
+  let idEmpresa = req.params.idEmpresa;
+
   dashModel
-    .buscarTotalTanques()
+    .buscarTotalTanques(idEmpresa)
     .then((resultado) => {
       res.status(200).json(resultado);
     })
@@ -108,8 +112,10 @@ function totalTanques(req, res) {
 }
 
 function sensoresOffline(req, res) {
+  let idEmpresa = req.params.idEmpresa;
+
   dashModel
-    .buscarSensoresOffline()
+    .buscarSensoresOffline(idEmpresa)
     .then((resultado) => {
       res.status(200).json(resultado);
     })
@@ -120,8 +126,10 @@ function sensoresOffline(req, res) {
 }
 
 function tanquesRisco(req, res) {
+  let idEmpresa = req.params.idEmpresa;
+
   dashModel
-    .buscarTanquesRisco()
+    .buscarTanquesRisco(idEmpresa)
     .then((resultado) => {
       res.status(200).json(resultado);
     })
@@ -132,8 +140,10 @@ function tanquesRisco(req, res) {
 }
 
 function statusViveiro(req, res) {
+  let idEmpresa = req.params.idEmpresa;
+
   dashModel
-    .buscarStatusViveiro()
+    .buscarStatusViveiro(idEmpresa)
     .then((resultado) => {
       res.status(200).json(resultado);
     })
@@ -144,8 +154,10 @@ function statusViveiro(req, res) {
 }
 
 function graficoBarra(req, res) {
+  let idEmpresa = req.params.idEmpresa;
+
   dashModel
-    .buscarDadosGraficoBarra()
+    .buscarDadosGraficoBarra(idEmpresa)
     .then((resultado) => {
       res.status(200).json(resultado);
     })

@@ -37,35 +37,31 @@ router.get("/ultimo-alerta", function (req, res) {
     dashController.ultimoAlerta(req, res);
 });
 
-router.get("/buscarTempoReal", function (req, res) {
+router.get("/buscarTempoReal/:idEmpresa", function (req, res) {
    dashController.buscarMedidasEmTempoReal(req,res)
 });
 
-router.get("/buscarTotalAlertasDia", function (req, res) {
+router.get("/buscarTotalAlertasDia/:idEmpresa", function (req, res) {
    dashController.buscarTotalAlertasDia(req,res)
 });
 
-router.get("/totalTanques", function(req, res){
+router.get("/totalTanques/:idEmpresa", function(req, res){
     dashController.totalTanques(req,res);
 });
 
-router.get("/sensoresOffline", function(req, res){
+router.get("/sensoresOffline/:idEmpresa", function(req, res){
     dashController.sensoresOffline(req, res);
 });
 
-router.get("/tanquesRisco", function(req, res){
+router.get("/tanquesRisco/:idEmpresa", function(req, res){
     dashController.tanquesRisco(req, res);
 });
 
-router.get("/statusViveiro", function(req, res){
+router.get("/statusViveiro/:idEmpresa", function(req, res){
     dashController.statusViveiro(req, res);
 });
 
-router.get("/sensoresOffline", function(req, res){
-    dashController.sensoresOffline(req, res);
-});
-
-router.get("/graficoBarra", function(req, res){
+router.get("/graficoBarra/:idEmpresa", function(req, res){
 
     dashController.graficoBarra(req, res);
 
