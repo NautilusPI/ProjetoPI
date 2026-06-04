@@ -19,13 +19,14 @@ body {
 }
 
 /* NAVBAR - INICIO -------------------------------------------------------------------- */
+
 .navbar {
     width: 100%;
     height: 60px;
     margin: 0px;
     display: flex;
     justify-content: space-around;
-    gap: 50%;
+    gap: 58%;
     align-items: center;
 
     .navlink {
@@ -46,9 +47,10 @@ body {
         }
      }
 
-    a{
+    .navlink a{
         margin-top: 11%;
         text-decoration: none;
+        font-family: Arial, Helvetica, sans-serif;
         color:var(--primaria);
         text-align: end;
         font-weight:  bold;
@@ -61,32 +63,31 @@ body {
     
         
         .vazado {
-            cursor: pointer;
             color: var(--primaria); 
             font-weight: 700;
             border-radius: 10px;
             border: 1px solid var(--primaria);
             background-color: var(--background);
-            padding: 5px 50px;
+            text-align: center;
+            width: 7vw;
+            height: 4.5vh;
+            cursor: pointer;
             
-        } .vazado button:active{
-           transform: scale(1.01);
-        }
+        } 
 
         .preenchido {
-            color: white;
+             color: white;
             font-weight: 700;  
             background-color: var(--primaria);
             border: 1px solid var(--primaria);
             border-radius: 10px;
-            padding: 10px 30px;
-            white-space: nowrap;
+            width: 6vw;
+            height: 4.5vh;
+            cursor: pointer;
             
-        } .preenchido button:active{
-            transform: scale(1.01);
-        }
-        .preenchido a{
-            color: white;
+        } 
+        .forms a{
+            all:unset;
          }
     }
 } 

@@ -26,14 +26,6 @@
         </div>
         <a class="link" href="../index.html">Inicio</a>
         <a class="link" href="../calculadora.html">Simulador</a>
-        <a class="link" href="dashboardGeral.html">Dashboard</a>
-        
-      </div>
-      <div class="forms">
-        <button class="vazado"><a href="../login.html">Entre</a></button>
-        <button class="preenchido">
-          <a href="../cadastro.html">Cadastre-se</a>
-        </button>
       </div>
     </div>
     <div class="container-externo">
@@ -41,18 +33,9 @@
         <div class="topo">
           <div class="topoEsquerda">
             <span>Dashboard</span>
-            <select
-              name=""
-              id=""
-              onchange="window.location = 'dashboardTanque.html'"
-            >
-              <option value="">Visão geral</option>
-              <option value="">Tanque 1</option>
-              <option value="">Tanque 2</option>
-              <option value="">Tanque 3</option>
-              <option value="">Tanque 4</option>
-              <option value="">Tanque 5</option>
-              <option value="">Tanque 6</option>
+            <select id="menu" onchange="irParaPagina()">
+                <option value="./dashboardGeral.html">Visão Geral</option>
+                <option value="./dashboardTanque.html">Tanques</option>
             </select>
           </div>
         </div>
@@ -140,6 +123,9 @@
   <script src="../js/dashGeral.js"></script>
   <script>
 
+    function irParaPagina() {
+        window.location.href = document.getElementById("menu").value;
+    }
     
 
     fetch(`/dash/graficoBarra/${idEmpresa}`)

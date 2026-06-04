@@ -19,12 +19,12 @@ body{
     margin: 0px;
     display: flex;
     justify-content: space-around;
-    gap: 55%;
+    gap: 58%;
     align-items: center;
 
     .navlink {
         width: 60px;
-        gap: 20%;
+        gap: 25%;
         display: flex;
         align-items: center;
     }
@@ -52,7 +52,7 @@ body{
 
     .forms {
         display: flex;
-        gap: 12%;
+        gap: 10%;
         
         .vazado {
             color: var(--primaria); 
@@ -61,8 +61,8 @@ body{
             border: 1px solid var(--primaria);
             background-color: var(--background);
             text-align: center;
-            width: 7vw;
-            height: 5vh;
+            width: 8vw;
+            height: 4.5vh;
             cursor: pointer;
         }
         
@@ -72,13 +72,37 @@ body{
             background-color: var(--primaria);
             border: 1px solid var(--primaria);
             border-radius: 10px;
-            width: 6vw;
-            height: 5vh;
+            width: 7vw;
+            height: 4.5vh;
             cursor: pointer;
          }
 
          .forms a {
             all:unset;
+         }
+
+         .vazadoB {
+            color: var(--primaria); 
+            font-weight: 700;
+            border-radius: 10px;
+            border: 1px solid var(--primaria);
+            background-color: var(--background);
+            width: 6vw;
+            cursor: pointer;
+        }
+        .preenchidoB {
+            color: white;
+            font-weight: 700;  
+            background-color: var(--primaria);
+            border: 1px solid var(--primaria);
+            border-radius: 10px;
+            padding: 10px 20px;
+            width: 10vw;
+            white-space: nowrap;
+            cursor: pointer;
+         }
+         .preenchido a{
+            color: white;
          }
     }
     } 

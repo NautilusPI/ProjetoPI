@@ -12,39 +12,30 @@
 </head>
 
 <body>
-
-
-    <div class="navbar">
-       <div class="navlink" id="navlink">
-            <div class="logo">
-                <img src="../assets/Dashboard/logo.png" alt="">
-            </div>
-            <a class="link" href="../index.html">Inicio</a>
-            <a class="link" href="../calculadora.html">Simulador</a>
-            <a class="link" href="dashboardGeral.html">Dashboard</a>
-           
-
-        </div>
-        <div class="forms">
-            <button class="vazado"><a href="../login.html">Entre</a></button>
-            <button class="preenchido"><a href="../cadastro.html">Cadastre-se</a> </button>
-        </div>
+<div class="navbar">
+    <div class="navlink" id="navlink">
+      <div class="logo">
+        <img src="../assets/Home/logo.png" alt=""> 
+      </div>
+        <a class="link" href="../index.html">Inicio</a> 
+        <a class="link" href="../calculadora.html">Simulador</a>
+    </div>
+      <div class="forms">
+        <button class="preenchido" id="btnEntrar" onclick="window.location ='./login.html'">Entre</button>
+        <button class="vazado" id="btnCadastrar" onclick="window.location ='./cadastro.html'">Cadastre-se</button>
+        <button class="preenchidoB" onclick="window.location = './areaUsuario.html'" style="display: none;" id="btnUser">Espaço do Cliente</button>
+        <button class="vazadoB" onclick="deslogar()" style="display: none;" id="btnSair">Sair</button>
+      </div>
     </div>
     <div class="container-externo">
         <div class="container">
             <div class="topo">
                 <div class="topoEsquerda">
                     <span>Dashboard</span>
-                      <select id="menu" onchange="irParaPagina()">
-                          <option value="dashboardGeral.html">Visão Geral</option>
-                          <option value="">Tanque 1</option>
-                            <option value="">Tanque 1</option>
-                            <option value="">Tanque 2</option>
-                            <option value="">Tanque 3</option>
-                            <option value="">Tanque 4</option>
-                            <option value="">Tanque 5</option>
-                            <option value="">Tanque 6</option>
-                        </select>
+                    <select id="menu" onchange="irParaPagina()">
+                        <option value="./dashboardTanque.html">Tanques</option>
+                        <option value="./dashboardGeral.html">Visão Geral</option>
+                    </select>
                 </div>
 
             </div>
@@ -148,15 +139,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="../js/dashTanque.js"></script>
     <script>
-        
-
         function irParaPagina() {
-          const select = document.getElementById("menu");
-          const pagina = select.value;
-
-          if (pagina) {
-            window.location.href = pagina;
-          }
+        window.location.href = document.getElementById("menu").value;
         }
 
         var labelsHorario = []
