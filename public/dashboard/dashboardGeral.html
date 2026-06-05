@@ -120,6 +120,7 @@
     </div>
   </body>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
   <script src="../js/dashGeral.js"></script>
   <script>
 
@@ -231,7 +232,56 @@
               legend: {
                 display: false,
               },
+              annotation: {
+            annotations: {
+            faixaIdeal: {
+                type: 'box',
+                yMin: 26,
+                yMax: 30,
+                drawTime: 'beforeDatasetsDraw',
+                backgroundColor: 'rgba(46, 204, 113, 0.11)',
+                borderColor: 'rgba(46, 204, 113, 0.3)',
+                borderWidth: 1,
             },
+            faixaRisco: {
+              type: 'box',
+                yMin: 23,
+                yMax: 26,
+                drawTime: 'beforeDatasetsDraw',
+                backgroundColor: 'rgba(204, 178, 46, 0.10)',
+                borderColor: 'rgba(204, 201, 46, 0.3)',
+                borderWidth: 1,
+            },
+            faixaCritico: {
+              type: 'box',
+                yMin: 20,
+                yMax: 23,
+                drawTime: 'beforeDatasetsDraw',
+                backgroundColor: 'rgba(204, 46, 46, 0.10)',
+                borderColor: 'rgba(204, 46, 46, 0.3)',
+                borderWidth: 1,
+            },
+            faixaRisco2: {
+              type: 'box',
+                yMin: 30,
+                yMax: 33,
+                drawTime: 'beforeDatasetsDraw',
+                backgroundColor: 'rgba(204, 178, 46, 0.10)',
+                borderColor: 'rgba(204, 201, 46, 0.3)',
+                borderWidth: 1,
+            },
+            faixaCritico2: {
+              type: 'box',
+                yMin: 33,
+                yMax: 40,
+                drawTime: 'beforeDatasetsDraw',
+                backgroundColor: 'rgba(204, 46, 46, 0.10)',
+                borderColor: 'rgba(204, 46, 46, 0.3)',
+                borderWidth: 1,
+            }
+          }
+        }
+      },
 
             scales: {
               x: {
