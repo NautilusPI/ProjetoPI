@@ -19,7 +19,8 @@ body {
     height: 60px;
     margin: 0px;
     display: flex;
-    justify-content: start;
+    justify-content: space-around;
+    gap: 58%;
     align-items: center;
 
     .navlink {
@@ -49,6 +50,7 @@ body {
         text-align: end;
         font-weight: bold;
         margin-right: 20%;
+        cursor: pointer;
     }
 
     .forms {
@@ -61,8 +63,8 @@ body {
             border-radius: 10px;
             border: 1px solid var(--primaria);
             background-color: var(--background);
-            padding: 5px 50px;
-
+            width: 6vw;
+            cursor: pointer;
         }
 
         .preenchido {
@@ -71,11 +73,17 @@ body {
             background-color: var(--primaria);
             border: 1px solid var(--primaria);
             border-radius: 10px;
-            padding: 10px 30px;
+            padding: 10px 20px;
+            width: 10vw;
             white-space: nowrap;
+            cursor: pointer;
         }
         .preenchido a{
             color: white;
+         }
+
+        .forms a {
+            cursor: pointer;
          }
     }
 }

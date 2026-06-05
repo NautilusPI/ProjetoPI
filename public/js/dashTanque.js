@@ -245,3 +245,8 @@ function carregarKPIs() {
 carregarKPIs();
 
 setInterval(carregarKPIs, 5000);
+
+function deslogar() {
+  sessionStorage.clear();
+  window.location = "../index.html";
+}

@@ -77,3 +77,9 @@ fetch(`/dash/tanquesRisco/${idEmpresa}`)
   .catch(function (erro) {
     console.log(erro);
   });
+
+
+  function deslogar() {
+  sessionStorage.clear();
+  window.location = "../index.html";
+  };
