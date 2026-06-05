@@ -422,6 +422,11 @@
                                       
                     abrirAlerta();
             }
+
+            menu.innerHTML = '<option value="./dashboardGeral.html">Visão Geral</option>';
+            for (let i = 0; i < tanque.length; i++) {
+            menu.innerHTML += `<option value="./dashboardTanque.html">${tanque[i]}</option>`;
+}
             });
                         }
 
