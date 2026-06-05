@@ -6,6 +6,9 @@ let faixaSegura = [];
 let min = 50;
 let max = 0;
 let aovivo =false
+
+let tanque = sessionStorage.TanqueSelecionado;
+
 function buscarRegistroTanque() {
   let dataInicio = dataInicioInput.value;
   let dataFim = dataFimInput.value;
@@ -14,11 +17,11 @@ function buscarRegistroTanque() {
     dataInicio ='aovivo'; 
     dataFim = 'aovivo'}
   let horasLista = [];
-  fetch(`/dash/graficoTanqueEspecifico/1/${dataInicio}/${dataFim}`).then(
+  fetch(`/dash/graficoTanqueEspecifico/${tanque}/${dataInicio}/${dataFim}`).then(
     (dados) => {
       dados.json().then((registros) => {
         for (let i = 0; i < registros.length; i++) {
-          let temperatura = registros[i].registroTemperatura;
+          let temperatura = registros[i].RegistroTemperatura;
           temperaturasLista.push(temperatura);
           if (temperatura < min) {
             min = Number(Number(temperatura).toFixed());
@@ -26,7 +29,7 @@ function buscarRegistroTanque() {
           if (temperatura > max) {
             max = Number(Number(temperatura).toFixed());
           }
-          let dataBanco = registros[i].dataHora;
+          let dataBanco = registros[i].DataHora;
           
           const data = new Date(dataBanco);
           const hora = data.toLocaleString("pt-BR", {
@@ -157,10 +160,11 @@ buscarRegistroTanque();
 console.log('atualizando')
 },2000)
 
+
 function carregarKPIs() {
 
   // Temperatura atual 
-  fetch("/dash/temperatura-atual")
+  fetch(`/dash/temperatura-atual/${tanque}`)
     .then(res => res.json())
     .then(data => {
       document.getElementById("cardTemperatura").innerHTML =
@@ -168,17 +172,25 @@ function carregarKPIs() {
     });
 
   // Volume alertas 7 dias
- fetch("/dash/alertas-7-dias")
+ fetch(`/dash/alertas-7-dias/${tanque}`)
   .then(res => res.json())
   .then(data => {
 
+      let totalAlertas7dias = 0;
+
+      for(let i = 0; i < data.length; i++){
+        if(data[i].date != null){
+          totalAlertas7dias += data[i].totalAlertas;
+        }
+      }
+
       document.getElementById("cardAlertas7dias").innerHTML =
-      data[0].totalAlertas;
+      totalAlertas7dias;
 
   });
 
     // ultimo alerta
-   fetch("/dash/ultimo-alerta")
+   fetch(`/dash/ultimo-alerta/${tanque}`)
   .then(res => res.json())
   .then(data => {
 
@@ -190,7 +202,7 @@ function carregarKPIs() {
   });
 
   // Status sensor
-  fetch("/dash/status-sensor")
+  fetch(`/dash/status-sensor/${tanque}`)
     .then(res => res.json())
     .then(data => {
       document.getElementById("cardStatusSensor").innerHTML =
@@ -198,7 +210,7 @@ function carregarKPIs() {
     });
 
     // Status tanque
-    fetch("/dash/status-tanque")
+    fetch(`/dash/status-tanque/${tanque}`)
     .then(res => res.json())
     .then(data => {
       document.getElementById("cardStatusTanque").innerHTML =
@@ -206,7 +218,7 @@ function carregarKPIs() {
     });
 
   // Modelo sensor
-  fetch("/dash/modelo-sensor")
+  fetch(`/dash/modelo-sensor/${tanque}`)
     .then(res => res.json())
     .then(data => {
       document.getElementById("cardModeloSensor").innerHTML =
@@ -214,7 +226,7 @@ function carregarKPIs() {
     });
 
   // Instalação
- fetch("/dash/instalacao")
+ fetch(`/dash/instalacao/${tanque}`)
     .then(res => res.json())
     .then(data => {
       document.getElementById("cardInstalacao").innerHTML =
@@ -222,7 +234,7 @@ function carregarKPIs() {
     });
 
   // Capacidade
-  fetch("/dash/capacidade")
+  fetch(`/dash/capacidade/${tanque}`)
     .then(res => res.json())
     .then(data => {
       document.getElementById("cardCapacidade").innerHTML =
@@ -232,6 +244,4 @@ function carregarKPIs() {
 
 carregarKPIs();
 
-setInterval(() => {
-  carregarKPIs();
-}, 5000);
+setInterval(carregarKPIs, 5000);

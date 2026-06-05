@@ -124,8 +124,13 @@
   <script src="../js/dashGeral.js"></script>
   <script>
 
+    let tanqueSelecionado = '';
+
     function irParaPagina() {
-        window.location.href = document.getElementById("menu").value;
+        tanqueSelecionado = document.getElementById("menu").value;
+        sessionStorage.TanqueSelecionado = tanqueSelecionado;
+
+        window.location.href = './dashboardTanque.html';
     }
     
 
@@ -473,12 +478,13 @@
                     abrirAlerta();
             }
 
-            menu.innerHTML = '<option value="./dashboardGeral.html">Visão Geral</option>';
-            for (let i = 0; i < tanque.length; i++) {
-            menu.innerHTML += `<option value="./dashboardTanque.html">${tanque[i]}</option>`;
-}
+              menu.innerHTML = '<option value="./dashboardGeral.html">Visão Geral</option>';
+              for (let i = 0; i < tanque.length; i++) {
+              menu.innerHTML += `<option  value="${tanque[i]}">${tanque[i]}</option>`;
+              }
+            
             });
-                        }
+}
 
     carregarMedidasTempoReal();
     setInterval(carregarMedidasTempoReal, 10000);

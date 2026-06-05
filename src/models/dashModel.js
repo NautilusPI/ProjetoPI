@@ -1,97 +1,138 @@
 var database = require("../database/config");
 
 
-function buscarRegistroTanque(tanqueID, dataInicio, dataFim){
+function buscarRegistroTanque(tanque, dataInicio, dataFim){
     let where =''
     console.log(dataFim)
     if(dataInicio == 'aovivo' || dataFim == 'aovivo' ){
-        where = 'order by DataHora desc limit 15'
+        where = 'order by r.DataHora desc limit 15'
     }else{
-        where =`and dataHora between '${dataInicio}' and '${dataFim}'`
+        where =`and r.DataHora between '${dataInicio}' and '${dataFim}'`
     }
    
     let query = `
-        select registroTemperatura, dataHora 
-        from registroTemperatura 
-        join sensor on fkSensor = idSensor 
-        join tanque on fkTanque = idTanque 
-        where idTanque = ${tanqueID}
+        select r.RegistroTemperatura, r.DataHora 
+        from registroTemperatura r
+        join Sensor s on r.fkSensor = s.idSensor 
+        join Tanque t on s.fkTanque = t.idTanque 
+        where t.nomeTanque = '${tanque}'
         ${where};
     `;
 
     return database.executar(query);
 }
 
-function buscarTemperaturaAtual(){
+function buscarTemperaturaAtual(tanque){
     let query = `
-        SELECT registroTemperatura
-        FROM registroTemperatura
-        ORDER BY dataHora DESC;
+        SELECT r.registroTemperatura FROM registroTemperatura r
+        JOIN Sensor s
+        ON r.fkSensor = s.idSensor
+        JOIN Tanque t
+        ON s.fkTanque = t.idTanque
+        WHERE nomeTanque = '${tanque}'
+        ORDER BY dataHora DESC
+        LIMIT 1;;
     `
     return database.executar(query)
 }
 
-function buscarStatusSensor(){
+function buscarStatusSensor(tanque){
     let query = `
-        SELECT StatusSensor
-        FROM sensor;
+        SELECT s.StatusSensor FROM sensor s
+        JOIN Tanque t
+        ON t.idTanque = s.fkTanque
+        WHERE nomeTanque = '${tanque}';
     `
     return database.executar(query)
 }
 
-function buscarStatusTanque(){
-    let query = `SELECT descricao FROM vw_statusTanque`
+function buscarStatusTanque(tanque){
+    let query = `
+        SELECT
+            CASE
+            WHEN r.registroTemperatura > 33 OR r.registroTemperatura < 23 THEN 'Crítico'
+            WHEN r.registroTemperatura > 30 OR r.registroTemperatura < 26 THEN 'Atenção'
+            ELSE 'Estável'
+            END AS descricao
+            FROM registroTemperatura r
+            JOIN Sensor s
+            ON s.idSensor = r.fkSensor
+            JOIN Tanque t
+            ON t.idTanque = s.fkTanque
+            WHERE t.nomeTanque = '${tanque}'
+            ORDER BY r.dataHora DESC
+            LIMIT 1;
+    `
 
      return database.executar(query)
 }
-function buscarAlertas7Dias() {
+function buscarAlertas7Dias(tanque) {
 
     let query = `
-       SELECT DATE(s.dataInstalacao) AS dataInstalacao, COUNT(a.idAlerta) AS totalAlertas
-FROM alerta a
-JOIN registroTemperatura r 
-    ON a.fkRegistroTemperatura = r.idRegistro
-JOIN sensor s
-    ON r.fkSensor = s.idSensor
-WHERE s.dataInstalacao <= CURDATE()
-GROUP BY DATE(s.dataInstalacao);
+       SELECT DATE_FORMAT(dataDia, '%d/%m') AS 'date', totalAlertas 
+        FROM (
+            SELECT
+				   DATE(r.DataHora) AS dataDia, -- pega apenas a data, sem a hora
+				   COUNT(a.idAlerta) AS totalAlertas -- conta o número de alertas para cada data
+            FROM Alerta a 
+            JOIN RegistroTemperatura r
+            ON r.idRegistro = a.fkRegistroTemperatura
+            JOIN Sensor s
+            ON s.idSensor = r.fkSensor
+            JOIN Tanque t
+            ON t.idTanque = s.fkTanque
+            WHERE t.nomeTanque = '${tanque}'
+            GROUP BY DATE(r.DataHora) -- agrupa os resultados por data
+            ORDER BY dataDia ASC -- ordena por data em ordem decrescente
+            LIMIT 10
+        ) AS dados;
     `;
 
     return database.executar(query);
 }
 
 
-function buscarUltimoAlerta(){
+function buscarUltimoAlerta(tanque){
     let query = `
-         SELECT r.RegistroTemperatura, r.dataHora
-FROM RegistroTemperatura r
-WHERE r.RegistroTemperatura > 30
-   OR r.RegistroTemperatura < 26
-ORDER BY r.idRegistro DESC;`
+         SELECT a.idAlerta, r.RegistroTemperatura FROM Alerta a
+         JOIN registroTemperatura r
+         ON r.idRegistro = a.fkRegistroTemperatura
+         JOIN Sensor s
+         ON s.idSensor = fkAlertaSensor
+         JOIN Tanque t
+         ON t.idTanque = s.fkTanque
+         WHERE nomeTanque = '${tanque}'
+         ORDER BY a.idAlerta DESC
+         LIMIT 1;`
     return database.executar(query)
 }
 
-function buscarModeloSensor(){
+function buscarModeloSensor(tanque){
     let query = `
-        SELECT Modelo
-        FROM sensor;
+        SELECT Modelo FROM sensor s
+	JOIN Tanque t
+    ON t.idTanque = s.fkTanque
+    WHERE nomeTanque = '${tanque}';
     `
     return database.executar(query)
 }
 
-function buscarInstalacao(){
+function buscarInstalacao(tanque){
     let query = `
         SELECT DataInstalacao
-        FROM sensor;
+        FROM sensor s
+        JOIN Tanque t
+        ON t.idTanque = s.fkTanque
+        WHERE nomeTanque = '${tanque}';
     `
     return database.executar(query)
 }
 
-function buscarCapacidade(){
+function buscarCapacidade(tanque){
     let query = `
         SELECT CapacidadeLitros
         FROM tanque
-        WHERE NomeTanque = 'tanque 1';
+        WHERE NomeTanque = '${tanque}';
     `
     return database.executar(query)
 }

@@ -1,14 +1,15 @@
 var dashModel = require("../models/dashModel");
 
+
 function graficoTanqueEspecifico(req, res) {
-  const tanqueID = req.params.tanqueID;
+  const tanque = req.params.tanque;
   const inicio = req.params.inicio;
   const fim = req.params.fim;
 
-  console.log(tanqueID + " | " + inicio + " | " + fim);
+  console.log(tanque + " | " + inicio + " | " + fim);
 
   dashModel
-    .buscarRegistroTanque(tanqueID, inicio, fim)
+    .buscarRegistroTanque(tanque, inicio, fim)
     .then((resultado) => {
       res.status(200).json(resultado);
     })
@@ -19,8 +20,9 @@ function graficoTanqueEspecifico(req, res) {
 }
 
 function alertas7Dias(req, res) {
+  const tanque = req.params.tanque;
   dashModel
-    .buscarAlertas7Dias()
+    .buscarAlertas7Dias(tanque)
     .then((resultado) => {
       res.status(200).json(resultado);
     })
@@ -31,50 +33,57 @@ function alertas7Dias(req, res) {
 }
 
 function temperaturaAtual(req, res) {
+  const tanque = req.params.tanque;
   dashModel
-    .buscarTemperaturaAtual()
+    .buscarTemperaturaAtual(tanque)
     .then((resultado) => res.status(200).json(resultado))
     .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function ultimoAlerta(req, res) {
+  const tanque = req.params.tanque;
   dashModel
-    .buscarUltimoAlerta()
+    .buscarUltimoAlerta(tanque)
     .then((resultado) => res.status(200).json(resultado))
     .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function statusSensor(req, res) {
+  const tanque = req.params.tanque;
   dashModel
-    .buscarStatusSensor()
+    .buscarStatusSensor(tanque)
     .then((resultado) => res.status(200).json(resultado))
     .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function StatusTanque(req, res) {
+  const tanque = req.params.tanque;
   dashModel
-    .buscarStatusTanque()
+    .buscarStatusTanque(tanque)
     .then((resultado) => res.status(200).json(resultado))
     .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function modeloSensor(req, res) {
+  const tanque = req.params.tanque;
   dashModel
-    .buscarModeloSensor()
+    .buscarModeloSensor(tanque)
     .then((resultado) => res.status(200).json(resultado))
     .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function instalacao(req, res) {
+  const tanque = req.params.tanque;
   dashModel
-    .buscarInstalacao()
+    .buscarInstalacao(tanque)
     .then((resultado) => res.status(200).json(resultado))
     .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
 function capacidade(req, res) {
+  const tanque = req.params.tanque;
   dashModel
-    .buscarCapacidade()
+    .buscarCapacidade(tanque)
     .then((resultado) => res.status(200).json(resultado))
     .catch((erro) => res.status(500).json(erro.sqlMessage));
 }

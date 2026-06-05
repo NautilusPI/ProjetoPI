@@ -1,4 +1,9 @@
 let idEmpresa = sessionStorage.ID_EMPRESA;
+let nomeTanque = '';
+
+function irParaDashboardTanque(tanque) {
+  window.location.href = `./dashboard/dashboardTanque.html`;
+}
 
 fetch(`/dash/totalTanques/${idEmpresa}`)
   .then(function (resposta) {
