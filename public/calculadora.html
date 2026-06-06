@@ -12,18 +12,16 @@
   <div class="navbar">
     <div class="navlink" id="navlink">
       <div class="logo">
-        <img src="./assets/Home/logo.png" alt=""> 
+        <a href="index.html"><img src="./assets/Calculadora/logo.png" alt=""></a>
       </div>
-        <a class="link" href="index.html">Inicio</a> 
-        <a class="link" href="calculadora.html">Simulador</a>
+      <a class="link" href="index.html">Inicio</a>
+      <a class="link" href="calculadora.html">Simulador</a>
     </div>
-      <div class="forms">
-        <a href="login.html"><button class="preenchido" id="btnEntrar">Entre</button></a>
-        <a href="cadastro.html"><button class="vazado" id="btnCadastrar">Cadastre-se</button></a>
-        <button class="preenchido" onclick="window.location = './areaUsuario.html'" style="display: none;" id="btnUser">Espaço do Cliente</button>
-        <button class="vazado" onclick="deslogar()" style="display: none;" id="btnSair">Sair</button>
-      </div>
+    <div class="forms">
+      <button class="vazado"><a href="login.html">Entre</a></button>
+      <button class="preenchido"><a href="cadastro.html">Cadastre-se</a> </button>
     </div>
+  </div>
 
   <div class="container_conteudo">
     <div class="titulo">
@@ -36,57 +34,57 @@
 
           <div class="input_div">
             <p class="subtexto">Despesas Mensais</p>
-            <input type="text" id="despesas_input" value="1200">
+            <input type="text" id="despesas_input" placeholder="5.500 a 47.500+">
           </div>
 
           <div class="input_div">
-            <p class="subtexto">Ração mensal (kg)</p>
-            <input type="text" id="racao_mes_input" value="500">
+            <p class="subtexto">Conversão Alimentar</p>
+            <input type="text" id="conversão_alimentar_input" placeholder="1.3 a 2.0+">
           </div>
 
           <div class="input_div">
-            <p class="subtexto">Preço da Ração por Quilo</p>
-            <input type="text" id="preco_racao_input" value="1300">
+            <p class="subtexto">Preço por Quilo de Ração</p>
+            <input type="text" id="preco_racao_input" placeholder="5.00 a 7.00+">
           </div>
 
           <div class="input_div">
             <p class="subtexto">Preço unitário do Alevino</p>
-            <input type="text" id="preco_alevino_input" value="50">
+            <input type="text" id="preco_alevino_input" placeholder="0.30 a 0.50">
           </div>
 
             <div class="input_div">
-              <p class="subtexto">Valor de venda do peixe inteiro (kg)</p>
-              <input type="text" id="venda_cru_input" value="100">
+              <p class="subtexto">Valor de venda do peixe inteiro p/kg</p>
+              <input type="text" id="venda_cru_input" placeholder="7.80 a 12.00">
             </div>
 
           <div class="input_div">
-            <p class="subtexto">Valor de venda do filé por Quilo</p>
-            <input type="text" id="venda_file_input" value="150">
+            <p class="subtexto">Valor de venda do filé p/kg</p>
+            <input type="text" id="venda_file_input" placeholder="30.00 a 50.00">
           </div>
 
           <div class="input_div">
-            <p class="subtexto">Valor de venda dos miúdos por Quilo</p>
-            <input type="text" id="venda_miudos_input" value="200">
+            <p class="subtexto">Valor de venda dos miúdos p/kg</p>
+            <input type="text" id="venda_miudos_input" placeholder="3.00 a 8.00">
           </div>
 
           <div class="input_div">
             <p class="subtexto">Duração do ciclo em meses</p>
-            <input type="text" id="duracao_ciclo_input" value="3">
+            <input type="text" id="duracao_ciclo_input" placeholder="6 a 10">
           </div>
 
-
+        
         </div>
         <div class="container_input_calcular">
           <p class="subtitulo_calcular">Informações Sobre o Tanque</p>
 
           <div class="input_div">
-            <p class="subtexto">Peixes Iniciais (kg)</p>
-            <input type="text" id="peixes_iniciais_input" value="10000">
+            <p class="subtexto">Alevinos ao inicio do ciclo</p>
+            <input type="text" id="peixes_iniciais_input" placeholder="1000 a 100.000+">
           </div>
 
           <div class="input_div">
-            <p class="subtexto">Quantidade de peixes ao final do ciclo (kg) </p>
-            <input type="text" id="peixes_final_input" value="8000">
+            <p class="subtexto">Peixes colhidos ao final do ciclo: </p>
+            <input type="text" id="peixes_final_input" placeholder="800 a 80.000+">
           </div>
 
           <div class="botao">
@@ -171,6 +169,19 @@
 
 </html>
 <script>
+
+  
+  const fileAproveitamento = 0.32;
+  const miudosAproveitamento = 0.50;
+
+  let pesoPeixe = 1.6;
+  let vendaInteiroPorcentagem = 0.5;
+  let peixesProcessados = 1 - vendaInteiroPorcentagem;
+
+  let vendaFilePorcentagem = peixesProcessados * fileAproveitamento;
+  let vendaMiudosPorcentagem = peixesProcessados * miudosAproveitamento;
+
+
   // Variáveis Globais //
    let tanque = 0
    let peixesMortosTotal = 0
@@ -183,11 +194,14 @@
    let brutos = 0
    let custos = 0
    let liquido = 0
+   let prejuizoTotal = 0
+   let peixesMortosPorcentagemTotal = 0
 
   function calcular() {
     // Peixes //
     let peixesInicial = Number(peixes_iniciais_input.value);
     let peixesFinal = Number(peixes_final_input.value);
+    let racaoDesperdicada = 0;
     // Venda //
     let vendaFile = Number(venda_file_input.value)
     let vendaMiudos = Number(venda_miudos_input.value)
@@ -196,18 +210,19 @@
     let precoRacao = Number(preco_racao_input.value)
     let precoAlevino = Number(preco_alevino_input.value)
     // Custos Operacionais //
-    let racaoMes = Number(racao_mes_input.value)
+    let conversaoAlimentar = Number(conversão_alimentar_input.value)
     let despesas = Number(despesas_input.value)
+    let duracaoCiclo = Number(duracao_ciclo_input.value)
 
     // validação de valores ------------------------------------------------------ //
     if (despesas <= 0) {
       alert('Insira um valor de despesas válido')
-    } else if (racaoMes <= 0) {
-      alert('Insira um valor de kilos de ração por mês válido')
+    } else if (conversaoAlimentar <= 0) {
+      alert('Insira um valor de conversao alimentar válido')
     } else if (precoRacao <= 0) {
       alert('Insira um valor de preço do kilo da ração válido')
-    } else if (racaoMes <= 0) {
-      alert('Insira um valor de kilos de ração por mês válido')
+    } else if (conversaoAlimentar <= 0) {
+      alert('Insira um valor de conversao alimentar por mês válido')
     } else if (precoAlevino <= 0) {
       alert('Insira um valor do preço unitário do alevino válido')
     } else if (vendaCru <= 0) {
@@ -221,49 +236,73 @@
       // -------------------------------------------------------------------------- //
       // calcular //
 
-      // Peixes //
-      // --------------------------------------------------------------- //
-      let peixesMortos = peixesInicial - peixesFinal;
-      let peixesMortosPorcentagem = peixesMortos / peixesInicial;
-    
-      // Venda //
-      // --------------------------------------------------------------- //
-      let peixesCruVenda = (peixesFinal / 2) * vendaCru
-      let peixesFileVenda = ((peixesFinal / 2) * 0.3) * vendaFile;
-      let peixesMiudosVenda = ((peixesFinal / 2) * 0.7) * vendaMiudos;
-
-      // Perda //
-      // --------------------------------------------------------------- //
-      let peixesCruPerdido = (peixesMortos / 2) * vendaCru;
-      let peixesFilePerdido = ((peixesMortos / 2) * 0.3) * vendaFile;
-      let peixesMiudosPerdido = ((peixesMortos / 2) * 0.7) * vendaMiudos;
-      let perdaComAlevino = precoAlevino * peixesMortos;
-
-      // Perda Peixes Mortos //  
-      let perdasPorPeixesMortos = peixesCruPerdido + peixesFilePerdido + peixesMiudosPerdido;
-
-      // Ganhos //
-      // --------------------------------------------------------------- //
-      let ganhosPeixes = peixesCruVenda + peixesFileVenda + peixesMiudosVenda;
-
-      // Perdas Totais //
-      // --------------------------------------------------------------- //
+     //Total de peixes Perdidos
+     let peixesPerdidos = -(peixesFinal - peixesInicial);
+     console.log("peixesPerdidos: " + peixesPerdidos)
      
-      peixesMortosTotal += peixesMortos;
-      peixesInicialTotal += peixesInicial;
-      perdasPorPeixesMortosTotal += perdasPorPeixesMortos;
-      ganhosPeixesTotal += ganhosPeixes;
-      perdaComAlevinoTotal += perdaComAlevino;
-      let peixesMortosPorcentagemTotal = peixesMortosTotal / peixesInicialTotal;
+     //Custo com manutenção, funcionarios... Em um ciclo.
+     let custoDespesasCiclo = despesas * duracaoCiclo;
+     console.log("custoDespesasCiclo: " + custoDespesasCiclo)
+     
+     //Custo total da ração.
+     let custoRacao = (precoRacao * conversaoAlimentar * peixesInicial * pesoPeixe)
+     console.log("Custo racao: " + custoRacao)
+     
+     //Custo total dos peixes
+     let custoPeixes = custoRacao + (peixesInicial * precoAlevino);
+     console.log("custoPeixes: " + custoPeixes)
+     
+     //Porcentagem de peixes perdidos
+     let peixesPerdidosPorcentagem = 1 - (peixesFinal / peixesInicial)
+     console.log("peixesPerdidosPorcentagem: "+ peixesPerdidosPorcentagem)
+     
+     //Perda com ração.
+     let racaoDesperdicada =  custoRacao * peixesPerdidosPorcentagem;
+      console.log("racaoDesperdicada: "+ racaoDesperdicada)
+     
+      //Perda com alevino.
+     let perdaComAlevino = peixesPerdidos * precoAlevino;
+     console.log("perdaComAlevino: "+ perdaComAlevino)
+     
+     //Quantidade de peixes mortos
+     let peixesMortos = peixesPerdidos;
+     console.log("peixesMortos: "+ peixesMortos)
+     
+     //Porcentagem de peixes mortos
+     let peixesMortosPorcentagem = peixesPerdidosPorcentagem;
+     console.log("peixesMortosPorcentagem: "+ peixesMortosPorcentagem)
+     
+     //Valor ganho com a venda dos peixes
+     let ganhosPeixes = (vendaCru * peixesFinal * pesoPeixe) * vendaInteiroPorcentagem  +  (vendaFile * peixesFinal * pesoPeixe) * fileAproveitamento + (vendaMiudos * peixesFinal * pesoPeixe) * miudosAproveitamento
+     console.log("ganhosPeixes: "+ ganhosPeixes)
+     
+     //Valor perdido por conta dos peixes mortos.
+     let perdasPorPeixesMortos = ganhosPeixes * peixesMortosPorcentagem;
+     console.log("perdasPorPeixesMortos: "+ perdasPorPeixesMortos)
+     
+     //Soma de todas as perdas.
+     prejuizoTotal += perdaComAlevino + racaoDesperdicada + (custoDespesasCiclo * peixesPerdidosPorcentagem);
 
-      // Custos Operacionais //
-      // --------------------------------------------------------------- //   
-      perdaRacao = (racaoMes / peixesInicialTotal) * peixesMortosTotal;
-      // --------------------------------------------------------------- // 
-      let brutos = ganhosPeixesTotal
-      let custos = (despesas + racaoMes + precoAlevino) * peixesInicialTotal;
-      let liquido = brutos - custos
-      let prejuizoTotal = perdasPorPeixesMortosTotal + perdaRacao + perdaComAlevino
+     //Ganho Bruto
+     brutos += ganhosPeixes - perdasPorPeixesMortos
+
+     //Custo total
+     custos += custoDespesasCiclo + custoPeixes;
+
+     //Ganho liquido
+     liquido = brutos - custos;
+    
+     peixesInicialTotal += peixesInicial;
+
+     peixesMortosTotal += peixesPerdidos;
+
+     peixesMortosPorcentagemTotal = (peixesMortosTotal /peixesInicialTotal);
+
+     perdaRacao += racaoDesperdicada;
+
+     perdaComAlevinoTotal += perdaComAlevino;
+  
+     perdasPorPeixesMortosTotal += perdasPorPeixesMortos;
 
       // Exibindo os resultados //
       tanque++
@@ -297,7 +336,7 @@
         ${perdasPorPeixesMortos.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
         </div>
         <div class="painel">
-          Peixes mortos: <br> ${peixesMortos} kg
+          Peixes mortos: <br> ${peixesMortos} 
           <br>Taxa de peixes mortos: <br> ${new Intl.NumberFormat('pt-BR', { style: 'percent'}).format(peixesMortosPorcentagem)}
           <br>Ganho com vendas: <br>${ganhosPeixes.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
           <br>Perda com alevinos: <br> ${perdaComAlevino.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
