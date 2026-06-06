@@ -18,9 +18,11 @@
       <a class="link" href="calculadora.html">Simulador</a>
     </div>
     <div class="forms">
-      <button class="vazado"><a href="login.html">Entre</a></button>
-      <button class="preenchido"><a href="cadastro.html">Cadastre-se</a> </button>
-    </div>
+        <button class="preenchido" id="btnEntrar" onclick="window.location ='./login.html'">Entre</button>
+        <button class="vazado" id="btnCadastrar" onclick="window.location ='./cadastro.html'">Cadastre-se</button>
+        <button class="preenchidoB" onclick="window.location = './areaUsuario.html'" style="display: none;" id="btnUser">Espaço do Cliente</button>
+        <button class="vazadoB" onclick="deslogar()" style="display: none;" id="btnSair">Sair</button>
+      </div>
   </div>
 
   <div class="container_conteudo">
@@ -170,6 +172,18 @@
 </html>
 <script>
 
+   window.onload = function () {
+        alterarBotao()
+    }
+
+    function alterarBotao() {
+    if (sessionStorage.ID_USUARIO) {
+      document.getElementById("btnEntrar").style.display = "none";
+      document.getElementById("btnCadastrar").style.display = "none";
+      document.getElementById("btnSair").style.display = "block";
+      document.getElementById("btnUser").style.display = "block";
+    }
+  }
   
   const fileAproveitamento = 0.32;
   const miudosAproveitamento = 0.50;

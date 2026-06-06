@@ -18,6 +18,10 @@ body {
     background-color: var(--background);
 }
 
+a {
+    all: unset;
+}
+
 /* NAVBAR - INICIO -------------------------------------------------------------------- */
 
 .navbar {
@@ -26,12 +30,12 @@ body {
     margin: 0px;
     display: flex;
     justify-content: space-around;
-    gap: 58%;
+    gap: 60%;
     align-items: center;
 
     .navlink {
         width: 60px;
-        gap: 20%;
+        gap: 25%;
         display: flex;
         align-items: center;
     }
@@ -40,6 +44,7 @@ body {
         height: 40px;
         display: flex;
         align-items: center;
+        margin-bottom: 1.5vh;
         img {
             height: 42px;
             margin-right: 25px;
@@ -55,12 +60,12 @@ body {
         text-align: end;
         font-weight:  bold;
         margin-right: 20%;
+        cursor: pointer;
     }
 
     .forms {
         display: flex;
-        gap: 12%;
-    
+        gap: 10%;
         
         .vazado {
             color: var(--primaria); 
@@ -69,28 +74,51 @@ body {
             border: 1px solid var(--primaria);
             background-color: var(--background);
             text-align: center;
-            width: 7vw;
+            width: 8vw;
             height: 4.5vh;
             cursor: pointer;
-            
-        } 
-
+        }
+        
         .preenchido {
-             color: white;
+            color: white;
             font-weight: 700;  
             background-color: var(--primaria);
             border: 1px solid var(--primaria);
             border-radius: 10px;
-            width: 6vw;
+            width: 7vw;
             height: 4.5vh;
             cursor: pointer;
-            
-        } 
-        .forms a{
+         }
+
+         .forms a {
             all:unset;
          }
+
+         .vazadoB {
+            color: var(--primaria); 
+            font-weight: 700;
+            border-radius: 10px;
+            border: 1px solid var(--primaria);
+            background-color: var(--background);
+            width: 6vw;
+            cursor: pointer;
+        }
+        .preenchidoB {
+            color: white;
+            font-weight: 700;  
+            background-color: var(--primaria);
+            border: 1px solid var(--primaria);
+            border-radius: 10px;
+            padding: 10px 20px;
+            width: 10vw;
+            white-space: nowrap;
+            cursor: pointer;
+         }
+         .preenchido a{
+            color: white;
+         }
     }
-} 
+    } 
 /* NAVBAR - FIM -------------------------------------------------------------------- */
 
 /* CONTAINER - CONTEUDO: INICIO -------------------------------------------------------------------- */
@@ -107,6 +135,7 @@ body {
         display:flex;
         font-size: 1.8rem;
         margin-bottom: 15px;
+        margin-left: 1vw;
     }
 
     input { /* style padrao das inputs */
@@ -135,6 +164,7 @@ body {
             display: flex;
             width: 60%;
             height: 100%;
+            margin-left: 1vw;
     
             .container_input {
                 background-color: white;
@@ -201,6 +231,8 @@ body {
                 align-items: center;
                 border: none;
                 border-radius: 5px;
+                outline: none;
+                cursor: pointer;
             }
     }
 
@@ -209,7 +241,7 @@ body {
               /* CALCULAR -> RESULTADO - PREJUIZOS */
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.079);
             border-radius: 10px;
-            margin-left: 60px;
+            margin-left: 50px;
             width: 35%;
             flex: none;
             display: none;
