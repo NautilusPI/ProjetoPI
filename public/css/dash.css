@@ -20,7 +20,7 @@ body {
     margin: 0px;
     display: flex;
     justify-content: space-around;
-    gap: 58%;
+    gap: 60%;
     align-items: center;
 
     .navlink {
@@ -34,7 +34,6 @@ body {
         height: 40px;
         display: flex;
         align-items: center;
-        margin-left: 5vw;
 
         img {
             height: 42px;

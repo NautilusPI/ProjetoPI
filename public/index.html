@@ -75,7 +75,7 @@
                     </p>
                 </div>
                 <div class="box-button">
-                    <button onclick="document.getElementById('h1_contato').scrollIntoView({behavior: 'smooth'});">Entre em contato</button> <!-- // ao clicar no botão, a tela desce para o form de contato. -->  
+                    <button onclick="window.location.href='areaUsuario.html'">Entre em contato</button>  
                 </div>
 
             </div>
@@ -121,37 +121,7 @@
         </div>
     </div>
 
-    <div class="contato">
-        <h1 id="h1_contato">ENTRE EM CONTATO</h1>
-
-        <div class="container-contato">
-            <div class="contato-form">
-                <form action="">
-                    <label for="form_nome">Nome<span style= "color:red">*</span><span id="erroNome"></span></label> 
-                    <input type="text" id="form_nome" placeholder="Insira seu nome">
-    
-                    <label for="form_email">Email<span style= "color:red">*</span><span id="erroEmail"></span></label> 
-                    <input type="text" id="form_email" placeholder="Insira seu email"> 
-    
-                    <label for="form_assunto">Assunto<span id="erroAssunto"></span></label>
-                    <input type="text" id="form_assunto" placeholder="Assunto">
-    
-                    <label for="mensagem">Mensagem<span style= "color:red">*</span><span id="erroMensagem"></span></label>
-                    <textarea rows="10" cols="50" id="mensagem" placeholder="Deixe sua mensagem"></textarea> <span id="contagem"></span>
-                    
-                    
-                    <div class="btn-contato">
-                        <span id="MensagemEnviada"></span> <br>
-                        <button onclick="enviar()">Enviar mensagem</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="logo">
-                <img src="./assets/Home/logo.png" alt="">
-            </div>
-        </div>
-    </div>
+    <br><br><br>
 
     <div class="footer">
             <div class="icons-footer">

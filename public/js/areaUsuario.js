@@ -1,5 +1,6 @@
 window.onload = function () {
   listarDados();
+  verificarSessao();
 
   var nomeUsuario = sessionStorage.NOME_USUARIO;
   span_nomeUsuario.innerHTML = nomeUsuario;
@@ -139,6 +140,8 @@ function listarDados() {
             let linkInstalacao = `
          <a target="_blank"
         href="https://nautilushelp.atlassian.net/servicedesk/customer/portal/34/group/39/create/10084?summary=Instalação+de+sensor+em+tanque&customfield_10198=${nomelink}&customfield_10199=${cnpjlink}&customfield_10200=${emaillink}&customfield_10204=${enderecolink}&customfield_10201=${nomeTanquelink}&customfield_10202=${setorlink}&customfield_10203=${capacidadelink}">
+        <img src="../assets/Usuário/configuracao (2).png" alt="Solicitar Instalação"
+        title="Solicitar Instalação">
         </a>
          `;
 
@@ -175,3 +178,10 @@ function listarDados() {
       console.log(erro);
     });
 }
+
+function verificarSessao() {
+  if(!sessionStorage.ID_USUARIO) {
+    window.location.href = './cadastro.html'
+  }
+}
+

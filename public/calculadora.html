@@ -184,6 +184,11 @@
       document.getElementById("btnUser").style.display = "block";
     }
   }
+
+  function deslogar() {
+    sessionStorage.clear();
+    window.location = "caluladora.html"
+  }
   
   const fileAproveitamento = 0.32;
   const miudosAproveitamento = 0.50;

@@ -1,224 +1,269 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sua dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/5fcf1c6510.js" crossorigin="anonymous"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/5fcf1c6510.js"
+      crossorigin="anonymous"
+    ></script>
 
-    <link rel="stylesheet" href="../css/dashTanque.css">
-</head>
+    <link rel="stylesheet" href="../css/dashTanque.css" />
+  </head>
 
-<body>
-<div class="navbar">
-    <div class="navlink" id="navlink">
-      <div class="logo">
-        <img src="../assets/Home/logo.png" alt=""> 
-      </div>
-        <a class="link" href="../index.html">Inicio</a> 
+  <body>
+    <div class="navbar">
+      <div class="navlink" id="navlink">
+        <div class="logo">
+          <img src="../assets/Home/logo.png" alt="" />
+        </div>
+        <a class="link" href="../index.html">Inicio</a>
         <a class="link" href="../calculadora.html">Simulador</a>
-    </div>
+      </div>
       <div class="forms">
-        <button class="preenchido" onclick="window.location = '../areaUsuario.html'"id="btnUser">Espaço do Cliente</button>
+        <button
+          class="preenchido"
+          onclick="window.location = '../areaUsuario.html'"
+          id="btnUser"
+        >
+          Espaço do Cliente
+        </button>
         <button class="vazado" onclick="deslogar()" id="btnSair">Sair</button>
       </div>
     </div>
     <div class="container-externo">
-        <div class="container">
-            <div class="topo">
-                <div class="topoEsquerda">
-                    <span>Dashboard</span>
-                    <select id="menu" onchange="irParaPagina()">
-                        <option value="./dashboardTanque.html">Tanques</option>
-                        <option value="./dashboardGeral.html">Visão Geral</option>
-                    </select>
-                </div>
-
-            </div>
-            <div class="kpis">
-                <div class="card">
-                    <div class="topoCard">
-                        <span>Temperatura atual</span>
-                    </div>
-                    <div class="numeroCard" >
-                        <span id="cardTemperatura">0.0 ºC</span>
-                    </div>
-                   
-                </div>
-                <div class="card">
-                    <div class="topoCard">
-                        <span>Quantidade de Alertas (7 dias)</span>
-
-
-                    </div>
-                    <div class="numeroCard">
-                       <span id="cardAlertas7dias">--</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="topoCard">
-                        <span>Status do tanque</span>
-
-                    </div>
-                    <div class="numeroCard">
-                       <span id="cardStatusTanque">--</span>
-                    </div>
-
-                </div>
-                <div class="card">
-                    <div class="topoCard">
-                        <span>Último alerta </span>
-
-                    </div>
-                    <div class="numeroCard">
-                        <span id="cardUltimoAlerta">--</span>
-                    </div>
-                </div>
-            </div>
-            <div class="graficoEkpis">
-                <div class="graficoLinhaContainer">
-                    <div class="topo">
-                        <span>Histórico de temperatura </span>
-                       <div class="inputsData">
-                         <input type="datetime-local" id="dataInicioInput" value="2026-05-10 00:00" >
-                        <input type="datetime-local" id="dataFimInput" value="2026-05-11 00:00" >
-                       </div>
-                        <!-- <button onclick="buscarRegistroTanque()">Filtrar</button> -->
-                         <div class="checkBox">
-                            Ver status atual
-                               <input type="checkbox" class="checkbox" id="aovivoCheck">
-                        </div>
-                    </div>
-                    <div class="grafico" id="containerGrafico">
-                        <canvas id="sensorAnalogico"></canvas>
-                    </div>
-                </div>
-                <div class="kpisSecundarias">
-                    <div class="card">
-                        <div class="topoCard">
-                            <span>Status do sensor</span>
-                        </div>
-                        <div class="numeroCard">
-                            <span id="cardStatusSensor">--</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="topoCard">
-                            <span>Modelo do sensor</span>
-                        </div>
-                        <div class="numeroCard">
-                            <span id="cardModeloSensor">--</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="topoCard">
-                            <span>Data da instalação</span>
-                        </div>
-                        <div class="numeroCard">
-                            <span id="cardInstalacao">--</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="topoCard">
-                            <span>Capacidade do tanque</span>
-                        </div>
-                        <div class="numeroCard">
-                            <span id="cardCapacidade">--</span>
-                        </div>
-                    </div>
-                </div>  
-            </div>
+      <div class="container">
+        <div class="topo">
+          <div class="topoEsquerda">
+            <span>Dashboard</span>
+            <select id="menu" onchange="irParaPagina()"></select>
+          </div>
         </div>
+        <div class="kpis">
+          <div class="card">
+            <div class="topoCard">
+              <span>Temperatura atual</span>
+            </div>
+            <div class="numeroCard">
+              <span id="cardTemperatura">0.0 ºC</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="topoCard">
+              <span>Quantidade de Alertas (7 dias)</span>
+            </div>
+            <div class="numeroCard">
+              <span id="cardAlertas7dias">--</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="topoCard">
+              <span>Status do tanque</span>
+            </div>
+            <div class="numeroCard">
+              <span id="cardStatusTanque">--</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="topoCard">
+              <span>Último alerta </span>
+            </div>
+            <div class="numeroCard">
+              <span id="cardUltimoAlerta">--</span>
+            </div>
+          </div>
+        </div>
+        <div class="graficoEkpis">
+          <div class="graficoLinhaContainer">
+            <div class="topo">
+              <span>Histórico de temperatura </span>
+              <div class="inputsData">
+                <input
+                  type="datetime-local"
+                  id="dataInicioInput"
+                  value="2026-05-10 00:00"
+                />
+                <input
+                  type="datetime-local"
+                  id="dataFimInput"
+                  value="2026-05-11 00:00"
+                />
+              </div>
+              <!-- <button onclick="buscarRegistroTanque()">Filtrar</button> -->
+              <div class="checkBox">
+                Ver status atual
+                <input type="checkbox" class="checkbox" id="aovivoCheck" />
+              </div>
+            </div>
+            <div class="grafico" id="containerGrafico">
+              <canvas id="sensorAnalogico"></canvas>
+            </div>
+          </div>
+          <div class="kpisSecundarias">
+            <div class="card">
+              <div class="topoCard">
+                <span>Status do sensor</span>
+              </div>
+              <div class="numeroCard">
+                <span id="cardStatusSensor">--</span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="topoCard">
+                <span>Modelo do sensor</span>
+              </div>
+              <div class="numeroCard">
+                <span id="cardModeloSensor">--</span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="topoCard">
+                <span>Data da instalação</span>
+              </div>
+              <div class="numeroCard">
+                <span id="cardInstalacao">--</span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="topoCard">
+                <span>Capacidade do tanque</span>
+              </div>
+              <div class="numeroCard">
+                <span id="cardCapacidade">--</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="../js/dashTanque.js"></script>
-    <script>
-        function irParaPagina() {
-        window.location.href = document.getElementById("menu").value;
-        }
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/dashTanque.js"></script>
+  <script>
+    window.onload = function () {
+    listarDados();
+    };
 
-        var labelsHorario = []
-        var maximo = []
-        var minimo = []
-        var amarelo1 = []
-        var amarelo2 = []
-    
+    var labelsHorario = [];
+    var maximo = [];
+    var minimo = [];
+    var amarelo1 = [];
+    var amarelo2 = [];
 
+    var paginacao = {};
+    var tempo = {};
 
-        var paginacao = {};
-        var tempo = {};
+    // function obterDados(grafico, endpoint) {
+    //     fetch('http://10.18.32.7:3300/sensores/' + endpoint)
+    //         .then(response => response.json())
+    //         .then(valores => {
+    //             if (paginacao[endpoint] == null) {
+    //                 paginacao[endpoint] = 0;
+    //             }
+    //             if (tempo[endpoint] == null) {
+    //                 tempo[endpoint] = 0;
+    //             }
 
-        // function obterDados(grafico, endpoint) {
-        //     fetch('http://10.18.32.7:3300/sensores/' + endpoint)
-        //         .then(response => response.json())
-        //         .then(valores => {
-        //             if (paginacao[endpoint] == null) {
-        //                 paginacao[endpoint] = 0;
-        //             }
-        //             if (tempo[endpoint] == null) {
-        //                 tempo[endpoint] = 0;
-        //             }
+    //             var ultimaPaginacao = paginacao[endpoint];
+    //             paginacao[endpoint] = valores.length;
+    //             valores = valores.slice(ultimaPaginacao);
 
-        //             var ultimaPaginacao = paginacao[endpoint];
-        //             paginacao[endpoint] = valores.length;
-        //             valores = valores.slice(ultimaPaginacao);
+    //             valores.forEach((valor) => {
+    //                 if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+    //                     grafico.data.labels.shift();
+    //                     grafico.data.datasets[0].data.shift();
+    //                 }
 
-        //             valores.forEach((valor) => {
-        //                 if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-        //                     grafico.data.labels.shift();
-        //                     grafico.data.datasets[0].data.shift();
-        //                 }
+    //                 grafico.data.datasets[0].data.push(parseFloat(valor));
+    //                 cardTemperatura.innerHTML = `${parseFloat(valor)} ºC`
+    //                 if(valor > 25 &&valor<31){
+    //                     statusCard.innerHTML ='Seguro'
+    //                 }else{
+    //                     statusCard.innerHTML ='Risco'
 
+    //                 }
+    //                 let date = new Date()
+    //                 grafico.data.labels.push(date.toLocaleTimeString());
 
-        //                 grafico.data.datasets[0].data.push(parseFloat(valor));
-        //                 cardTemperatura.innerHTML = `${parseFloat(valor)} ºC`
-        //                 if(valor > 25 &&valor<31){
-        //                     statusCard.innerHTML ='Seguro'
-        //                 }else{
-        //                     statusCard.innerHTML ='Risco'
+    //                 grafico.update();
+    //             });
+    //             if (grafico.data.datasets[0].data.length > 10) {
+    //                 grafico.data.datasets[0].data = grafico.data.datasets[0].data.slice(-10)
+    //             }
+    //         })
+    //         .catch(error => console.error('Erro ao obter dados:', error));
+    // }
 
-        //                 }
-        //                 let date = new Date()
-        //                 grafico.data.labels.push(date.toLocaleTimeString());
+    // setInterval(() => {
+    //     obterDados(sensorAnalogico, 'analogico');
+    //     maximo.push(33)
+    //     amarelo1.push(25)
+    //     amarelo2.push(30)
+    //     minimo.push(23)
 
-        //                 grafico.update();
-        //             });
-        //             if (grafico.data.datasets[0].data.length > 10) {
-        //                 grafico.data.datasets[0].data = grafico.data.datasets[0].data.slice(-10)
-        //             }
-        //         })
-        //         .catch(error => console.error('Erro ao obter dados:', error));
-        // }
+    //     if (minimo.length > 10) {
+    //         maximo = maximo.slice(-10)
+    //         amarelo1  =amarelo1.slice(-10)
+    //         amarelo2=amarelo2.slice(-10)
+    //         minimo= minimo.slice(-10)
+    //     }
 
-        // setInterval(() => {
-        //     obterDados(sensorAnalogico, 'analogico');
-        //     maximo.push(33)
-        //     amarelo1.push(25)
-        //     amarelo2.push(30)
-        //     minimo.push(23)
+    //     console.log()
+    // }, 1000);
 
-        //     if (minimo.length > 10) {
-        //         maximo = maximo.slice(-10)
-        //         amarelo1  =amarelo1.slice(-10)                  
-        //         amarelo2=amarelo2.slice(-10)
-        //         minimo= minimo.slice(-10)
-        //     }
-
-        //     console.log()
-        // }, 1000);
-
-
-         if(sessionStorage.EMAIL_USUARIO == 'cesar@nautilus.suporte'){
-           navlink.innerHTML += `
+    if (sessionStorage.EMAIL_USUARIO == "cesar@nautilus.suporte") {
+      navlink.innerHTML += `
             <a class="link" href="testeIA.html">Suporte</a>
            
-           `
-
+           `;
     }
-    </script>
 
+    function listarDados() {
+      var idUsuario = sessionStorage.ID_USUARIO;
+
+      fetch(`/areaUsuario/listarDados/${idUsuario}`)
+        .then(function (resposta) {
+          if (resposta.ok) {
+            resposta.json().then(function (dados) {
+              let tanque = dados.tanques;
+
+              let menu = document.getElementById("menu");
+
+              menu.innerHTML = `
+                        <option value="./dashboardGeral.html">
+                            Visão Geral
+                        </option>
+                    `;
+
+              for (let i = 0; i < tanque.length; i++) {
+                menu.innerHTML += `
+                            <option value="./dashboardTanque.html?idTanque=${tanque[i].idTanque}">
+                                ${tanque[i].NomeTanque}
+                            </option>
+                        `;
+              }
+            });
+          } else {
+            console.log("Erro ao buscar tanques");
+          }
+        })
+        .catch(function (erro) {
+          console.log(erro);
+        });
+    }
+
+    function irParaPagina() {
+      const pagina = document.getElementById("menu").value;
+
+      if (pagina) {
+        window.location.href = pagina;
+      }
+    }
+  </script>
 </html>
