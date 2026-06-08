@@ -14,8 +14,9 @@ CREATE TABLE Usuario (
 	Nome VARCHAR(45) NOT NULL,
 	Email VARCHAR(80) NOT NULL,
 	Senha VARCHAR(15) NOT NULL,
+	Telefone CHAR(11),
     CPF CHAR(11) NOT NULL,
-	fkEmpresa INT,
+	fkEmpresa INT, 
 	CONSTRAINT fkEmpresa_const FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
@@ -49,10 +50,37 @@ CREATE TABLE RegistroTemperatura (
     
     CREATE TABLE Alerta(
     idAlerta INT AUTO_INCREMENT,
-    Descricao VARCHAR(200),
     fkRegistroTemperatura INT,
     fkAlertaSensor INT,
 	CONSTRAINT fkRegistroTemperatura FOREIGN KEY (fkRegistroTemperatura) REFERENCES RegistroTemperatura(idRegistro),
 	CONSTRAINT fkAlertaSensor FOREIGN KEY (fkAlertaSensor) REFERENCES RegistroTemperatura(fkSensor),
 	PRIMARY KEY (idAlerta, fkRegistroTemperatura)
     );
+
+-- VIEWS
+
+CREATE VIEW vw_medidasEmTempoReal AS
+SELECT t.fkEmpresa as idEmpresa, t.nomeTanque, r.registroTemperatura,
+    CASE
+    WHEN r.registroTemperatura > 33 OR r.registroTemperatura < 23 THEN 'Crítico'
+    WHEN r.registroTemperatura > 30 OR r.registroTemperatura < 26 THEN 'Atenção'
+    ELSE 'Estável'
+END AS descricao
+FROM tanque t
+JOIN sensor s ON s.fkTanque = t.idTanque
+JOIN registroTemperatura r ON r.fkSensor = s.idSensor
+WHERE r.idRegistro = (
+    SELECT MAX(r2.idRegistro) FROM registroTemperatura r2
+    JOIN sensor s2 ON s2.idSensor = r2.fkSensor
+    WHERE s2.fkTanque = t.idTanque
+);
+
+CREATE VIEW vw_statusTanque AS
+SELECT
+    CASE
+    WHEN r.registroTemperatura > 33 OR r.registroTemperatura < 23 THEN 'Crítico'
+    WHEN r.registroTemperatura > 30 OR r.registroTemperatura < 26 THEN 'Atenção'
+    ELSE 'Estável'
+END AS descricao
+FROM registroTemperatura r
+ORDER BY r.dataHora DESC;
