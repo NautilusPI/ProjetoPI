@@ -202,11 +202,11 @@ function carregarKPIs() {
   });
 
   // Status sensor
-  fetch(`/dash/status-sensor/${tanque}`)
+  fetch(`/dash/nome-setor/${tanque}`)
     .then(res => res.json())
     .then(data => {
-      document.getElementById("cardStatusSensor").innerHTML =
-        data[0].StatusSensor;
+      document.getElementById("cardSetorTanque").innerHTML =
+        data[0].SetorTanque;
     });
 
     // Status tanque
