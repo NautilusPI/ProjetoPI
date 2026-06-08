@@ -50,7 +50,7 @@
         // verificações
  
         if (emailVar == ``) {
-            erroEmail.innerHTML = `<span class="mensagem_erro"> ⓘ Este campo não pode estar vazio</span>`;
+            erroEmail.innerHTML = `<span class="mensagem_erro"> ⓘ Este campo é obrigatório</span>`;
             email_input.style.border = `1px solid red`;
             temErro = true;
         } else {
@@ -59,7 +59,7 @@
         }
  
         if (senhaVar == '') {
-            erroSenha.innerHTML = `<span class="mensagem_erro"> ⓘ Informe sua senha</span>`;
+            erroSenha.innerHTML = `<span class="mensagem_erro"> ⓘ Este campo é obrigatório</span>`;
             senha_input.style.border = `1px solid red`;
             temErro = true;
         } else {

@@ -61,6 +61,16 @@ function cadastrarTanques() {
   }, 3500);
 
   return false;
+  } else if (capacidadeVar > 300000){
+    let alerta = document.getElementById("div_mensagem");
+  alerta.style.color = '#FF0000'
+  alerta.innerHTML = "A capacidade máxima permitida é de 300.000 litros.";
+
+  setTimeout(() => {
+    alerta.innerHTML = "";
+  }, 3500);
+
+  return false;
   }
 
   fetch("/areaUsuario/cadastrarTanque", {

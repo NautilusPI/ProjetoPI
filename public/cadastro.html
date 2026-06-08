@@ -90,14 +90,14 @@
 
         // NOME
         if (nome == ``) {
-            erroNome.innerHTML = `<span class="mensagem_erro"> ⓘ Por favor, informe seu nome</span>`
+            erroNome.innerHTML = `<span class="mensagem_erro"> ⓘ Este campo é obrigatório</span>`
             inpt_nome.style.border = "1px solid red"
         }
         else { erroNome.innerHTML = ``; inpt_nome.style.border = `1px solid green` }
 
         // EMAIL
         if (!email.includes('@')) {
-            erroEmail.innerHTML = `<span class="mensagem_erro"> ⓘ O email deve conter @ </span>`;
+            erroEmail.innerHTML = `<span class="mensagem_erro"> ⓘ Informe um e-mail válido</span>`;
             inputEmail.style.border = `1px solid red`;
             temErro = true;
         } else {
@@ -107,7 +107,7 @@
 
         // CPF
         if (cpf == ``) {
-            erroCPF.innerHTML = `<span class="mensagem_erro"> ⓘ Este campo não pode estar vazio</span>`;
+            erroCPF.innerHTML = `<span class="mensagem_erro"> ⓘ Este campo é obrigatório</span>`;
             inpt_cpf.style.border = `1px solid red`;
             temErro = true;
         } else {
@@ -117,7 +117,7 @@
 
         // CÓDIGO DA EMPRESA
         if (codigo == ``) {
-            erroCodigo.innerHTML = `<span class="mensagem_erro"> ⓘ Insira um código válido</span>`;
+            erroCodigo.innerHTML = `<span class="mensagem_erro"> ⓘ Este campo é obrigatório</span>`;
             inpt_codigo.style.border = `1px solid red`;
             temErro = true;
         } else {
@@ -127,7 +127,7 @@
 
         // SENHA
         if (senha.length < 6) {
-            erroSenha.innerHTML = `<span class="mensagem_erro"> ⓘ Senha muito curta </span>`;
+            erroSenha.innerHTML = `<span class="mensagem_erro"> ⓘ Deve conter no mínimo 6 caracteres.</span>`;
             inputSenha.style.border = `1px solid red`;
             temErro = true;
 
