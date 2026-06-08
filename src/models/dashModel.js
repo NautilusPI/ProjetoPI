@@ -36,11 +36,11 @@ function buscarTemperaturaAtual(tanque){
     return database.executar(query)
 }
 
-function buscarStatusSensor(tanque){
+function buscarNomeSetor(tanque){
     let query = `
-        SELECT s.StatusSensor FROM sensor s
+        SELECT s.nome FROM setor s
         JOIN Tanque t
-        ON t.idTanque = s.fkTanque
+        ON s.idSetor = t.fkSetor
         WHERE nomeTanque = '${tanque}';
     `
     return database.executar(query)
@@ -252,7 +252,7 @@ function buscarDadosGraficoBarra(idEmpresa){
 module.exports = {
     buscarRegistroTanque,
     buscarTemperaturaAtual,
-    buscarStatusSensor,
+    buscarNomeSetor,
     buscarStatusTanque,
     buscarAlertas7Dias,
     buscarUltimoAlerta,
