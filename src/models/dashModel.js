@@ -43,6 +43,8 @@ function buscarNomeSetor(tanque){
         ON s.idSetor = t.fkSetor
         WHERE nomeTanque = '${tanque}';
     `
+   
+    console.log(query)
     return database.executar(query)
 }
 

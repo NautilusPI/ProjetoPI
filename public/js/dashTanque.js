@@ -167,8 +167,9 @@ function carregarKPIs() {
   fetch(`/dash/temperatura-atual/${tanque}`)
     .then(res => res.json())
     .then(data => {
+      
       document.getElementById("cardTemperatura").innerHTML =
-        data[0].registroTemperatura + " ºC";
+        data[0].RegistroTemperatura + " ºC";
     });
 
   // Volume alertas 7 dias
@@ -202,11 +203,12 @@ function carregarKPIs() {
   });
 
   // Status sensor
+
   fetch(`/dash/nome-setor/${tanque}`)
     .then(res => res.json())
     .then(data => {
       document.getElementById("cardSetorTanque").innerHTML =
-        data[0].SetorTanque;
+        data[0].nome;
     });
 
     // Status tanque

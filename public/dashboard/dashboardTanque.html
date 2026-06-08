@@ -243,7 +243,7 @@
 
               for (let i = 0; i < tanque.length; i++) {
                 menu.innerHTML += `
-                            <option value="./dashboardTanque.html?idTanque=${tanque[i].idTanque}">
+                            <option value="${tanque[i].NomeTanque}">
                                 ${tanque[i].NomeTanque}
                             </option>
                         `;
@@ -259,11 +259,12 @@
     }
 
     function irParaPagina() {
-      const pagina = document.getElementById("menu").value;
+      const tanqueSelecionado = document.getElementById("menu").value;
+        sessionStorage.TanqueSelecionado = tanqueSelecionado;
 
-      if (pagina) {
-        window.location.href = pagina;
-      }
+      
+        window.location.href = './dashboardTanque.html';
+      
     }
   </script>
 </html>
