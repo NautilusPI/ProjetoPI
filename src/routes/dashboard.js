@@ -12,8 +12,8 @@ router.get("/alertas-7-dias/:tanque", function (req, res) {
    dashController.alertas7Dias(req, res);
 });
 
-router.get("/status-sensor/:tanque", function (req, res) {
-    dashController.statusSensor(req, res);
+router.get("/nome-setor/:tanque", function (req, res) {
+    dashController.nomeSetor(req, res);
 });
 
 router.get("/status-tanque/:tanque", function (req, res) {

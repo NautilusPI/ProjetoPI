@@ -36,11 +36,11 @@ function buscarTemperaturaAtual(tanque){
     return database.executar(query)
 }
 
-function buscarStatusSensor(tanque){
+function buscarNomeSetor(tanque){
     let query = `
-        SELECT s.StatusSensor FROM Sensor s
+        SELECT s.nome FROM Setor s
         JOIN Tanque t
-        ON t.idTanque = s.fkTanque
+        ON s.idSetor = t.fkSetor
         WHERE nomeTanque = '${tanque}';
     `
     return database.executar(query)
@@ -212,17 +212,22 @@ function buscarTanquesRisco(idEmpresa){
     `
 
     console.log("Executando a instrução SQL: \n" + query);
-    return database.executar(query);
+    return database.executar(query) ;
 }
 
-function buscarStatusViveiro(idEmpresa){
+async function buscarStatusViveiro(idEmpresa){
 
-    let query = `
+    let query1 = `
         SELECT COUNT(*) AS totalCritico FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao COLLATE utf8mb4_unicode_ci = 'Crítico';
     `;
+    let query2 =`
+        SELECT COUNT(*) AS totalAtencao FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao COLLATE utf8mb4_unicode_ci = 'Atenção';
+    `;
 
-    console.log("Executando a instrução SQL: \n" + query);
-    return database.executar(query);
+    console.log("Executando a instrução SQL: \n" + query1 + query2);
+    let  resultado1= await database.executar(query1)
+    let  resultado2= await database.executar(query2)
+    return {resultado1,resultado2};
 }
 
 function buscarDadosGraficoBarra(idEmpresa){
@@ -252,7 +257,7 @@ function buscarDadosGraficoBarra(idEmpresa){
 module.exports = {
     buscarRegistroTanque,
     buscarTemperaturaAtual,
-    buscarStatusSensor,
+    buscarNomeSetor,
     buscarStatusTanque,
     buscarAlertas7Dias,
     buscarUltimoAlerta,

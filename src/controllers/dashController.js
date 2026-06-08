@@ -48,10 +48,10 @@ function ultimoAlerta(req, res) {
     .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
 
-function statusSensor(req, res) {
+function nomeSetor(req, res) {
   const tanque = req.params.tanque;
   dashModel
-    .buscarStatusSensor(tanque)
+    .buscarnomeSetor(tanque)
     .then((resultado) => res.status(200).json(resultado))
     .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
@@ -155,6 +155,7 @@ function statusViveiro(req, res) {
     .buscarStatusViveiro(idEmpresa)
     .then((resultado) => {
       res.status(200).json(resultado);
+      console.log(resultado)
     })
     .catch((erro) => {
       console.log(erro);
@@ -181,7 +182,7 @@ module.exports = {
   alertas7Dias,
   temperaturaAtual,
   ultimoAlerta,
-  statusSensor,
+  nomeSetor,
   StatusTanque,
   modeloSensor,
   instalacao,
