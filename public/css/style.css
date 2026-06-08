@@ -209,7 +209,7 @@ body{
     max-width: fit-content;
 
 }
-.box-button button{
+.box-button a{
     cursor: pointer;
     color: white;
     font-weight: 700;
@@ -220,6 +220,8 @@ body{
     padding: 10px 30px;
     white-space: nowrap;
     align-items: center;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .box-button:active {
