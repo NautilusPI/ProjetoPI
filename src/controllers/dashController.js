@@ -51,7 +51,7 @@ function ultimoAlerta(req, res) {
 function nomeSetor(req, res) {
   const tanque = req.params.tanque;
   dashModel
-    .buscarnomeSetor(tanque)
+    .buscarNomeSetor(tanque)
     .then((resultado) => res.status(200).json(resultado))
     .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
