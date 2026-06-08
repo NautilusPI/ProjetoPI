@@ -155,6 +155,7 @@ function statusViveiro(req, res) {
     .buscarStatusViveiro(idEmpresa)
     .then((resultado) => {
       res.status(200).json(resultado);
+      console.log(resultado)
     })
     .catch((erro) => {
       console.log(erro);

@@ -34,8 +34,9 @@ function listarDados(req, res) {
 
             res.json({
                 tanques: resultado[0],
-                sensores: resultado[1]
+                sensores: resultado[1],
             });
+
 
         })
         .catch(function(erro){

@@ -5,14 +5,14 @@ function buscarRegistroTanque(tanque, dataInicio, dataFim){
     let where =''
     console.log(dataFim)
     if(dataInicio == 'aovivo' || dataFim == 'aovivo' ){
-        where = 'order by r.DataHora desc limit 15'
+        where = 'order by r.DataHora asc limit 15'
     }else{
         where =`and r.DataHora between '${dataInicio}' and '${dataFim}'`
     }
    
     let query = `
         select r.RegistroTemperatura, r.DataHora 
-        from registroTemperatura r
+        from RegistroTemperatura r
         join Sensor s on r.fkSensor = s.idSensor 
         join Tanque t on s.fkTanque = t.idTanque 
         where t.nomeTanque = '${tanque}'
@@ -24,7 +24,7 @@ function buscarRegistroTanque(tanque, dataInicio, dataFim){
 
 function buscarTemperaturaAtual(tanque){
     let query = `
-        SELECT r.registroTemperatura FROM registroTemperatura r
+        SELECT r.RegistroTemperatura FROM RegistroTemperatura r
         JOIN Sensor s
         ON r.fkSensor = s.idSensor
         JOIN Tanque t
@@ -38,7 +38,7 @@ function buscarTemperaturaAtual(tanque){
 
 function buscarNomeSetor(tanque){
     let query = `
-        SELECT s.nome FROM setor s
+        SELECT s.nome FROM Setor s
         JOIN Tanque t
         ON s.idSetor = t.fkSetor
         WHERE nomeTanque = '${tanque}';
@@ -50,11 +50,11 @@ function buscarStatusTanque(tanque){
     let query = `
         SELECT
             CASE
-            WHEN r.registroTemperatura > 33 OR r.registroTemperatura < 23 THEN 'Crítico'
-            WHEN r.registroTemperatura > 30 OR r.registroTemperatura < 26 THEN 'Atenção'
+            WHEN r.RegistroTemperatura > 33 OR r.RegistroTemperatura < 23 THEN 'Crítico'
+            WHEN r.RegistroTemperatura > 30 OR r.RegistroTemperatura < 26 THEN 'Atenção'
             ELSE 'Estável'
             END AS descricao
-            FROM registroTemperatura r
+            FROM RegistroTemperatura r
             JOIN Sensor s
             ON s.idSensor = r.fkSensor
             JOIN Tanque t
@@ -95,7 +95,7 @@ function buscarAlertas7Dias(tanque) {
 function buscarUltimoAlerta(tanque){
     let query = `
          SELECT a.idAlerta, r.RegistroTemperatura FROM Alerta a
-         JOIN registroTemperatura r
+         JOIN RegistroTemperatura r
          ON r.idRegistro = a.fkRegistroTemperatura
          JOIN Sensor s
          ON s.idSensor = fkAlertaSensor
@@ -109,7 +109,7 @@ function buscarUltimoAlerta(tanque){
 
 function buscarModeloSensor(tanque){
     let query = `
-        SELECT Modelo FROM sensor s
+        SELECT Modelo FROM Sensor s
 	JOIN Tanque t
     ON t.idTanque = s.fkTanque
     WHERE nomeTanque = '${tanque}';
@@ -120,7 +120,7 @@ function buscarModeloSensor(tanque){
 function buscarInstalacao(tanque){
     let query = `
         SELECT DataInstalacao
-        FROM sensor s
+        FROM Sensor s
         JOIN Tanque t
         ON t.idTanque = s.fkTanque
         WHERE nomeTanque = '${tanque}';
@@ -131,7 +131,7 @@ function buscarInstalacao(tanque){
 function buscarCapacidade(tanque){
     let query = `
         SELECT CapacidadeLitros
-        FROM tanque
+        FROM Tanque
         WHERE NomeTanque = '${tanque}';
     `
     return database.executar(query)
@@ -150,7 +150,7 @@ function buscarTotalAlertasDia(idEmpresa){
     let query = `
         SELECT idEmpresa, DATE_FORMAT(dataDia, '%d/%m') AS 'date', totalAlertas 
         FROM (
-            SELECT t.fkEmpresa as idEmpresa,
+            SELECT t.fkEmpresaSetor as idEmpresa,
 				   DATE(r.DataHora) AS dataDia, -- pega apenas a data, sem a hora
 				   COUNT(a.idAlerta) AS totalAlertas -- conta o número de alertas para cada data
             FROM Alerta a 
@@ -172,10 +172,10 @@ function buscarTotalAlertasDia(idEmpresa){
 
 function buscarTotalTanques(idEmpresa){
     let query = `
-        SELECT t.fkEmpresa, COUNT(*) AS totalTanques
-        FROM tanque t
-        WHERE t.fkEmpresa = ${idEmpresa}
-        GROUP BY t.fkEmpresa;
+        SELECT t.fkEmpresaSetor, COUNT(*) AS totalTanques
+        FROM Tanque t
+        WHERE t.fkEmpresaSetor = ${idEmpresa}
+        GROUP BY t.fkEmpresaSetor;
     `
 
     console.log("Executando a instrução SQL: \n" + query);
@@ -186,13 +186,13 @@ function buscarSensoresOffline(idEmpresa){
 
     let query = `
         SELECT DISTINCT t.idTanque
-        FROM tanque t
-        JOIN sensor s
+        FROM Tanque t
+        JOIN Sensor s
             ON s.fkTanque = t.idTanque
-        LEFT JOIN registroTemperatura r
+        LEFT JOIN RegistroTemperatura r
             ON r.fkSensor = s.idSensor
         WHERE r.RegistroTemperatura IS NULL
-        AND t.fkEmpresa = ${idEmpresa};
+        AND t.fkEmpresaSetor = ${idEmpresa};
     `;
 
     console.log("Executando a instrução SQL: \n" + query);
@@ -202,20 +202,20 @@ function buscarSensoresOffline(idEmpresa){
 function buscarTanquesRisco(idEmpresa){
     let query = `
         SELECT COUNT(DISTINCT t.idTanque) AS tanquesRisco
-        FROM tanque t
-        JOIN sensor s
+        FROM Tanque t
+        JOIN Sensor s
             ON s.fkTanque = t.idTanque
-        JOIN registroTemperatura r
+        JOIN RegistroTemperatura r
             ON r.fkSensor = s.idSensor
         WHERE (r.RegistroTemperatura < 26
-        OR r.RegistroTemperatura > 30) AND t.fkEmpresa = ${idEmpresa};
+        OR r.RegistroTemperatura > 30) AND t.fkEmpresaSetor = ${idEmpresa};
     `
 
     console.log("Executando a instrução SQL: \n" + query);
-    return database.executar(query);
+    return database.executar(query) ;
 }
 
-function buscarStatusViveiro(idEmpresa){
+async function buscarStatusViveiro(idEmpresa){
 
     let query1 = `
         SELECT COUNT(*) AS totalCritico FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao COLLATE utf8mb4_unicode_ci = 'Crítico';
@@ -224,9 +224,9 @@ function buscarStatusViveiro(idEmpresa){
         SELECT COUNT(*) AS totalAtencao FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao COLLATE utf8mb4_unicode_ci = 'Atenção';
     `;
 
-    console.log("Executando a instrução SQL: \n" + query);
-    let  resultado1= database.executar(query1)
-    let  resultado2= database.executar(query2)
+    console.log("Executando a instrução SQL: \n" + query1 + query2);
+    let  resultado1= await database.executar(query1)
+    let  resultado2= await database.executar(query2)
     return {resultado1,resultado2};
 }
 
@@ -234,19 +234,19 @@ function buscarDadosGraficoBarra(idEmpresa){
 
     let query = `
         SELECT
-            t.fkEmpresa, 
+            t.fkEmpresaSetor, 
             t.NomeTanque,
             r.RegistroTemperatura
-        FROM tanque t
-        JOIN sensor s
+        FROM Tanque t
+        JOIN Sensor s
             ON s.fkTanque = t.idTanque
-        JOIN registroTemperatura r
+        JOIN RegistroTemperatura r
             ON r.fkSensor = s.idSensor
         WHERE r.idRegistro = (
             SELECT MAX(r2.idRegistro)
-            FROM registroTemperatura r2
+            FROM RegistroTemperatura r2
             WHERE r2.fkSensor = s.idSensor
-        ) AND t.fkEmpresa = ${idEmpresa}
+        ) AND t.fkEmpresaSetor = ${idEmpresa}
         ORDER BY t.idTanque;
     `;
 

@@ -2,9 +2,9 @@ var database = require("../database/config");
 
 function cadastrarTanque(tanque, setor, capacidade, idUsuario) {
   let instrucaoSql = `
-        insert into Tanque (NomeTanque, Setor, CapacidadeLitros, fkEmpresa)
+        insert into Tanque (NomeTanque, fkSetor, CapacidadeLitros, fkEmpresaSetor)
         values ('${tanque}','${setor}', '${capacidade}',
-        (select fkEmpresa from usuario where idUsuario = '${idUsuario}')
+        (select fkEmpresa from Usuario where idUsuario = '${idUsuario}')
         );
         `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -14,22 +14,27 @@ function cadastrarTanque(tanque, setor, capacidade, idUsuario) {
 function listarDados(idUsuario) {
 
     let instrucaoSqlTanques = `
-    SELECT
-        t.idTanque,
-        t.NomeTanque,
-        t.Setor,
-        t.CapacidadeLitros,
-        e.CNPJ,
-        e.Endereco
-    FROM Tanque t
-    JOIN Empresa e
-        ON t.fkEmpresa = e.idEmpresa
-    WHERE t.fkEmpresa = (
-        SELECT fkEmpresa
-        FROM Usuario
-        WHERE idUsuario = ${idUsuario}
-    );
-`;
+        SELECT
+            t.idTanque,
+            t.NomeTanque,
+            t.CapacidadeLitros,
+            s.nome AS NomeSetor,
+            s.logradouro,
+            s.numero,
+            s.cep,
+            e.CNPJ
+        FROM Tanque t
+        INNER JOIN Setor s
+            ON t.fkSetor = s.idSetor
+        INNER JOIN Empresa e
+            ON s.fkEmpresa = e.idEmpresa
+        WHERE t.fkEmpresaSetor = (
+            SELECT fkEmpresa
+            FROM Usuario
+            WHERE idUsuario = ${idUsuario}
+        )
+        ORDER BY t.idTanque DESC;
+    `;
 
     let instrucaoSqlSensores = `
         SELECT
@@ -37,6 +42,8 @@ function listarDados(idUsuario) {
             fkTanque
         FROM Sensor;
     `;
+
+    console.log(instrucaoSqlTanques);
 
     return Promise.all([
         database.executar(instrucaoSqlTanques),
