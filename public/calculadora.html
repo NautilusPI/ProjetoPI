@@ -149,8 +149,14 @@
           </div>
 
           <div class="resultado">
-            <span class="subtexto">Perda de Peixes</span>
+            <span class="subtexto">Vendas Perdidas</span>
             <p id="perdaPeixesTotal" class="subvalor"></p>
+          </div>
+
+          
+          <div class="resultado">
+            <span class="subtexto">Perda com Despesas</span>
+            <p id="perdaDesp" class="subvalor"></p>
           </div>
 
           <div class="resultado">
@@ -215,6 +221,7 @@
    let liquido = 0
    let prejuizoTotal = 0
    let peixesMortosPorcentagemTotal = 0
+   let perdaDespesas = 0
 
   function calcular() {
     // Peixes //
@@ -323,6 +330,9 @@
   
      perdasPorPeixesMortosTotal += perdasPorPeixesMortos;
 
+     perdaDespesas += (custoDespesasCiclo * peixesPerdidosPorcentagem)
+     console.log(perdaDespesas)
+
       // Exibindo os resultados //
       tanque++
       // --------------------------------------------------------------- //  
@@ -340,6 +350,7 @@
       racao.innerHTML = `${perdaRacao.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`;
       alevino.innerHTML = `${perdaComAlevinoTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`
       perdaPeixesTotal.innerHTML = `${perdasPorPeixesMortosTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`
+      perdaDesp.innerHTML = `${perdaDespesas.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`
 
       // CARDS TANQUE //
       // --------------------------------------------------------------- //   
