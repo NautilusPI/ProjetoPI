@@ -23,9 +23,9 @@ function cadastrar(nome, email, cpf, senha, fkEmpresa) {
 }
 
 function buscarEmpresaPorCodigo(codigo) {
-    console.log("Buscando empresa pelo código:", codigo)
+    console.log("Buscando Empresa pelo código:", codigo)
     var instrucaoSql = `
-        SELECT idEmpresa FROM Empresa 
+        SELECT idEmpresa FROM empresa 
         WHERE CodigoDeAtivacao = '${codigo}';
     `;
     console.log("SQL:", instrucaoSql);

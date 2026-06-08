@@ -134,15 +134,21 @@ function listarDados() {
     .then(function (resposta) {
       if (resposta.ok) {
         resposta.json().then(function (dados) {
+          console.log("DADOS RECEBIDOS:");
+          console.log(dados);
           div_tanques.innerHTML = "";
 
           for (let i = 0; i < dados.tanques.length; i++) {
             let tanque = dados.tanques[i];
+            console.log(tanque);
 
             let nomeTanquelink = encodeURIComponent(tanque.NomeTanque);
             let capacidadelink = encodeURIComponent(tanque.CapacidadeLitros);
-            let setorlink = encodeURIComponent(tanque.Setor);
-            let enderecolink = encodeURIComponent(tanque.Endereco);
+            let setorlink = encodeURIComponent(tanque.NomeSetor);
+
+            let enderecolink = encodeURIComponent(
+            `${tanque.logradouro}, ${tanque.numero}, CEP: ${tanque.cep}`);
+
             let cnpjlink = encodeURIComponent(tanque.CNPJ);
             let emaillink = encodeURIComponent(sessionStorage.EMAIL_USUARIO);
             let nomelink = encodeURIComponent(sessionStorage.NOME_USUARIO);
@@ -171,7 +177,7 @@ function listarDados() {
            <span>
                <b>Nome:</b> ${tanque.NomeTanque}
                <br>
-               <b>Setor:</b> ${tanque.Setor}
+               <b>Setor:</b> ${tanque.NomeSetor}
                <br>
                <b>Capacidade:</b> ${formatarLitros} L
                ${linkInstalacao}
