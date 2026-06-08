@@ -212,10 +212,10 @@ function buscarTanquesRisco(idEmpresa){
     `
 
     console.log("Executando a instrução SQL: \n" + query);
-    return database.executar(query);
+    return database.executar(query) ;
 }
 
-function buscarStatusViveiro(idEmpresa){
+async function buscarStatusViveiro(idEmpresa){
 
     let query1 = `
         SELECT COUNT(*) AS totalCritico FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao COLLATE utf8mb4_unicode_ci = 'Crítico';
@@ -224,9 +224,9 @@ function buscarStatusViveiro(idEmpresa){
         SELECT COUNT(*) AS totalAtencao FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao COLLATE utf8mb4_unicode_ci = 'Atenção';
     `;
 
-    console.log("Executando a instrução SQL: \n" + query);
-    let  resultado1= database.executar(query1)
-    let  resultado2= database.executar(query2)
+    console.log("Executando a instrução SQL: \n" + query1 + query2);
+    let  resultado1= await database.executar(query1)
+    let  resultado2= await database.executar(query2)
     return {resultado1,resultado2};
 }
 
