@@ -1,6 +1,7 @@
 window.onload = function () {
   listarDados();
   verificarSessao();
+  buscarSetores();
 
   var nomeUsuario = sessionStorage.NOME_USUARIO;
   span_nomeUsuario.innerHTML = nomeUsuario;
@@ -43,13 +44,12 @@ function deslogar() {
 
 function cadastrarTanques() {
   var nomeTanqueVar = ipt_nomeTanque.value;
-  var nomeSetorVar = ipt_setor.value;
+  var idSetorVar = selectSetor.value;
   var capacidadeVar = Number(ipt_capacidade.value);
   var idUsuarioVar = sessionStorage.ID_USUARIO;
 
   if (
   nomeTanqueVar == "" ||
-  nomeSetorVar == "" ||
   capacidadeVar <= 0
   ) {
   let alerta = document.getElementById("div_mensagem");
@@ -80,8 +80,8 @@ function cadastrarTanques() {
     },
     body: JSON.stringify({
       nomeTanqueServer: nomeTanqueVar,
-      nomeSetorServer: nomeSetorVar,
       capacidadeServer: capacidadeVar,
+      idSetorServer: idSetorVar,
       idUsuarioServer: idUsuarioVar,
     }),
   })
@@ -90,8 +90,8 @@ function cadastrarTanques() {
         listarDados();
 
         ipt_nomeTanque.value = "";
-        ipt_setor.value = "";
         ipt_capacidade.value = "";
+        selectSetor.value = "Informe o Setor";
 
         let alerta = document.getElementById("div_mensagem");
         alerta.style.color = '#90EE90'
@@ -134,7 +134,6 @@ function listarDados() {
     .then(function (resposta) {
       if (resposta.ok) {
         resposta.json().then(function (dados) {
-          console.log("DADOS RECEBIDOS:");
           console.log(dados);
           div_tanques.innerHTML = "";
 
@@ -200,4 +199,41 @@ function verificarSessao() {
     window.location.href = './cadastro.html'
   }
 }
+
+function buscarSetores() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/areaUsuario/buscarSetores/${idUsuario}`)
+        .then(function (resposta) {
+            return resposta.json();
+
+        })
+        .then(function (dados) {
+
+            let escolha = document.getElementById("selectSetor");
+            let setorSelecionado = escolha.value;
+
+            escolha.innerHTML = `
+                <option value="">
+                    Informe o Setor
+                </option>
+            `;
+
+            for (let i = 0; i < dados.length; i++) {
+
+                escolha.innerHTML += `
+                    <option value="${dados[i].idSetor}">
+                        ${dados[i].nome}
+                    </option>
+                `;
+            }
+
+            escolha.value = setorSelecionado;
+
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+}
+
 

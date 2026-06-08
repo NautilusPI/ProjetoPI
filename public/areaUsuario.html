@@ -36,12 +36,16 @@
           <img src="./assets/Home/logo.png" alt="" />
           <div class="titulo">Cadastrar um novo tanque no seu viveiro</div>
           <input type="text" id="ipt_nomeTanque" placeholder="Nome do Tanque" />
-          <input type="text" id="ipt_setor" placeholder="Informe o Setor" />
+
           <input
-            type="number"
-            id="ipt_capacidade"
-            placeholder="Capacidade em Litros"
+          type="number"
+          id="ipt_capacidade"
+          placeholder="Capacidade em Litros"
           />
+          
+          <select name="" id="selectSetor" onchange="buscarSetores()">
+            <option value="">Informe o Setor</option>
+          </select>
 
           <button onclick="cadastrarTanques()">Cadastrar</button>
           
