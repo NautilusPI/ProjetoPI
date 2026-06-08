@@ -44,14 +44,15 @@ fetch(`/dash/statusViveiro/${idEmpresa}`)
     return resposta.json();
   })
   .then(function (dados) {
-    let total = dados[0].totalCritico;
-
+    let totalCritico = dados[0].totalCritico;
+    let totalAtencao = dados[0].totalAtencao;
+    
     let status = "";
 
-     if (total >= 3) {
+     if (totalCritico >= 3 || totalAtencao >= 5) {
       status = "Crítico";
          document.getElementById("kpiStatus").style.color = "#bf5959"
-    } else if (total >= 1) {
+    } else if (totalCritico >= 1 || totalAtencao >= 3) {
         status = "Atenção";
          document.getElementById("kpiStatus").style.color = "#bfb059"
     } else {

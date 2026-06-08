@@ -217,12 +217,17 @@ function buscarTanquesRisco(idEmpresa){
 
 function buscarStatusViveiro(idEmpresa){
 
-    let query = `
+    let query1 = `
         SELECT COUNT(*) AS totalCritico FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao COLLATE utf8mb4_unicode_ci = 'Crítico';
+    `;
+    let query2 =`
+        SELECT COUNT(*) AS totalAtencao FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao COLLATE utf8mb4_unicode_ci = 'Atenção';
     `;
 
     console.log("Executando a instrução SQL: \n" + query);
-    return database.executar(query);
+    let  resultado1= database.executar(query1)
+    let  resultado2= database.executar(query2)
+    return {resultado1,resultado2};
 }
 
 function buscarDadosGraficoBarra(idEmpresa){
