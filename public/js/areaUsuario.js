@@ -146,7 +146,7 @@ function listarDados() {
             let setorlink = encodeURIComponent(tanque.NomeSetor);
 
             let enderecolink = encodeURIComponent(
-            `${tanque.logradouro}, ${tanque.numero}, CEP: ${tanque.cep}`);
+            `${tanque.logradouro}, ${tanque.numero}`);
 
             let cnpjlink = encodeURIComponent(tanque.CNPJ);
             let emaillink = encodeURIComponent(sessionStorage.EMAIL_USUARIO);

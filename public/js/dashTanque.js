@@ -5,17 +5,16 @@ let linhasDeMedidaMinimo = [];
 let faixaSegura = [];
 let min = 50;
 let max = 0;
-let aovivo =false
+let aovivo =true
 
 let tanque = sessionStorage.TanqueSelecionado;
 
 function buscarRegistroTanque() {
-  let dataInicio = dataInicioInput.value;
-  let dataFim = dataFimInput.value;
+
   const temperaturasLista = [];
-  if(aovivoCheck.checked){
+
     dataInicio ='aovivo'; 
-    dataFim = 'aovivo'}
+    dataFim = 'aovivo'
   let horasLista = [];
   fetch(`/dash/graficoTanqueEspecifico/${tanque}/${dataInicio}/${dataFim}`).then(
     (dados) => {

@@ -72,7 +72,7 @@
           </div>
           <div class="card">
             <div class="topoCard">
-              <span>Último alerta </span>
+              <span>Temperatura do último alerta</span>
             </div>
             <div class="numeroCard">
               <span id="cardUltimoAlerta">--</span>
@@ -83,23 +83,7 @@
           <div class="graficoLinhaContainer">
             <div class="topo">
               <span>Histórico de temperatura </span>
-              <div class="inputsData">
-                <input
-                  type="datetime-local"
-                  id="dataInicioInput"
-                  value="2026-05-10 00:00"
-                />
-                <input
-                  type="datetime-local"
-                  id="dataFimInput"
-                  value="2026-05-11 00:00"
-                />
-              </div>
-              <!-- <button onclick="buscarRegistroTanque()">Filtrar</button> -->
-              <div class="checkBox">
-                Ver status atual
-                <input type="checkbox" class="checkbox" id="aovivoCheck" />
-              </div>
+             
             </div>
             <div class="grafico" id="containerGrafico">
               <canvas id="sensorAnalogico"></canvas>
@@ -217,7 +201,7 @@
     //     console.log()
     // }, 1000);
 
-    if (sessionStorage.EMAIL_USUARIO == "cesar@nautilus.suporte") {
+    if (sessionStorage.EMAIL_USUARIO == "cesar@suporte.com") {
       navlink.innerHTML += `
             <a class="link" href="testeIA.html">Suporte</a>
            

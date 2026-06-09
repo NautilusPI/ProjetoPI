@@ -58,19 +58,17 @@
           </div>
           <div class="card">
             <div class="topoCard">
-              <span>Sensores offline</span>
+              <span>Tanques sem instalação</span>
 
               <img src="../assets/Dashboard/sensor-de-temperatura.png" alt="" />
             </div>
             <div class="numeroCard">
               <span id="kpiOffline"></span>
             </div>
-            <div class="descricao" id="statusOffline" style="display: none">
-              <span>Tanques: <span id="tanquesOffline"></span></span>
-            </div>
+         
           </div>
-          <div class="card">
-            <div class="topoCard">
+          <div class="card" style="display: none;">
+            <div class="topoCard" style="display: none;">
               <span>Tanques fora da faixa ideal</span>
               <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
@@ -95,16 +93,7 @@
           <div class="graficoBarra">
             <div class="topoGraficoBarra">
               <p>Temperatura por tanque</p>
-              <select name="" id="">
-                <option value="">19:00 (Agora)</option>
-                <option value="">18:00</option>
-                <option value="">17:00</option>
-                <option value="">16:00</option>
-                <option value="">15:00</option>
-                <option value="">14:00</option>
-                <option value="">13:00</option>
-                <option value="">12:00</option>
-              </select>
+              
             </div>
 
             <div class="grafico">
@@ -117,7 +106,7 @@
               <div class="grafico"><canvas id="graficoLinha"></canvas></div>
             </div>
             <div class="tanques">
-              <p>Tanques</p>
+              <p id="qtdTanquesMonitorados"></p>
               <span>Temperatura ideal: 26.0 ºC - 30.0 ºC</span>
               <div id="div_tanqueLista" class="tanquesLista"></div>
             </div>
@@ -461,7 +450,7 @@
             alerta.push(resultado[i].descricao);
           } 
 
-          
+          qtdTanquesMonitorados.innerHTML = `Tanques Monitorados (${tanque.length})`
           for (let i = 0; i < tanque.length; i++) {
             let corStatus = "";
             if (alerta[i] == 'Atenção'){
@@ -494,9 +483,9 @@
 }
 
     carregarMedidasTempoReal();
-    setInterval(carregarMedidasTempoReal, 10000);
+    setInterval(carregarMedidasTempoReal, 3000);
 
-     if(sessionStorage.EMAIL_USUARIO == 'cesar@nautilus.suporte'){
+     if(sessionStorage.EMAIL_USUARIO == 'cesar@suporte.com'){
            navlink.innerHTML += `
             <a class="link" href="testeIA.html">Suporte</a>
            

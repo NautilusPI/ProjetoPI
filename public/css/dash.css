@@ -176,7 +176,7 @@ body {
 }
 
 .kpis {
-    width: 100%;
+    width: 70%;
     display: flex;
     justify-content: space-between;
     margin-top: 1%;
@@ -372,7 +372,7 @@ body {
     gap: 9px;
     margin-top: 12px;
     flex-wrap: wrap;
-    height: 160px;
+    height: 200px;
     overflow-y: scroll;
 }
     /* largura do scroll */

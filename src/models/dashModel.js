@@ -1,3 +1,4 @@
+const e = require("cors");
 var database = require("../database/config");
 
 
@@ -187,14 +188,7 @@ function buscarTotalTanques(idEmpresa){
 function buscarSensoresOffline(idEmpresa){
 
     let query = `
-        SELECT DISTINCT t.idTanque
-        FROM Tanque t
-        JOIN Sensor s
-            ON s.fkTanque = t.idTanque
-        LEFT JOIN RegistroTemperatura r
-            ON r.fkSensor = s.idSensor
-        WHERE r.RegistroTemperatura IS NULL
-        AND t.fkEmpresaSetor = ${idEmpresa};
+       select count(*) as qtd from Tanque left join Sensor on fkTanque = idTanque join Setor on idSetor = fkSetor where idSensor IS NULL and fkEmpresa = ${idEmpresa};
     `;
 
     console.log("Executando a instrução SQL: \n" + query);
@@ -209,8 +203,8 @@ function buscarTanquesRisco(idEmpresa){
             ON s.fkTanque = t.idTanque
         JOIN RegistroTemperatura r
             ON r.fkSensor = s.idSensor
-        WHERE (r.RegistroTemperatura < 26
-        OR r.RegistroTemperatura > 30) AND t.fkEmpresaSetor = ${idEmpresa};
+        WHERE (r.RegistroTemperatura < 27
+        OR r.RegistroTemperatura > 31) AND t.fkEmpresaSetor = ${idEmpresa};
     `
 
     console.log("Executando a instrução SQL: \n" + query);
@@ -220,10 +214,10 @@ function buscarTanquesRisco(idEmpresa){
 async function buscarStatusViveiro(idEmpresa){
 
     let query1 = `
-        SELECT COUNT(*) AS totalCritico FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao COLLATE utf8mb4_unicode_ci = 'Crítico';
+        SELECT COUNT(*) AS totalCritico FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao ='Crítico';
     `;
     let query2 =`
-        SELECT COUNT(*) AS totalAtencao FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao COLLATE utf8mb4_unicode_ci = 'Atenção';
+        SELECT COUNT(*) AS totalAtencao FROM vw_medidasEmTempoReal WHERE idEmpresa = ${idEmpresa} AND descricao ='Atenção';
     `;
 
     console.log("Executando a instrução SQL: \n" + query1 + query2);
@@ -231,7 +225,7 @@ async function buscarStatusViveiro(idEmpresa){
     let  resultado2= await database.executar(query2)
     return {resultado1,resultado2};
 }
-
+    
 function buscarDadosGraficoBarra(idEmpresa){
 
     let query = `

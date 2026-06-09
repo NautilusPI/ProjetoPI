@@ -21,19 +21,15 @@ fetch(`/dash/sensoresOffline/${idEmpresa}`)
     return resposta.json();
   })
   .then(function (dados) {
-    let lista = "";
+    
 
-    for (let i = 0; i < dados.length; i++) {
-      lista += `
-             ${dados[i].idTanque}
-        `;
-    }
 
-    document.getElementById("kpiOffline").innerHTML = dados.length;
+
+    document.getElementById("kpiOffline").innerHTML = dados[0].qtd;
 
     let faixa = document.getElementById("statusOffline");
     faixa.style.display = "flex";
-    document.getElementById("tanquesOffline").innerHTML = lista;
+
   })
   .catch(function (erro) {
     console.log(erro);
@@ -45,8 +41,6 @@ fetch(`/dash/statusViveiro/${idEmpresa}`)
   })
   .then(function (dados) {
 
-    
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     console.log(dados)
   
     let totalCritico = dados.resultado1[0].totalCritico;
