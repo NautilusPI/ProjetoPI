@@ -195,22 +195,6 @@ function buscarSensoresOffline(idEmpresa){
     return database.executar(query);
 }
 
-function buscarTanquesRisco(idEmpresa){
-    let query = `
-        SELECT COUNT(DISTINCT t.idTanque) AS tanquesRisco
-        FROM Tanque t
-        JOIN Sensor s
-            ON s.fkTanque = t.idTanque
-        JOIN RegistroTemperatura r
-            ON r.fkSensor = s.idSensor
-        WHERE (r.RegistroTemperatura < 27
-        OR r.RegistroTemperatura > 31) AND t.fkEmpresaSetor = ${idEmpresa};
-    `
-
-    console.log("Executando a instrução SQL: \n" + query);
-    return database.executar(query) ;
-}
-
 async function buscarStatusViveiro(idEmpresa){
 
     let query1 = `
@@ -264,7 +248,6 @@ module.exports = {
     buscarTotalAlertasDia,
     buscarTotalTanques,
     buscarSensoresOffline,
-    buscarTanquesRisco,
     buscarStatusViveiro,
     buscarDadosGraficoBarra
 };

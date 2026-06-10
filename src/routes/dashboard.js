@@ -55,10 +55,6 @@ router.get("/sensoresOffline/:idEmpresa", function(req, res){
     dashController.sensoresOffline(req, res);
 });
 
-router.get("/tanquesRisco/:idEmpresa", function(req, res){
-    dashController.tanquesRisco(req, res);
-});
-
 router.get("/statusViveiro/:idEmpresa", function(req, res){
     dashController.statusViveiro(req, res);
 });

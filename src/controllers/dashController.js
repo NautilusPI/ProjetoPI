@@ -134,20 +134,6 @@ function sensoresOffline(req, res) {
     });
 }
 
-function tanquesRisco(req, res) {
-  let idEmpresa = req.params.idEmpresa;
-
-  dashModel
-    .buscarTanquesRisco(idEmpresa)
-    .then((resultado) => {
-      res.status(200).json(resultado);
-    })
-    .catch((erro) => {
-      console.log(erro);
-      res.status(500).json(erro.sqlMessage);
-    });
-}
-
 function statusViveiro(req, res) {
   let idEmpresa = req.params.idEmpresa;
 
@@ -191,7 +177,6 @@ module.exports = {
   buscarTotalAlertasDia,
   totalTanques,
   sensoresOffline,
-  tanquesRisco,
   statusViveiro,
   graficoBarra,
 };

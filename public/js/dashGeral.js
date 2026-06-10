@@ -65,19 +65,6 @@ fetch(`/dash/statusViveiro/${idEmpresa}`)
     console.log(erro);
   });
 
-fetch(`/dash/tanquesRisco/${idEmpresa}`)
-  .then(function (resposta) {
-    return resposta.json();
-  })
-
-  .then(function (dados) {
-    document.getElementById("kpiRisco").innerHTML = dados[0].tanquesRisco;
-  })
-
-  .catch(function (erro) {
-    console.log(erro);
-  });
-
 
   function deslogar() {
   sessionStorage.clear();

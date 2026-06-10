@@ -1,86 +1,131 @@
-create database Nautilus;
-use Nautilus;
+CREATE DATABASE Nautilus;
+USE Nautilus;
+
+-- EMPRESA
 
 CREATE TABLE Empresa (
-	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
-	Nome VARCHAR(45),
-	Endereco VARCHAR(80),
-	CodigoDeAtivacao CHAR(8),
-	CNPJ CHAR(14)
+    idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL,
+    codigoDeAtivacao VARCHAR(45) NOT NULL UNIQUE,
+    cnpj CHAR(14) NOT NULL UNIQUE
 );
+
+-- USUARIO
 
 CREATE TABLE Usuario (
-	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-	Nome VARCHAR(45) NOT NULL,
-	Email VARCHAR(80) NOT NULL,
-	Senha VARCHAR(15) NOT NULL,
-	Telefone CHAR(11),
-    CPF CHAR(11) NOT NULL,
-	fkEmpresa INT, 
-	CONSTRAINT fkEmpresa_const FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
+    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL,
+    email VARCHAR(80) NOT NULL UNIQUE,
+    senha VARCHAR(45) NOT NULL,
+    CPF CHAR(11) NOT NULL UNIQUE,
+    fkEmpresa INT NOT NULL,
+
+    CONSTRAINT fkUsuarioEmpresa
+        FOREIGN KEY (fkEmpresa)
+        REFERENCES Empresa(idEmpresa)
 );
+
+-- SETOR
+
+CREATE TABLE Setor (
+    idSetor INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL,
+    logradouro VARCHAR(45) NOT NULL,
+    numero INT NOT NULL,
+    cep CHAR(8) NOT NULL,
+    fkEmpresa INT NOT NULL,
+
+    CONSTRAINT fkSetorEmpresa
+        FOREIGN KEY (fkEmpresa)
+        REFERENCES Empresa(idEmpresa)
+);
+
+-- TANQUE
 
 CREATE TABLE Tanque (
-	idTanque INT PRIMARY KEY AUTO_INCREMENT,
-	NomeTanque VARCHAR(45),
-	CapacidadeLitros INT,
-	Setor VARCHAR(45),
-	fkEmpresa INT,
-	CONSTRAINT fkEmpresa_const_tanque FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
+    idTanque INT PRIMARY KEY AUTO_INCREMENT,
+    NomeTanque VARCHAR(45) NOT NULL,
+    CapacidadeLitros INT NOT NULL,
+    fkSetor INT NOT NULL,
+    fkEmpresaSetor INT NOT NULL,
+
+    CONSTRAINT fkTanqueSetor
+        FOREIGN KEY (fkSetor)
+        REFERENCES Setor(idSetor),
+
+    CONSTRAINT fkTanqueEmpresa
+        FOREIGN KEY (fkEmpresaSetor)
+        REFERENCES Empresa(idEmpresa)
 );
+
+-- SENSOR
 
 CREATE TABLE Sensor (
-	idSensor INT PRIMARY KEY AUTO_INCREMENT,
-	Modelo VARCHAR(40),
-	DataInstalacao DATE,
-	StatusSensor VARCHAR(20), 
-	CONSTRAINT chkStatus CHECK (StatusSensor IN('Crítico','Atenção','Estável')),
-	fkTanque INT,
-	CONSTRAINT fkTanque_const FOREIGN KEY (fkTanque) REFERENCES Tanque(idTanque)
+    idSensor INT PRIMARY KEY AUTO_INCREMENT,
+    Modelo VARCHAR(40) NOT NULL,
+    DataInstalacao DATE NOT NULL,
+    StatusSensor VARCHAR(45) NOT NULL,
+    fkTanque INT NOT NULL,
+
+    CONSTRAINT fkSensorTanque
+        FOREIGN KEY (fkTanque)
+        REFERENCES Tanque(idTanque)
 );
+
+-- REGISTRO TEMPERATURA
 
 CREATE TABLE RegistroTemperatura (
-	idRegistro INT AUTO_INCREMENT,
-    RegistroTemperatura DECIMAL(4,2),
-    DataHora DATETIME,
-    fkSensor INT,
-    CONSTRAINT fkSensor_const FOREIGN KEY (fkSensor) REFERENCES Sensor(idSensor),
-    PRIMARY KEY (idRegistro, fkSensor) 
-	);
-    
-    CREATE TABLE Alerta(
-    idAlerta INT AUTO_INCREMENT,
-    fkRegistroTemperatura INT,
-    fkAlertaSensor INT,
-	CONSTRAINT fkRegistroTemperatura FOREIGN KEY (fkRegistroTemperatura) REFERENCES RegistroTemperatura(idRegistro),
-	CONSTRAINT fkAlertaSensor FOREIGN KEY (fkAlertaSensor) REFERENCES RegistroTemperatura(fkSensor),
-	PRIMARY KEY (idAlerta, fkRegistroTemperatura)
-    );
+    idRegistro INT PRIMARY KEY AUTO_INCREMENT,
+    RegistroTemperatura DECIMAL(5,2) NOT NULL,
+    DataHora DATETIME NOT NULL,
+    fkSensor INT NOT NULL,
 
--- VIEWS
-
-CREATE VIEW vw_medidasEmTempoReal AS
-SELECT t.fkEmpresa as idEmpresa, t.nomeTanque, r.registroTemperatura,
-    CASE
-    WHEN r.registroTemperatura > 33 OR r.registroTemperatura < 23 THEN 'Crítico'
-    WHEN r.registroTemperatura > 30 OR r.registroTemperatura < 26 THEN 'Atenção'
-    ELSE 'Estável'
-END AS descricao
-FROM tanque t
-JOIN sensor s ON s.fkTanque = t.idTanque
-JOIN registroTemperatura r ON r.fkSensor = s.idSensor
-WHERE r.idRegistro = (
-    SELECT MAX(r2.idRegistro) FROM registroTemperatura r2
-    JOIN sensor s2 ON s2.idSensor = r2.fkSensor
-    WHERE s2.fkTanque = t.idTanque
+    CONSTRAINT fkRegistroSensor
+        FOREIGN KEY (fkSensor)
+        REFERENCES Sensor(idSensor)
 );
 
-CREATE VIEW vw_statusTanque AS
+-- ALERTA
+
+CREATE TABLE Alerta (
+    idAlerta INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(200) NOT NULL,
+    fkRegistroTemperatura INT NOT NULL,
+    fkAlertaSensor INT NOT NULL,
+
+    CONSTRAINT fkAlertaRegistro
+        FOREIGN KEY (fkRegistroTemperatura)
+        REFERENCES RegistroTemperatura(idRegistro),
+
+    CONSTRAINT fkAlertaSensor
+        FOREIGN KEY (fkAlertaSensor)
+        REFERENCES Sensor(idSensor)
+);
+
+-- VIEW
+
+CREATE VIEW vw_medidasEmTempoReal AS
 SELECT
-    CASE
-    WHEN r.registroTemperatura > 33 OR r.registroTemperatura < 23 THEN 'Crítico'
-    WHEN r.registroTemperatura > 30 OR r.registroTemperatura < 26 THEN 'Atenção'
-    ELSE 'Estável'
+    t.fkEmpresaSetor AS idEmpresa,
+    t.NomeTanque,
+    r.RegistroTemperatura AS registroTemperatura,
+CASE
+    WHEN r.RegistroTemperatura > 33 OR r.RegistroTemperatura < 23
+        THEN CONVERT('Crítico' USING utf8mb4)
+
+    WHEN r.RegistroTemperatura > 30 OR r.RegistroTemperatura < 26
+        THEN CONVERT('Atenção' USING utf8mb4)
+
+    ELSE CONVERT('Estável' USING utf8mb4)
 END AS descricao
-FROM registroTemperatura r
-ORDER BY r.dataHora DESC;
+
+FROM Tanque t
+JOIN Sensor s
+    ON s.fkTanque = t.idTanque
+JOIN RegistroTemperatura r
+    ON r.fkSensor = s.idSensor
+WHERE r.idRegistro = (
+    SELECT MAX(r2.idRegistro)
+    FROM RegistroTemperatura r2
+    WHERE r2.fkSensor = s.idSensor
+);
